@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import { HaversineService, GeoCoord } from "ng2-haversine";
 
 import {LocationListPage} from '../pages/location-list/location-list';
 import {FriendListPage} from '../pages/friend-list/friend-list';
@@ -29,7 +30,8 @@ export class MyApp {
 
     helpMenuItems: Array<MenuItem>;
 
-    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+                private _haversineService: HaversineService) {
         this.initializeApp();
 
         this.appMenuItems = [
@@ -52,6 +54,36 @@ export class MyApp {
     }
 
     initializeApp() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(position => {
+                //this.location = position.coords;
+                console.log(position.coords); 
+                let madrid: GeoCoord = {
+                    latitude: 33.91918,
+                    longitude: -118.416465
+                };
+
+//El Segundo, CA, USA
+//atitude: 33.91918 | Longitude: -118.416465
+
+                let current: GeoCoord = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                };
+
+                let meters = this._haversineService.getDistanceInMeters(madrid, current);
+                let kilometers = this._haversineService.getDistanceInKilometers(madrid, current);
+                let miles = this._haversineService.getDistanceInMiles(madrid, current);
+ 
+                console.log(`
+                    The distance between Current and Bilbao is:
+                        - ${meters} meters
+                        - ${kilometers} kilometers
+                        - ${miles} miles
+                `);
+          });
+        }
+
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.

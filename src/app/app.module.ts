@@ -2,15 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HaversineService } from "ng2-haversine";
+import { NgPipesModule } from 'ngx-pipes';
+
 
 import { MyApp } from './app.component';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {LocationListPage} from '../pages/location-list/location-list';
 import {LocationDetailPage} from '../pages/location-detail/location-detail';
-import {BrokerListPage} from '../pages/broker-list/broker-list';
-import {BrokerDetailPage} from '../pages/broker-detail/broker-detail';
+import {FriendListPage} from '../pages/friend-list/friend-list';
+import {FriendDetailPage} from '../pages/friend-detail/friend-detail';
 import {RequestListPage} from '../pages/request-list/request-list';
 import {AboutPage} from '../pages/about/about';
+
 
 import {PropertyService} from "../providers/property-service-mock";
 import {BrokerService} from "../providers/broker-service-mock";
@@ -26,12 +30,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LocationListPage,
     LocationDetailPage,
     RequestListPage,
-    BrokerListPage,
-    BrokerDetailPage
+    FriendListPage,
+    FriendDetailPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    NgPipesModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -42,14 +47,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LocationListPage,
     LocationDetailPage,
     RequestListPage,
-    BrokerListPage,
-    BrokerDetailPage
+    FriendListPage,
+    FriendDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     PropertyService,
     BrokerService,
+    HaversineService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

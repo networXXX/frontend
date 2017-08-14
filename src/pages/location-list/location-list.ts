@@ -2,6 +2,9 @@ import {Component} from '@angular/core';
 import {Config, NavController} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {LocationDetailPage} from '../location-detail/location-detail';
+import { HaversineService, GeoCoord } from "ng2-haversine";
+import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
+
 import leaflet from 'leaflet';
 
 @Component({
@@ -13,10 +16,15 @@ export class LocationListPage {
     properties: Array<any>;
     searchKey: string = "";
     viewMode: string = "list";
+    current: GeoCoord = {
+            latitude: 0,
+            longitude: 0
+        };
     map;
     markersGroup;
-
-    constructor(public navCtrl: NavController, public service: PropertyService, public config: Config) {
+    constructor(public navCtrl: NavController, public service: PropertyService, 
+                public config: Config, private _haversineService: HaversineService) {
+        this.getLocation();
         this.findAll();
     }
 
@@ -41,8 +49,23 @@ export class LocationListPage {
 
     findAll() {
         this.service.findAll()
-            .then(data => this.properties = data)
+            .then(data => { 
+                this.properties = data;
+
+            })
             .catch(error => alert(error));
+    }
+
+    getLocation() {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(position => {
+                //this.location = position.coords;
+                console.log(position.coords); 
+                debugger;
+                this.current.latitude = position.coords.latitude;
+                this.current.longitude = position.coords.longitude;
+          });
+        }
     }
 
     showMap() {
@@ -60,14 +83,38 @@ export class LocationListPage {
             this.map.removeLayer(this.markersGroup);
         }
         this.markersGroup = leaflet.layerGroup([]);
+        
         this.properties.forEach(property => {
             if (property.lat, property.long) {
-                let marker: any = leaflet.marker([property.lat, property.long]).on('click', event => this.openPropertyDetail(event.target.data));
+                let myIcon = leaflet.icon({
+                            iconUrl: property.thumbnail,
+                            iconSize: [38, 38],
+                            iconAnchor: [22, 94],
+                            popupAnchor: [-3, -76],
+                            shadowUrl: '',
+                            shadowSize: [68, 95],
+                            shadowAnchor: [22, 94]
+                        });
+                let marker: any = leaflet.marker([property.lat, property.long], {icon: myIcon, title: property.title}).on('click', event => this.openPropertyDetail(event.target.data));
+
                 marker.data = property;
                 this.markersGroup.addLayer(marker);
             }
         });
         this.map.addLayer(this.markersGroup);
+    }
+
+    calcDistance(property) {
+        if (property.distance == 0) {
+            let location: GeoCoord = {
+                latitude: property.lat,
+                longitude: property.long
+            }
+            property.distance = this._haversineService.getDistanceInKilometers(location, this.current);
+            //property.distance = 2;
+            console.log(property.distance);
+        }
+        
     }
 
 }

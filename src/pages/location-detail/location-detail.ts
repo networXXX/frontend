@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActionSheetController, ActionSheet, NavController, NavParams, ToastController} from 'ionic-angular';
-import {BrokerDetailPage} from '../broker-detail/broker-detail';
+import {FriendDetailPage} from '../friend-detail/friend-detail';
 import {PropertyService} from '../../providers/property-service-mock';
 
 @Component({
@@ -19,7 +19,7 @@ export class LocationDetailPage {
     }
 
     openBrokerDetail(broker) {
-        this.navCtrl.push(BrokerDetailPage, broker);
+        this.navCtrl.push(FriendDetailPage, broker);
     }
 
     favorite(property) {

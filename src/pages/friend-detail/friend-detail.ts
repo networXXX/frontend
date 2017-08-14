@@ -3,8 +3,8 @@ import {NavController, NavParams} from 'ionic-angular';
 import {BrokerService} from '../../providers/broker-service-mock';
 
 @Component({
-    selector: 'page-broker-detail',
-    templateUrl: 'broker-detail.html'
+    selector: 'page-friend-detail',
+    templateUrl: 'friend-detail.html'
 })
 export class FriendDetailPage {
 
