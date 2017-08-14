@@ -61,7 +61,7 @@ export class LocationListPage {
             navigator.geolocation.getCurrentPosition(position => {
                 //this.location = position.coords;
                 console.log(position.coords); 
-                debugger;
+                //debugger;
                 this.current.latitude = position.coords.latitude;
                 this.current.longitude = position.coords.longitude;
           });
@@ -95,7 +95,8 @@ export class LocationListPage {
                             shadowSize: [68, 95],
                             shadowAnchor: [22, 94]
                         });
-                let marker: any = leaflet.marker([property.lat, property.long], {icon: myIcon, title: property.title}).on('click', event => this.openPropertyDetail(event.target.data));
+                let marker: any = leaflet.marker([property.lat, property.long], 
+                        {icon: myIcon, title: property.title}).on('click', event => this.openPropertyDetail(event.target.data));
 
                 marker.data = property;
                 this.markersGroup.addLayer(marker);
