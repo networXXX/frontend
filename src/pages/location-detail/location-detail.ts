@@ -3,6 +3,8 @@ import {ActionSheetController, ActionSheet, NavController, NavParams, ToastContr
 import {FriendDetailPage} from '../friend-detail/friend-detail';
 import {PropertyService} from '../../providers/property-service-mock';
 
+import leaflet from 'leaflet';
+
 @Component({
     selector: 'page-location-detail',
     templateUrl: 'location-detail.html'
@@ -10,7 +12,8 @@ import {PropertyService} from '../../providers/property-service-mock';
 export class LocationDetailPage {
 
     property: any;
-
+    map;
+    markersGroup;
     constructor(public actionSheetCtrl: ActionSheetController, public navCtrl: NavController, public navParams: NavParams, public propertyService: PropertyService, public toastCtrl: ToastController) {
         this.property = this.navParams.data;
         propertyService.findById(this.property.id).then(
@@ -59,6 +62,41 @@ export class LocationDetailPage {
         });
 
         actionSheet.present();
+    }
+
+    showMap(property) {
+        setTimeout(() => {
+            this.map = leaflet.map("map").setView([property.lat, property.long], 14);
+            leaflet.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri'
+            }).addTo(this.map);
+            this.showMarkers(property);
+        })
+    }
+
+    showMarkers(property) {
+        if (this.markersGroup) {
+            this.map.removeLayer(this.markersGroup);
+        }
+        this.markersGroup = leaflet.layerGroup([]);
+        
+        if (property.lat, property.long) {
+                let myIcon = leaflet.icon({
+                            iconUrl: property.thumbnail,
+                            iconSize: [38, 38],
+                            iconAnchor: [22, 94],
+                            popupAnchor: [-3, -76],
+                            shadowUrl: '',
+                            shadowSize: [68, 95],
+                            shadowAnchor: [22, 94]
+                        });
+                let marker: any = leaflet.marker([property.lat, property.long], 
+                        {icon: myIcon, title: property.title});
+
+                marker.data = property;
+                this.markersGroup.addLayer(marker);
+            }
+        this.map.addLayer(this.markersGroup);
     }
 
 }

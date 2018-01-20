@@ -3,7 +3,7 @@ import {Config, NavController} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {LocationDetailPage} from '../location-detail/location-detail';
 import { HaversineService, GeoCoord } from "ng2-haversine";
-import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
+//import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
 
 import leaflet from 'leaflet';
 
