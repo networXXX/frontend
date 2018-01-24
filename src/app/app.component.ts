@@ -50,7 +50,6 @@ export class MyApp {
             {title: 'Welcome', component: WelcomePage, icon: 'bookmark'},
             {title: 'About', component: AboutPage, icon: 'information-circle'},
         ];
-
     }
 
     initializeApp() {

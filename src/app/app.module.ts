@@ -5,7 +5,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HaversineService } from "ng2-haversine";
 import { NgPipesModule } from 'ngx-pipes';
 
-
 import { MyApp } from './app.component';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {LocationListPage} from '../pages/location-list/location-list';
@@ -14,11 +13,8 @@ import {FriendListPage} from '../pages/friend-list/friend-list';
 import {FriendDetailPage} from '../pages/friend-detail/friend-detail';
 import {RequestListPage} from '../pages/request-list/request-list';
 import {AboutPage} from '../pages/about/about';
-
-
 import {PropertyService} from "../providers/property-service-mock";
 import {BrokerService} from "../providers/broker-service-mock";
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 

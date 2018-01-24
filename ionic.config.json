@@ -1,6 +1,8 @@
 {
-  "name": "dreamhouse-ionic3",
+  "name": "githubIonic",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {}
+  "integrations": {
+    "cordova": {}
+  }
 }
