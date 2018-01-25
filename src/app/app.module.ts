@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HaversineService } from "ng2-haversine";
 import { NgPipesModule } from 'ngx-pipes';
 
+import { DefaultApi } from './../providers/api/DefaultApi';
+import { AppConstants } from './../constants/app.constants';
 import { MyApp } from './app.component';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {LocationListPage} from '../pages/location-list/location-list';
@@ -17,6 +19,9 @@ import {PropertyService} from "../providers/property-service-mock";
 import {BrokerService} from "../providers/broker-service-mock";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from '../pages/login/login';
+import { IonicStorageModule } from '@ionic/storage';
+import { LogoutPage } from '../pages/logout/logout';
 
 @NgModule({
   declarations: [
@@ -27,13 +32,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LocationDetailPage,
     RequestListPage,
     FriendListPage,
-    FriendDetailPage
+    FriendDetailPage,
+    LoginPage,
+    LogoutPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     NgPipesModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +52,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     LocationDetailPage,
     RequestListPage,
     FriendListPage,
-    FriendDetailPage
+    FriendDetailPage,
+    LoginPage,
+    LogoutPage
   ],
   providers: [
     StatusBar,
@@ -52,7 +62,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PropertyService,
     BrokerService,
     HaversineService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AppConstants,
+    DefaultApi
   ]
 })
 export class AppModule {}

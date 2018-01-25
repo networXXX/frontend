@@ -25768,6 +25768,67 @@ ion-footer {
   padding: 8px 16px !important;
 }
 
+page-login .login-content {
+  background: #ffffff;
+}
+
+page-login .login-content .logo-row {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+page-login .login-content .login-box {
+  background: #399F8B;
+  padding: 20px 20px 0px 20px;
+  margin-top: 30px;
+}
+
+page-login .login-content ion-row {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+page-login .login-content ion-item {
+  border-radius: 10px !important;
+  padding-left: 10px !important;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  border-bottom: 0px !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+page-login .login-content .signup-col {
+  margin: 0px 16px 0px 16px;
+  padding-bottom: 20px;
+}
+
+page-login .login-content .item-inner {
+  border-bottom-color: #ffffff !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+page-login .login-content .submit-btn {
+  background: #51CFB1;
+  border-radius: 10px !important;
+  border: 1px solid #ffffff;
+}
+
+page-login .login-content .register-btn {
+  color: #ffffff;
+  font-size: 0.8em;
+}
+
+page-login .login-content .forget-btn {
+  color: #ffffff;
+  font-size: 0.8em;
+}
+
 page-welcome {
   font-weight: 300;
 }

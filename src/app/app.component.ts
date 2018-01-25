@@ -1,14 +1,18 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform} from 'ionic-angular';
+import {Nav, Platform, MenuController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 import { HaversineService, GeoCoord } from "ng2-haversine";
 
+import { LoginPage } from '../pages/login/login';
+import { LogoutPage } from '../pages/logout/logout';
 import {LocationListPage} from '../pages/location-list/location-list';
 import {FriendListPage} from '../pages/friend-list/friend-list';
 import {RequestListPage} from '../pages/request-list/request-list';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {AboutPage} from '../pages/about/about';
+
 
 export interface MenuItem {
     title: string;
@@ -22,7 +26,7 @@ export interface MenuItem {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = WelcomePage;
+    rootPage: any = LoginPage;
 
     appMenuItems: Array<MenuItem>;
 
@@ -31,7 +35,8 @@ export class MyApp {
     helpMenuItems: Array<MenuItem>;
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-                private _haversineService: HaversineService) {
+                private _haversineService: HaversineService, private storage: Storage,
+                public menu: MenuController) {
         this.initializeApp();
 
         this.appMenuItems = [
@@ -43,7 +48,7 @@ export class MyApp {
 
         this.accountMenuItems = [
             {title: 'My Account', component: WelcomePage, icon: 'ios-contact'},
-            {title: 'Logout', component: WelcomePage, icon: 'log-out'},
+            {title: 'Logout', component: LogoutPage, icon: 'log-out'},
         ];
 
         this.helpMenuItems = [
@@ -92,8 +97,16 @@ export class MyApp {
     }
 
     openPage(page) {
+        // close the menu when clicking a link from the menu
+        this.menu.close();
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
-        this.nav.setRoot(page.component);
+        //this.nav.setRoot(page.component);
+        if (page.title == 'Logout') {
+          this.storage.set('user', null);
+          this.nav.setRoot(this.rootPage);
+        } else {
+          this.nav.setRoot(page.component);
+        }
     }
 }
