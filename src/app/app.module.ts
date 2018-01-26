@@ -8,7 +8,7 @@ import { NgPipesModule } from 'ngx-pipes';
 import { DefaultApi } from './../providers/api/DefaultApi';
 import { AppConstants } from './../constants/app.constants';
 import { MyApp } from './app.component';
-import {WelcomePage} from '../pages/welcome/welcome';
+//import {WelcomePage} from '../pages/welcome/welcome';
 import {LocationListPage} from '../pages/location-list/location-list';
 import {LocationDetailPage} from '../pages/location-detail/location-detail';
 import {FriendListPage} from '../pages/friend-list/friend-list';
@@ -26,7 +26,7 @@ import { LogoutPage } from '../pages/logout/logout';
 @NgModule({
   declarations: [
     MyApp,
-    WelcomePage,
+    //WelcomePage,
     AboutPage,
     LocationListPage,
     LocationDetailPage,
@@ -46,7 +46,7 @@ import { LogoutPage } from '../pages/logout/logout';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    WelcomePage,
+    //WelcomePage,
     AboutPage,
     LocationListPage,
     LocationDetailPage,

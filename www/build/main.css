@@ -25829,6 +25829,10 @@ page-login .login-content .forget-btn {
   font-size: 0.8em;
 }
 
+page-register .invalid {
+  color: red;
+}
+
 page-welcome {
   font-weight: 300;
 }

@@ -2,6 +2,7 @@ import {OnInit, Component} from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
+@IonicPage()
 @Component({
     selector: 'page-welcome',
     templateUrl: 'welcome.html'
@@ -11,13 +12,11 @@ export class WelcomePage implements OnInit {
 	constructor(public navCtrl: NavController, public navParams: NavParams,
               private storage: Storage, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
 	    
-	  }
-
+	}
 
 	ngOnInit(): any {
-
 		this.storage.get('user').then((val) => {  
-			debugger;
+
 	      if (val === undefined || val === null) {
 	        this.navCtrl.setRoot('LoginPage');
 	      } else {

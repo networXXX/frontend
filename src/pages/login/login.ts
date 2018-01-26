@@ -26,13 +26,12 @@ export class LoginPage implements OnInit {
     private api: DefaultApi, private storage: Storage) { }
 
   ngOnInit() {
-    debugger;
     this.storage.get('user').then((val) => {
       if (val !== undefined && val !== null) {
-        let loginUser: models.LoginUserResponse = val;
-        if (AppConstants.KEY_STATUS === loginUser.item.status) {
-          this.nav.setRoot('HomePage');
-        }    
+        //let loginUser: models.LoginUserResponse = val;
+        //if (AppConstants.KEY_STATUS === loginUser.item.status) {
+          this.nav.setRoot('WelcomePage');
+        //}    
       }
     });
   }
@@ -57,10 +56,8 @@ export class LoginPage implements OnInit {
       request.password = this.registerCredentials.password;
       this.api.loginPost(request).subscribe(response => {
         if (response.token !== null) {                       
-          this.storage.set('user', response); 
-          console.log(response);         
-          this.storage.set('passcode', this.registerCredentials.password);          
-          this.nav.push('SecretKeyPage');
+          this.storage.set('user', response);          
+          this.nav.setRoot('WelcomePage');
         } else {
           this.showError("Access Denied");
         }
