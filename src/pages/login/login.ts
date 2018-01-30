@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { DefaultApi } from '../../providers/api/DefaultApi';
 import { AppConstants } from '../../constants/app.constants';
+import { Facebook } from '@ionic-native/facebook';
 
 import { Storage } from '@ionic/storage';
 import * as models  from '../../providers/model/models';
@@ -19,11 +20,24 @@ import * as models  from '../../providers/model/models';
 })
 export class LoginPage implements OnInit {
   loading: Loading;
-  registerCredentials = { email: '', password: '' };    
+  registerCredentials = { email: '', password: '' }; 
+  isLoggedIn:boolean = false; 
+  users: any;  
  
   constructor(private nav: NavController,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    private api: DefaultApi, private storage: Storage) { }
+    private api: DefaultApi, private storage: Storage,private fb: Facebook) { 
+    fb.getLoginStatus()
+      .then(res => {
+        console.log(res.status);
+        if(res.status === "connect") {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        }
+      })
+      .catch(e => console.log(e));
+  }
 
   ngOnInit() {
     this.storage.get('user').then((val) => {
@@ -68,6 +82,33 @@ export class LoginPage implements OnInit {
       });
     }          
   }  
+
+  loginWithFB() {
+    debugger;
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+      .then(res => {
+        if(res.status === "connected") {
+          this.isLoggedIn = true;
+          this.getUserDetail(res.authResponse.userID);
+        } else {
+          this.isLoggedIn = false;
+        }
+      })
+      .catch(e => {
+         console.log('Error logging into Facebook', e)
+         console.log(e); 
+      });
+  }
+  getUserDetail(userid) {
+    this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
+      .then(res => {
+        console.log(res);
+        this.users = res;
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
  
   showLoading() {
     this.loading = this.loadingCtrl.create({

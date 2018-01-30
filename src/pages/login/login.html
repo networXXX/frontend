@@ -8,7 +8,7 @@
   <ion-row class="logo-row">
     <ion-col></ion-col>
     <ion-col width-67>
-      <img src="https://images.vexels.com/media/users/3/136307/isolated/lists/fe8cd8608b7d3623802d9c7b6a912a2a-lock-icon.png"/>
+      <img src="../assets/icon/network.png"/>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
@@ -37,8 +37,17 @@
           
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ng-template #facebookLogin>
+          <button ion-button icon-right (click)="loginWithFB()">
+            Login with
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+        </ng-template>  
+      </ion-row>
+      
       
     </form>
-    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>
+    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>    
   </div>
 </ion-content>

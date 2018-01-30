@@ -22,6 +22,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { IonicStorageModule } from '@ionic/storage';
 import { LogoutPage } from '../pages/logout/logout';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { LogoutPage } from '../pages/logout/logout';
     HaversineService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppConstants,
-    DefaultApi
+    DefaultApi,
+    Facebook
   ]
 })
 export class AppModule {}
