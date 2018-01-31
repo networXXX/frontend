@@ -13,7 +13,7 @@
 import * as models from './models';
 
 export interface LoginWithTokenRequest {
-    displayedName?: string;
+    displayName?: string;
 
     phoneId?: string;
 

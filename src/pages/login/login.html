@@ -33,21 +33,21 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>          
           
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ng-template #facebookLogin>
-          <button ion-button icon-right (click)="loginWithFB()">
-            Login with
-            <ion-icon name="logo-facebook"></ion-icon>
-          </button>
-        </ng-template>  
-      </ion-row>
-      
+      </ion-row>         
       
     </form>
-    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>    
+    <ion-row center>  
+     <ion-col text-center>   
+      <button ion-button class="login-fb-btn" (click)="loginWithFB()">
+        Login with
+        <ion-icon name="logo-facebook"></ion-icon>
+      </button>
+     </ion-col> 
+    </ion-row>
+    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>
   </div>
+  
 </ion-content>

@@ -25819,6 +25819,14 @@ page-login .login-content .submit-btn {
   border: 1px solid #ffffff;
 }
 
+page-login .login-content .login-fb-btn {
+  background: #4267b2;
+  border-radius: 0px !important;
+  padding: 20px 20px 20px 20px;
+  border: 1px solid #4267b2;
+  text-align: center;
+}
+
 page-login .login-content .register-btn {
   color: #ffffff;
   font-size: 0.8em;

@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
   loading: Loading;
   registerCredentials = { email: '', password: '' }; 
   isLoggedIn:boolean = false; 
-  users: any;  
+  users: any;      
  
   constructor(private nav: NavController,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
       if (val !== undefined && val !== null) {
         //let loginUser: models.LoginUserResponse = val;
         //if (AppConstants.KEY_STATUS === loginUser.item.status) {
-          this.nav.setRoot('WelcomePage');
+        this.nav.setRoot('WelcomePage');
         //}    
       }
     });
@@ -88,8 +88,11 @@ export class LoginPage implements OnInit {
     this.fb.login(['public_profile', 'user_friends', 'email'])
       .then(res => {
         if(res.status === "connected") {
+          console.log(res);
+          debugger;
           this.isLoggedIn = true;
-          this.getUserDetail(res.authResponse.userID);
+          this.getUserDetail(res);
+          
         } else {
           this.isLoggedIn = false;
         }
@@ -99,11 +102,29 @@ export class LoginPage implements OnInit {
          console.log(e); 
       });
   }
-  getUserDetail(userid) {
-    this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
+  getUserDetail(res) {
+    let token: string = res.authResponse.accessToken;
+    this.fb.api("/"+res.authResponse.userID+"/?fields=id,email,name,picture,gender",["public_profile"])
       .then(res => {
         console.log(res);
         this.users = res;
+        let request: models.LoginWithTokenRequest = {} as models.LoginWithTokenRequest;
+        request.email = this.users.email;
+        request.displayName = this.users.name;
+        request.token = token;
+        this.api.usersLoginwithfacebookPost(request).subscribe(response => {
+          debugger;
+          if (response.token !== null) {                       
+            this.storage.set('user', response);          
+            this.nav.setRoot('WelcomePage');
+          } else {
+            this.showError("Access Denied");
+          }
+          this.loading.dismiss();
+        },
+          error => {
+            this.showError(error);                  
+        });
       })
       .catch(e => {
         console.log(e);
