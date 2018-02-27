@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Config, NavController} from 'ionic-angular';
+import {Component, OnInit} from '@angular/core';
+import {Config, NavController, IonicPage} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {LocationDetailPage} from '../location-detail/location-detail';
 import { HaversineService, GeoCoord } from "ng2-haversine";
@@ -7,11 +7,12 @@ import { HaversineService, GeoCoord } from "ng2-haversine";
 
 import leaflet from 'leaflet';
 
+@IonicPage()
 @Component({
     selector: 'page-location-list',
     templateUrl: 'location-list.html'
 })
-export class LocationListPage {
+export class LocationListPage implements OnInit {
 
     properties: Array<any>;
     searchKey: string = "";
@@ -26,6 +27,10 @@ export class LocationListPage {
                 public config: Config, private _haversineService: HaversineService) {
         this.getLocation();
         this.findAll();
+    }
+
+    ngOnInit(): any {
+        
     }
 
     openPropertyDetail(property: any) {
@@ -45,6 +50,11 @@ export class LocationListPage {
 
     onCancel(event) {
         this.findAll();
+    }
+
+    openAddFriend() {
+        debugger;
+        this.navCtrl.push('AddFriendPage');
     }
 
     findAll() {

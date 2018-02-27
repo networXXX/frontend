@@ -42,16 +42,17 @@ export class ActivatePage implements OnInit{
 
     this.api.activatePost(request).subscribe(response => {
         console.log(response);
-        debugger;
-        if (response.item !== null) {
-          if (response.item.secretKey === undefined || response.item.secretKey === null) {
-            this.navCtrl.push('SecretKeyPage');
-          } else {
-            this.navCtrl.push('HomePage');    
-          }
-        } else {
-          this.navCtrl.push('HomePage');  
-        }        
+        // debugger;
+        // if (response.item !== null) {
+        //   if (response.item.secretKey === undefined || response.item.secretKey === null) {
+        //     this.navCtrl.push('SecretKeyPage');
+        //   } else {
+        //     this.navCtrl.push('HomePage');    
+        //   }
+        // } else {
+        //   this.navCtrl.push('HomePage');  
+        // }
+        this.navCtrl.push('WelcomePage');        
       },
         error => {
           this.showError(error);
