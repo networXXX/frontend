@@ -52,8 +52,8 @@ export class MyApp {
         ];
 
         this.helpMenuItems = [
-            {title: 'Welcome', component: WelcomePage, icon: 'bookmark'},
-            {title: 'About', component: AboutPage, icon: 'information-circle'},
+            //{title: 'Welcome', component: WelcomePage, icon: 'bookmark'},
+            {title: 'About', component: AboutPage, icon: 'information-circle'}
         ];
     }
 

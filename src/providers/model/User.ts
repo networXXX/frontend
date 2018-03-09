@@ -29,6 +29,4 @@ export interface User {
 
     status?: string;
 
-    secretKey?: string;
-
 }

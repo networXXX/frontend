@@ -12,9 +12,13 @@
 
 import * as models from './models';
 
-export interface UpdateSecretKeyRequest {
-    secretKey?: string;
+export interface UpdateFriendRequest {
+    id: string;
 
-    userId?: string;
+    otherId: string;
+
+    userId: string;
+
+    status: string;
 
 }

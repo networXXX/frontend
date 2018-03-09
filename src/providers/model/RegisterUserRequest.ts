@@ -21,6 +21,4 @@ export interface RegisterUserRequest {
 
     email?: string;
 
-    secretKey?: string;
-
 }
