@@ -25841,6 +25841,15 @@ page-register .invalid {
   color: red;
 }
 
+.searchbar-input {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+ion-footer {
+  padding: 8px 16px !important;
+}
+
 page-welcome {
   font-weight: 300;
 }

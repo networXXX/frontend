@@ -72,6 +72,96 @@ export class DefaultApi {
 
     /**
      * 
+     * @param id 
+     */
+    public friendsIdDelete(id: string, extraHttpRequestParams?: any): Observable<models.FriendResponse> {
+        return this.friendsIdDeleteWithHttpInfo(id, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public friendsIdGet(id: string, extraHttpRequestParams?: any): Observable<models.FriendResponse> {
+        return this.friendsIdGetWithHttpInfo(id, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public friendsIdOptions(id: string, extraHttpRequestParams?: any): Observable<{}> {
+        return this.friendsIdOptionsWithHttpInfo(id, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
+     * @param id 
+     * @param updateFriendRequest 
+     */
+    public friendsIdPut(id: string, updateFriendRequest: models.UpdateFriendRequest, extraHttpRequestParams?: any): Observable<models.FriendResponse> {
+        return this.friendsIdPutWithHttpInfo(id, updateFriendRequest, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
+     */
+    public friendsOptions(extraHttpRequestParams?: any): Observable<{}> {
+        return this.friendsOptionsWithHttpInfo(extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
+     * @param insertFriendRequest 
+     */
+    public friendsPost(insertFriendRequest: models.InsertFriendRequest, extraHttpRequestParams?: any): Observable<models.FriendResponse> {
+        return this.friendsPostWithHttpInfo(insertFriendRequest, extraHttpRequestParams)
+            .map((response: Response) => {
+                if (response.status === 204) {
+                    return undefined;
+                } else {
+                    return response.json() || {};
+                }
+            });
+    }
+
+    /**
+     * 
      */
     public loginOptions(extraHttpRequestParams?: any): Observable<{}> {
         return this.loginOptionsWithHttpInfo(extraHttpRequestParams)
@@ -336,9 +426,12 @@ export class DefaultApi {
 
     /**
      * 
+     * @param query 
+     * @param limit 
+     * @param cursor 
      */
-    public usersUpdatesecretkeyOptions(extraHttpRequestParams?: any): Observable<{}> {
-        return this.usersUpdatesecretkeyOptionsWithHttpInfo(extraHttpRequestParams)
+    public usersSearchGet(query: string, limit: string, cursor?: string, extraHttpRequestParams?: any): Observable<models.SearchUserResponse> {
+        return this.usersSearchGetWithHttpInfo(query, limit, cursor, extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {
                     return undefined;
@@ -350,10 +443,9 @@ export class DefaultApi {
 
     /**
      * 
-     * @param updateSecretKeyRequest 
      */
-    public usersUpdatesecretkeyPost(updateSecretKeyRequest: models.UpdateSecretKeyRequest, extraHttpRequestParams?: any): Observable<models.UpdateSecretKeyRequest> {
-        return this.usersUpdatesecretkeyPostWithHttpInfo(updateSecretKeyRequest, extraHttpRequestParams)
+    public usersSearchOptions(extraHttpRequestParams?: any): Observable<{}> {
+        return this.usersSearchOptionsWithHttpInfo(extraHttpRequestParams)
             .map((response: Response) => {
                 if (response.status === 204) {
                     return undefined;
@@ -427,6 +519,259 @@ export class DefaultApi {
             method: RequestMethod.Post,
             headers: headers,
             body: activateUserRequest == null ? '' : JSON.stringify(activateUserRequest), // https://github.com/angular/angular/issues/10612
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     */
+    public friendsIdDeleteWithHttpInfo(id: string, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends/${id}'
+                    .replace('${' + 'id' + '}', String(id));
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling friendsIdDelete.');
+        }
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKey) {
+            headers.set('Authorization', this.configuration.apiKey);
+        }
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Delete,
+            headers: headers,
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     */
+    public friendsIdGetWithHttpInfo(id: string, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends/${id}'
+                    .replace('${' + 'id' + '}', String(id));
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling friendsIdGet.');
+        }
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKey) {
+            headers.set('Authorization', this.configuration.apiKey);
+        }
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Get,
+            headers: headers,
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     */
+    public friendsIdOptionsWithHttpInfo(id: string, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends/${id}'
+                    .replace('${' + 'id' + '}', String(id));
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling friendsIdOptions.');
+        }
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Options,
+            headers: headers,
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     * @param updateFriendRequest 
+     */
+    public friendsIdPutWithHttpInfo(id: string, updateFriendRequest: models.UpdateFriendRequest, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends/${id}'
+                    .replace('${' + 'id' + '}', String(id));
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'id' is not null or undefined
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling friendsIdPut.');
+        }
+        // verify required parameter 'updateFriendRequest' is not null or undefined
+        if (updateFriendRequest === null || updateFriendRequest === undefined) {
+            throw new Error('Required parameter updateFriendRequest was null or undefined when calling friendsIdPut.');
+        }
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKey) {
+            headers.set('Authorization', this.configuration.apiKey);
+        }
+
+        headers.set('Content-Type', 'application/json');
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Put,
+            headers: headers,
+            body: updateFriendRequest == null ? '' : JSON.stringify(updateFriendRequest), // https://github.com/angular/angular/issues/10612
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     */
+    public friendsOptionsWithHttpInfo(extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends';
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Options,
+            headers: headers,
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     * @param insertFriendRequest 
+     */
+    public friendsPostWithHttpInfo(insertFriendRequest: models.InsertFriendRequest, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/friends';
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'insertFriendRequest' is not null or undefined
+        if (insertFriendRequest === null || insertFriendRequest === undefined) {
+            throw new Error('Required parameter insertFriendRequest was null or undefined when calling friendsPost.');
+        }
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        headers.set('Content-Type', 'application/json');
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Post,
+            headers: headers,
+            body: insertFriendRequest == null ? '' : JSON.stringify(insertFriendRequest), // https://github.com/angular/angular/issues/10612
             search: queryParameters,
             withCredentials:this.configuration.withCredentials
         });
@@ -1148,9 +1493,70 @@ export class DefaultApi {
     /**
      * 
      * 
+     * @param query 
+     * @param limit 
+     * @param cursor 
      */
-    public usersUpdatesecretkeyOptionsWithHttpInfo(extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + '/users/updatesecretkey';
+    public usersSearchGetWithHttpInfo(query: string, limit: string, cursor?: string, extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/users/search';
+
+        let queryParameters = new URLSearchParams();
+        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+        // verify required parameter 'query' is not null or undefined
+        if (query === null || query === undefined) {
+            throw new Error('Required parameter query was null or undefined when calling usersSearchGet.');
+        }
+        // verify required parameter 'limit' is not null or undefined
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling usersSearchGet.');
+        }
+        if (query !== undefined) {
+            queryParameters.set('query', <any>query);
+        }
+
+        if (cursor !== undefined) {
+            queryParameters.set('cursor', <any>cursor);
+        }
+
+        if (limit !== undefined) {
+            queryParameters.set('limit', <any>limit);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        // to determine the Accept header
+        let produces: string[] = [
+            'application/json'
+        ];
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKey) {
+            headers.set('Authorization', this.configuration.apiKey);
+        }
+
+        let requestOptions: RequestOptionsArgs = new RequestOptions({
+            method: RequestMethod.Get,
+            headers: headers,
+            search: queryParameters,
+            withCredentials:this.configuration.withCredentials
+        });
+        // https://github.com/swagger-api/swagger-codegen/issues/4037
+        if (extraHttpRequestParams) {
+            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
+        }
+
+        return this.http.request(path, requestOptions);
+    }
+
+    /**
+     * 
+     * 
+     */
+    public usersSearchOptionsWithHttpInfo(extraHttpRequestParams?: any): Observable<Response> {
+        const path = this.basePath + '/users/search';
 
         let queryParameters = new URLSearchParams();
         let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
@@ -1167,52 +1573,6 @@ export class DefaultApi {
         let requestOptions: RequestOptionsArgs = new RequestOptions({
             method: RequestMethod.Options,
             headers: headers,
-            search: queryParameters,
-            withCredentials:this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = (<any>Object).assign(requestOptions, extraHttpRequestParams);
-        }
-
-        return this.http.request(path, requestOptions);
-    }
-
-    /**
-     * 
-     * 
-     * @param updateSecretKeyRequest 
-     */
-    public usersUpdatesecretkeyPostWithHttpInfo(updateSecretKeyRequest: models.UpdateSecretKeyRequest, extraHttpRequestParams?: any): Observable<Response> {
-        const path = this.basePath + '/users/updatesecretkey';
-
-        let queryParameters = new URLSearchParams();
-        let headers = new Headers(this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'updateSecretKeyRequest' is not null or undefined
-        if (updateSecretKeyRequest === null || updateSecretKeyRequest === undefined) {
-            throw new Error('Required parameter updateSecretKeyRequest was null or undefined when calling usersUpdatesecretkeyPost.');
-        }
-        // to determine the Content-Type header
-        let consumes: string[] = [
-            'application/json'
-        ];
-
-        // to determine the Accept header
-        let produces: string[] = [
-            'application/json'
-        ];
-
-        // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
-        }
-
-        headers.set('Content-Type', 'application/json');
-
-        let requestOptions: RequestOptionsArgs = new RequestOptions({
-            method: RequestMethod.Post,
-            headers: headers,
-            body: updateSecretKeyRequest == null ? '' : JSON.stringify(updateSecretKeyRequest), // https://github.com/angular/angular/issues/10612
             search: queryParameters,
             withCredentials:this.configuration.withCredentials
         });
