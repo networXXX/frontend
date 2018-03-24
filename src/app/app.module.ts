@@ -14,6 +14,7 @@ import {LocationDetailPage} from '../pages/location-detail/location-detail';
 import {FriendListPage} from '../pages/friend-list/friend-list';
 import {FriendDetailPage} from '../pages/friend-detail/friend-detail';
 import {RequestListPage} from '../pages/request-list/request-list';
+import {RequestDetailPage} from '../pages/request-detail/request-detail';
 import {AboutPage} from '../pages/about/about';
 import {PropertyService} from "../providers/property-service-mock";
 import {BrokerService} from "../providers/broker-service-mock";
@@ -32,6 +33,7 @@ import { Facebook } from '@ionic-native/facebook';
     LocationListPage,
     LocationDetailPage,
     RequestListPage,
+    RequestDetailPage,
     FriendListPage,
     FriendDetailPage,
     LoginPage,
@@ -52,6 +54,7 @@ import { Facebook } from '@ionic-native/facebook';
     LocationListPage,
     LocationDetailPage,
     RequestListPage,
+    RequestDetailPage,
     FriendListPage,
     FriendDetailPage,
     LoginPage,

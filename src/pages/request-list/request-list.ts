@@ -2,6 +2,7 @@ import { OnInit, Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 
 import { DefaultApi } from '../../providers/api/DefaultApi';
+import { RequestDetailPage } from '../request-detail/request-detail';
 import * as models  from '../../providers/model/models';
 import { Storage } from '@ionic/storage';
 import { Utils } from '../../utils/utils';
@@ -14,7 +15,7 @@ export class RequestListPage implements OnInit {
 
   loading: Loading;
   icons: string[];
-  items: Array<models.Friend>;
+  items: Array<models.User>;
   noMoreItemsAvailable: boolean = false; 
 
   searchInput: string = '';
@@ -37,7 +38,7 @@ export class RequestListPage implements OnInit {
         let loginUser: models.LoginUserResponse = val; 
         this.QUERY_STR = 'userId:' + loginUser.item.id;   
         this.api.configuration = Utils.getConfiguration(loginUser); 
-        this.getUsers(this.QUERY_STR);  
+        //this.getUsers(this.QUERY_STR);  
       }        
     });    
   }  
@@ -47,10 +48,10 @@ export class RequestListPage implements OnInit {
       this.showLoading(); 
     }
     this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
-        if (response != null && response.items.length > 0) {          
-          for (let i in response.items) {              
-             //this.items.push(response.items[i]);
-          }
+        if (response != null && response.items.length > 0) {                    
+          response.items.forEach(property => {
+            this.items.push(property);
+          });
           this.CURSOR = response.nextPageToken;
           this.noMoreItemsAvailable = true;
         }
@@ -63,7 +64,6 @@ export class RequestListPage implements OnInit {
 
   doInfinite(infiniteScroll) {
     if (this.noMoreItemsAvailable == true) {
-      //console.log(this.CURSOR);
       this.noMoreItemsAvailable = false;
       setTimeout(() => {
         if (this.SEARCH_TEXT !== undefined) {
@@ -78,17 +78,21 @@ export class RequestListPage implements OnInit {
   }
 
 
-  itemTapped(event, secret) {
-    //console.log("itemTapped");
-    //console.log(secret)
-    //this.navCtrl.push(SecretDetailsPage, { 'secret': secret });
+  itemTapped(event, item) {
+    console.log("itemTapped");
+    console.log(item)
+    this.navCtrl.push(RequestDetailPage, { 'secret': item });
+  }
+
+  addItem(item) {
+
   }
 
   onInput(event) {
+    
     if (this.searchInput.length >= 3) {
       this.items = [];
       this.CURSOR = undefined;
-      console.log(this.searchInput);
       this.SEARCH_TEXT = this.QUERY_STR + '&searchText:' + this.searchInput;
       this.getUsers(this.SEARCH_TEXT);
     } else if (this.searchInput.length == 0) {
@@ -97,6 +101,7 @@ export class RequestListPage implements OnInit {
       this.items = [];
       this.getUsers(this.QUERY_STR);
     } 
+
     
   }
 
