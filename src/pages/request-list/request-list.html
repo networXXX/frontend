@@ -4,23 +4,23 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"
+        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"
                        (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-        <ion-item-sliding *ngFor="let favorite of favorites">
-            <button ion-item (click)="itemTapped(favorite)">
+        <ion-item-sliding *ngFor="let item of items">
+            <button ion-item (click)="itemTapped(item)">
                 <ion-thumbnail item-left>
-                    <img src="{{favorite.property.thumbnail}}"/>
+                    <img src="../assets/icon/unknown.ico"/>
                 </ion-thumbnail>
-                <h2>{{favorite.property.title}}</h2>
-                <p>{{favorite.property.city}}, {{favorite.property.state}} ∙ {{favorite.property.price}}</p>
+                <h2>{{item.displayName}}</h2>
+                <p>{{item.email}}</p>
             </button>
             <ion-item-options>
-                <button danger (click)="deleteItem(favorite)">Delete</button>
+                <button danger (click)="addItem(item)">Add</button>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
