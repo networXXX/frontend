@@ -1,6 +1,6 @@
 webpackJsonp([2],{
 
-/***/ 299:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ChangePasswordPageModule", function() { return ChangePasswordPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__change_password__ = __webpack_require__(306);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__change_password__ = __webpack_require__(311);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var ChangePasswordPageModule = (function () {
 
 /***/ }),
 
-/***/ 306:
+/***/ 311:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,8 +46,8 @@ var ChangePasswordPageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_DefaultApi__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_DefaultApi__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -153,7 +153,7 @@ var ChangePasswordPage = (function () {
     };
     ChangePasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-change-password',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/change-password/change-password.html"*/'<!--\n  Generated template for the ChangePasswordPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Change Password</ion-title>\n    <ion-buttons end>\n		<button (click)="onSubmit()" ion-button [disabled]="!chnagePwdFrom.valid">\n			Save\n		</button>\n	</ion-buttons>\n  </ion-navbar>  \n</ion-header>\n\n<ion-content padding>\n	<form [formGroup]="chnagePwdFrom" (ngSubmit)="onSubmit()">\n		<ion-list>\n			<ion-item>\n	          <ion-label floating primary>Email</ion-label>\n	          <ion-input  [(ngModel)]="user.email" formControlName="email"\n	                     type="text" id="email" spellcheck="false" autocapitalize="off" >\n	          </ion-input>\n	        </ion-item>		\n	        <p *ngIf="!isValid(\'email\')" danger padding-left class="invalid">Invalid Name</p>        	\n	        <ion-item>\n	          <ion-label floating primary>Password</ion-label>\n	          <ion-input type="password" [(ngModel)]="user.password" formControlName="password"\n	                     id="password" spellcheck="false" autocapitalize="off">\n	          </ion-input>\n	        </ion-item>\n	        <p *ngIf="!isValid(\'password\')" danger padding-left class="invalid">Invalid Password</p>    \n	        <ion-item>\n	          <ion-label floating primary>Confirm Password</ion-label>\n	          <ion-input type="password" [(ngModel)]="user.confirmPassword" formControlName="confirmPassword" \n	          			 id="confirmPassword" spellcheck="false" autocapitalize="off">\n	          </ion-input>\n	        </ion-item>\n	        <p *ngIf="!isValid(\'confirmPassword\')" danger padding-left class="invalid">Invalid Confirm Password</p>  \n	        <ion-item>\n	          <ion-label floating primary>Key</ion-label>\n	          <ion-input  [(ngModel)]="user.changeKey" formControlName="changeKey"\n	                     type="text" id="changeKey" spellcheck="false" autocapitalize="off">\n	          </ion-input>\n	        </ion-item>	  \n	        <p *ngIf="!isValid(\'changeKey\')" danger padding-left class="invalid">Required</p>        \n		</ion-list>\n		<div padding>\n	      <button ion-button color="primary" block>Save</button>\n	    </div>\n	</form>\n</ion-content>'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/change-password/change-password.html"*/,
+            selector: 'page-change-password',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\change-password\change-password.html"*/'<!--\n\n  Generated template for the ChangePasswordPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Change Password</ion-title>\n\n    <ion-buttons end>\n\n		<button (click)="onSubmit()" ion-button [disabled]="!chnagePwdFrom.valid">\n\n			Save\n\n		</button>\n\n	</ion-buttons>\n\n  </ion-navbar>  \n\n</ion-header>\n\n\n\n<ion-content padding>\n\n	<form [formGroup]="chnagePwdFrom" (ngSubmit)="onSubmit()">\n\n		<ion-list>\n\n			<ion-item>\n\n	          <ion-label floating primary>Email</ion-label>\n\n	          <ion-input  [(ngModel)]="user.email" formControlName="email"\n\n	                     type="text" id="email" spellcheck="false" autocapitalize="off" >\n\n	          </ion-input>\n\n	        </ion-item>		\n\n	        <p *ngIf="!isValid(\'email\')" danger padding-left class="invalid">Invalid Name</p>        	\n\n	        <ion-item>\n\n	          <ion-label floating primary>Password</ion-label>\n\n	          <ion-input type="password" [(ngModel)]="user.password" formControlName="password"\n\n	                     id="password" spellcheck="false" autocapitalize="off">\n\n	          </ion-input>\n\n	        </ion-item>\n\n	        <p *ngIf="!isValid(\'password\')" danger padding-left class="invalid">Invalid Password</p>    \n\n	        <ion-item>\n\n	          <ion-label floating primary>Confirm Password</ion-label>\n\n	          <ion-input type="password" [(ngModel)]="user.confirmPassword" formControlName="confirmPassword" \n\n	          			 id="confirmPassword" spellcheck="false" autocapitalize="off">\n\n	          </ion-input>\n\n	        </ion-item>\n\n	        <p *ngIf="!isValid(\'confirmPassword\')" danger padding-left class="invalid">Invalid Confirm Password</p>  \n\n	        <ion-item>\n\n	          <ion-label floating primary>Key</ion-label>\n\n	          <ion-input  [(ngModel)]="user.changeKey" formControlName="changeKey"\n\n	                     type="text" id="changeKey" spellcheck="false" autocapitalize="off">\n\n	          </ion-input>\n\n	        </ion-item>	  \n\n	        <p *ngIf="!isValid(\'changeKey\')" danger padding-left class="invalid">Required</p>        \n\n		</ion-list>\n\n		<div padding>\n\n	      <button ion-button color="primary" block>Save</button>\n\n	    </div>\n\n	</form>\n\n</ion-content>'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\change-password\change-password.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__providers_api_DefaultApi__["a" /* DefaultApi */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["b" /* Storage */]])

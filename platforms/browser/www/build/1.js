@@ -1,6 +1,6 @@
 webpackJsonp([1],{
 
-/***/ 302:
+/***/ 306:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterPageModule", function() { return RegisterPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(307);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__register__ = __webpack_require__(312);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -38,7 +38,7 @@ var RegisterPageModule = (function () {
 
 /***/ }),
 
-/***/ 307:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46,7 +46,7 @@ var RegisterPageModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_DefaultApi__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_api_DefaultApi__ = __webpack_require__(51);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -166,7 +166,7 @@ var RegisterPage = (function () {
     };
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-register',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/register/register.html"*/'<!--\n  Generated template for the RegisterPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Register</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">\n    <ion-list>    \n        <ion-item>\n          <ion-label floating primary>Name</ion-label>\n          <ion-input [(ngModel)]="userInfo.name" formControlName="name" type="text"\n                     id="name" spellcheck="false" autocapitalize="off">\n          </ion-input>\n        </ion-item>\n        <p *ngIf="!isValid(\'name\')" danger padding-left class="invalid">Invalid Name</p>\n        <ion-item>\n          <ion-label floating primary>Email</ion-label>\n          <ion-input type="text" [(ngModel)]="userInfo.email" formControlName="email"\n                     id="email" spellcheck="false" autocapitalize="off">\n          </ion-input>\n        </ion-item>\n        <p *ngIf="!isValid(\'email\')" danger padding-left class="invalid">Invalid Email</p>\n        <ion-item>\n          <ion-label floating primary>Password</ion-label>\n          <ion-input type="password" [(ngModel)]="userInfo.password" formControlName="password"\n                     id="password" spellcheck="false" autocapitalize="off">\n          </ion-input>\n        </ion-item>\n        <p *ngIf="!isValid(\'password\')" danger padding-left class="invalid">Invalid Password</p>\n        <ion-item>\n          <ion-label floating primary>Confirm Password</ion-label>\n          <ion-input type="password" [(ngModel)]="userInfo.confirmPassword" formControlName="confirmPassword"\n                     id="confirmPassword" spellcheck="false" autocapitalize="off">\n          </ion-input>\n        </ion-item>\n        <p *ngIf="!isValid(\'confirmPassword\')" danger padding-left class="invalid">Invalid Password</p>        \n    </ion-list>\n\n    <div padding>\n      <button ion-button color="primary" block>Create Account</button>\n    </div>\n  </form>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/register/register.html"*/,
+            selector: 'page-register',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\register\register.html"*/'<!--\n\n  Generated template for the RegisterPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n  <ion-navbar>\n\n    <button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>Register</ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">\n\n    <ion-list>    \n\n        <ion-item>\n\n          <ion-label floating primary>Name</ion-label>\n\n          <ion-input [(ngModel)]="userInfo.name" formControlName="name" type="text"\n\n                     id="name" spellcheck="false" autocapitalize="off">\n\n          </ion-input>\n\n        </ion-item>\n\n        <p *ngIf="!isValid(\'name\')" danger padding-left class="invalid">Invalid Name</p>\n\n        <ion-item>\n\n          <ion-label floating primary>Email</ion-label>\n\n          <ion-input type="text" [(ngModel)]="userInfo.email" formControlName="email"\n\n                     id="email" spellcheck="false" autocapitalize="off">\n\n          </ion-input>\n\n        </ion-item>\n\n        <p *ngIf="!isValid(\'email\')" danger padding-left class="invalid">Invalid Email</p>\n\n        <ion-item>\n\n          <ion-label floating primary>Password</ion-label>\n\n          <ion-input type="password" [(ngModel)]="userInfo.password" formControlName="password"\n\n                     id="password" spellcheck="false" autocapitalize="off">\n\n          </ion-input>\n\n        </ion-item>\n\n        <p *ngIf="!isValid(\'password\')" danger padding-left class="invalid">Invalid Password</p>\n\n        <ion-item>\n\n          <ion-label floating primary>Confirm Password</ion-label>\n\n          <ion-input type="password" [(ngModel)]="userInfo.confirmPassword" formControlName="confirmPassword"\n\n                     id="confirmPassword" spellcheck="false" autocapitalize="off">\n\n          </ion-input>\n\n        </ion-item>\n\n        <p *ngIf="!isValid(\'confirmPassword\')" danger padding-left class="invalid">Invalid Password</p>        \n\n    </ion-list>\n\n\n\n    <div padding>\n\n      <button ion-button color="primary" block>Create Account</button>\n\n    </div>\n\n  </form>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\register\register.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_3__providers_api_DefaultApi__["a" /* DefaultApi */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])

@@ -78,10 +78,9 @@ export class RequestListPage implements OnInit {
   }
 
 
-  itemTapped(event, item) {
-    console.log("itemTapped");
-    console.log(item)
-    this.navCtrl.push(RequestDetailPage, { 'secret': item });
+  itemTapped(item) {
+    console.log(item);
+    this.navCtrl.push(RequestDetailPage, { 'request': item });
   }
 
   addItem(item) {
