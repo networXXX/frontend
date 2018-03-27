@@ -9,14 +9,14 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { AWSAuth } from './aWSAuth';
+import { User } from './user';
 
-import * as models from './models';
 
-export interface AWSAuth {
-    credentials?: models.UserCredentials;
-
-    identityId?: string;
-
+export interface LoginUserResponse {
+    item?: User;
+    type?: string;
     token?: string;
-
+    expires?: number;
+    auth?: AWSAuth;
 }

@@ -9,12 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { User } from './user';
 
-import * as models from './models';
 
-export interface SearchUserResponse {
-    nextPageToken?: string;
-
-    items?: Array<models.User>;
-
+export interface UserResponse {
+    item?: User;
 }

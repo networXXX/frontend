@@ -9,7 +9,7 @@ export class Utils {
 
     static getConfiguration(loginUser: models.LoginUserResponse) : Configuration {
 	    let configuration:Configuration = new Configuration();
-	    configuration.apiKey = loginUser.token;
+	    configuration.apiKeys = {'key':loginUser.token};
 	    if (loginUser.auth !== undefined) {
 	    	configuration.accessToken = loginUser.auth.token;
 	    }	    

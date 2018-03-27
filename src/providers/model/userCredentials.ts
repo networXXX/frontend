@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface UserResponse {
-    item?: models.User;
-
+export interface UserCredentials {
+    secretKey?: string;
+    accessKey?: string;
+    sessionToken?: string;
+    expiration: number;
 }

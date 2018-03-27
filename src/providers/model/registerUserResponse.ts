@@ -9,16 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { User } from './user';
 
-import * as models from './models';
 
-export interface UpdateFriendRequest {
-    id: string;
-
-    otherId: string;
-
-    userId: string;
-
-    status: string;
-
+export interface RegisterUserResponse {
+    item?: User;
 }

@@ -10,11 +10,7 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface LogoutRequest {
-    pushToken?: string;
-
-    userId?: string;
-
+export interface LogoutResponse {
+    message?: string;
 }

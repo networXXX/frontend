@@ -3,7 +3,7 @@ import { AlertController, IonicPage, NavController, NavParams, LoadingController
 
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import { Storage } from '@ionic/storage';
-import { DefaultApi } from '../../providers/api/DefaultApi';
+import { DefaultService } from '../../providers/api/default.service';
 
 // import { Utils } from '../../utils/utils';
 import * as models  from '../../providers/model/models';
@@ -27,7 +27,7 @@ export class ResetPasswordPage implements OnInit {
   SECERET_KEY: string = '';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
-  	public formBuilder: FormBuilder, private api: DefaultApi, private loadingCtrl: LoadingController, private storage: Storage
+  	public formBuilder: FormBuilder, private api: DefaultService, private loadingCtrl: LoadingController, private storage: Storage
     ) {
   }
 

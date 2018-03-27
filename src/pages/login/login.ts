@@ -1,6 +1,6 @@
 import { OnInit, Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
-import { DefaultApi } from '../../providers/api/DefaultApi';
+import { DefaultService } from '../../providers/api/default.service';
 import { AppConstants } from '../../constants/app.constants';
 import { Facebook } from '@ionic-native/facebook';
 
@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
  
   constructor(private nav: NavController,
     private alertCtrl: AlertController, private loadingCtrl: LoadingController,
-    private api: DefaultApi, private storage: Storage,private fb: Facebook) { 
+    private api: DefaultService, private storage: Storage,private fb: Facebook) { 
     fb.getLoginStatus()
       .then(res => {
         console.log(res.status);

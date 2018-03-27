@@ -8,10 +8,10 @@ webpackJsonp([9],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_leaflet__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_leaflet__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -134,7 +134,7 @@ var LocationListPage = (function () {
     };
     LocationListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-location-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"\n\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n\n        <ion-buttons end>\n\n            <button (click)="openAddFriend()" ion-button>\n\n                +\n\n            </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="property-list">\n\n\n\n    <ion-list *ngIf="viewMode===\'list\'">\n\n\n\n        <ion-item-sliding *ngFor="let property of properties">\n\n            \n\n                <button ion-item (click)="openPropertyDetail(property)">\n\n                    <ion-thumbnail item-left>\n\n                        <img src="{{property.thumbnail}}"/>\n\n                    </ion-thumbnail>\n\n                    <h2>{{property.title}}</h2>\n\n                    {{ calcDistance(property) }}\n\n                    <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p>\n\n\n\n                </button>\n\n                <ion-item-options>\n\n                    <button danger (click)="deleteItem(property)">Delete</button>\n\n                </ion-item-options>\n\n            \n\n        </ion-item-sliding>\n\n\n\n    </ion-list>\n\n\n\n    <div *ngIf="viewMode===\'map\'" style="width:100%;height:100%;" id="map"></div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer padding>\n\n    <ion-segment [(ngModel)]="viewMode">\n\n        <ion-segment-button value="list">\n\n            <ion-icon name="list"></ion-icon>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="map" (ionSelect)="showMap()">\n\n            <ion-icon name="map"></ion-icon>\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/
+            selector: 'page-location-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-list/location-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n        <ion-buttons end>\n            <button (click)="openAddFriend()" ion-button>\n                +\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="property-list">\n\n    <ion-list *ngIf="viewMode===\'list\'">\n\n        <ion-item-sliding *ngFor="let property of properties">\n            \n                <button ion-item (click)="openPropertyDetail(property)">\n                    <ion-thumbnail item-left>\n                        <img src="{{property.thumbnail}}"/>\n                    </ion-thumbnail>\n                    <h2>{{property.title}}</h2>\n                    {{ calcDistance(property) }}\n                    <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p>\n\n                </button>\n                <ion-item-options>\n                    <button danger (click)="deleteItem(property)">Delete</button>\n                </ion-item-options>\n            \n        </ion-item-sliding>\n\n    </ion-list>\n\n    <div *ngIf="viewMode===\'map\'" style="width:100%;height:100%;" id="map"></div>\n\n</ion-content>\n\n<ion-footer padding>\n    <ion-segment [(ngModel)]="viewMode">\n        <ion-segment-button value="list">\n            <ion-icon name="list"></ion-icon>\n        </ion-segment-button>\n        <ion-segment-button value="map" (ionSelect)="showMap()">\n            <ion-icon name="map"></ion-icon>\n        </ion-segment-button>\n    </ion-segment>\n</ion-footer>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-list/location-list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__["a" /* PropertyService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"]])
@@ -153,8 +153,8 @@ var LocationListPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_DefaultApi__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(168);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -319,11 +319,11 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\login\login.html"*/'<!--\n\n  Generated template for the Login page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content class="login-content" padding>\n\n  <ion-row class="logo-row">\n\n    <ion-col></ion-col>\n\n    <ion-col width-67>\n\n      <img src="../assets/icon/network.png"/>\n\n    </ion-col>\n\n    <ion-col></ion-col>\n\n  </ion-row>\n\n  <div class="login-box">\n\n    <form (ngSubmit)="login()" #registerForm="ngForm">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n            \n\n            <ion-item>\n\n              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required \n\n              autocapitalize="off"></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required autocapitalize="off"></ion-input>\n\n            </ion-item>\n\n            <button type="button" ion-button class="forget-btn" block clear (click)="forgetPassword($event)">Forget password</button>  \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>      \n\n      \n\n      <ion-row>\n\n        <ion-col class="signup-col">\n\n          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>          \n\n          \n\n        </ion-col>\n\n      </ion-row>         \n\n      \n\n    </form>\n\n    <ion-row center>  \n\n     <ion-col text-center>   \n\n      <button ion-button class="login-fb-btn" (click)="loginWithFB()">\n\n        Login with\n\n        <ion-icon name="logo-facebook"></ion-icon>\n\n      </button>\n\n     </ion-col> \n\n    </ion-row>\n\n    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>\n\n  </div>\n\n  \n\n</ion-content>'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/login/login.html"*/'<!--\n  Generated template for the Login page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content class="login-content" padding>\n  <ion-row class="logo-row">\n    <ion-col></ion-col>\n    <ion-col width-67>\n      <img src="../assets/icon/network.png"/>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <div class="login-box">\n    <form (ngSubmit)="login()" #registerForm="ngForm">\n      <ion-row>\n        <ion-col>\n          <ion-list inset>\n            \n            <ion-item>\n              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required \n              autocapitalize="off"></ion-input>\n            </ion-item>\n            \n            <ion-item>\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required autocapitalize="off"></ion-input>\n            </ion-item>\n            <button type="button" ion-button class="forget-btn" block clear (click)="forgetPassword($event)">Forget password</button>  \n          </ion-list>\n        </ion-col>\n      </ion-row>      \n      \n      <ion-row>\n        <ion-col class="signup-col">\n          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>          \n          \n        </ion-col>\n      </ion-row>         \n      \n    </form>\n    <ion-row center>  \n     <ion-col text-center>   \n      <button ion-button class="login-fb-btn" (click)="loginWithFB()">\n        Login with\n        <ion-icon name="logo-facebook"></ion-icon>\n      </button>\n     </ion-col> \n    </ion-row>\n    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>\n  </div>\n  \n</ion-content>'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/login/login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_api_DefaultApi__["a" /* DefaultApi */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]])
+            __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]])
     ], LoginPage);
     return LoginPage;
 }());
@@ -366,7 +366,7 @@ var LogoutPage = (function () {
     };
     LogoutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-logout',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\logout\logout.html"*/'<!--\n\n  Generated template for the Logout page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>logout</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\logout\logout.html"*/,
+            selector: 'page-logout',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/logout/logout.html"*/'<!--\n  Generated template for the Logout page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>logout</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/logout/logout.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
     ], LogoutPage);
@@ -377,7 +377,7 @@ var LogoutPage = (function () {
 
 /***/ }),
 
-/***/ 120:
+/***/ 122:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -390,48 +390,48 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 120;
+webpackEmptyAsyncContext.id = 122;
 
 /***/ }),
 
-/***/ 162:
+/***/ 164:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/activate/activate.module": [
-		301,
+		306,
 		4
 	],
 	"../pages/add-friend/add-friend.module": [
-		302,
+		307,
 		3
 	],
 	"../pages/change-password/change-password.module": [
-		303,
+		308,
 		2
 	],
 	"../pages/location-list/location-list.module": [
-		304,
+		309,
 		8
 	],
 	"../pages/login/login.module": [
-		305,
+		310,
 		7
 	],
 	"../pages/logout/logout.module": [
-		306,
+		311,
 		6
 	],
 	"../pages/register/register.module": [
-		307,
+		312,
 		1
 	],
 	"../pages/reset-password/reset-password.module": [
-		308,
+		313,
 		0
 	],
 	"../pages/welcome/welcome.module": [
-		309,
+		314,
 		5
 	]
 };
@@ -446,19 +446,76 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 162;
+webpackAsyncContext.id = 164;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 163:
+/***/ 165:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Configuration; });
 var Configuration = (function () {
-    function Configuration() {
+    function Configuration(configurationParameters) {
+        if (configurationParameters === void 0) { configurationParameters = {}; }
+        this.apiKeys = configurationParameters.apiKeys;
+        this.username = configurationParameters.username;
+        this.password = configurationParameters.password;
+        this.accessToken = configurationParameters.accessToken;
+        this.basePath = configurationParameters.basePath;
+        this.withCredentials = configurationParameters.withCredentials;
     }
+    /**
+     * Select the correct content-type to use for a request.
+     * Uses {@link Configuration#isJsonMime} to determine the correct content-type.
+     * If no content type is found return the first found type if the contentTypes is not empty
+     * @param {string[]} contentTypes - the array of content types that are available for selection
+     * @returns {string} the selected content-type or <code>undefined</code> if no selection could be made.
+     */
+    Configuration.prototype.selectHeaderContentType = function (contentTypes) {
+        var _this = this;
+        if (contentTypes.length == 0) {
+            return undefined;
+        }
+        var type = contentTypes.find(function (x) { return _this.isJsonMime(x); });
+        if (type === undefined) {
+            return contentTypes[0];
+        }
+        return type;
+    };
+    /**
+     * Select the correct accept content-type to use for a request.
+     * Uses {@link Configuration#isJsonMime} to determine the correct accept content-type.
+     * If no content type is found return the first found type if the contentTypes is not empty
+     * @param {string[]} accepts - the array of content types that are available for selection.
+     * @returns {string} the selected content-type or <code>undefined</code> if no selection could be made.
+     */
+    Configuration.prototype.selectHeaderAccept = function (accepts) {
+        var _this = this;
+        if (accepts.length == 0) {
+            return undefined;
+        }
+        var type = accepts.find(function (x) { return _this.isJsonMime(x); });
+        if (type === undefined) {
+            return accepts[0];
+        }
+        return type;
+    };
+    /**
+     * Check if the given MIME is a JSON MIME.
+     * JSON MIME examples:
+     *   application/json
+     *   application/json; charset=UTF8
+     *   APPLICATION/JSON
+     *   application/vnd.company+json
+     * @param {string} mime - MIME (Multipurpose Internet Mail Extensions)
+     * @return {boolean} True if the given MIME is JSON, false otherwise.
+     */
+    Configuration.prototype.isJsonMime = function (mime) {
+        var jsonMime = new RegExp('^(application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(;.*)?$', 'i');
+        return mime != null && (jsonMime.test(mime) || mime.toLowerCase() === 'application/json-patch+json');
+    };
     return Configuration;
 }());
 
@@ -466,7 +523,7 @@ var Configuration = (function () {
 
 /***/ }),
 
-/***/ 164:
+/***/ 166:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -475,7 +532,7 @@ var Configuration = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__friend_detail_friend_detail__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_property_service_mock__ = __webpack_require__(82);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -575,7 +632,7 @@ var LocationDetailPage = (function () {
     };
     LocationDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-location-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-detail\location-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Property</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-card *ngIf="property.id">\n\n        <img src="{{property.picture}}"/>\n\n        <ion-card-content>\n\n            <h2 class="card-title">{{property.title}}</h2>\n\n            <p>{{property.address}}, {{property.city}} {{property.state}}</p>\n\n        </ion-card-content>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-icon item-left name="moon"></ion-icon>\n\n                <h3>Latitude</h3>\n\n                <ion-note item-right>{{property.lat}}</ion-note>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-icon item-left name="leaf"></ion-icon>\n\n                <h3>Longitude</h3>\n\n                <ion-note item-right>{{property.long}}</ion-note>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-icon item-left name="pricetag"></ion-icon>\n\n                <h3>Distance</h3>\n\n                <ion-note item-right>{{property.distance | round}} km</ion-note>\n\n            </ion-item>\n\n            <button ion-item (click)="openBrokerDetail(property.broker)">\n\n                <ion-avatar item-left>\n\n                    <img src="{{property.thumbnail}}"/>\n\n                </ion-avatar>\n\n                <!--<h2>{{property.broker.name}}</h2>\n\n                <p>{{property.broker.title}}</p>-->\n\n                <p>Privious</p>\n\n            </button>\n\n        </ion-list>\n\n\n\n        <ion-item>\n\n            <button ion-button icon-left (click)="favorite(property)" clear item-left>\n\n                <ion-icon name="star"></ion-icon>\n\n                Favorite\n\n            </button>\n\n            <button ion-button icon-left (click)="share(property)" clear item-right>\n\n                <ion-icon name="contact"></ion-icon>\n\n                Contact\n\n            </button>\n\n        </ion-item>\n\n\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-detail\location-detail.html"*/
+            selector: 'page-location-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-detail/location-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Property</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-card *ngIf="property.id">\n        <img src="{{property.picture}}"/>\n        <ion-card-content>\n            <h2 class="card-title">{{property.title}}</h2>\n            <p>{{property.address}}, {{property.city}} {{property.state}}</p>\n        </ion-card-content>\n        <ion-list>\n\n            <ion-item>\n                <ion-icon item-left name="moon"></ion-icon>\n                <h3>Latitude</h3>\n                <ion-note item-right>{{property.lat}}</ion-note>\n            </ion-item>\n            <ion-item>\n                <ion-icon item-left name="leaf"></ion-icon>\n                <h3>Longitude</h3>\n                <ion-note item-right>{{property.long}}</ion-note>\n            </ion-item>\n            <ion-item>\n                <ion-icon item-left name="pricetag"></ion-icon>\n                <h3>Distance</h3>\n                <ion-note item-right>{{property.distance | round}} km</ion-note>\n            </ion-item>\n            <button ion-item (click)="openBrokerDetail(property.broker)">\n                <ion-avatar item-left>\n                    <img src="{{property.thumbnail}}"/>\n                </ion-avatar>\n                <!--<h2>{{property.broker.name}}</h2>\n                <p>{{property.broker.title}}</p>-->\n                <p>Privious</p>\n            </button>\n        </ion-list>\n\n        <ion-item>\n            <button ion-button icon-left (click)="favorite(property)" clear item-left>\n                <ion-icon name="star"></ion-icon>\n                Favorite\n            </button>\n            <button ion-button icon-left (click)="share(property)" clear item-right>\n                <ion-icon name="contact"></ion-icon>\n                Contact\n            </button>\n        </ion-item>\n\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-detail/location-detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_property_service_mock__["a" /* PropertyService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]])
     ], LocationDetailPage);
@@ -586,7 +643,7 @@ var LocationDetailPage = (function () {
 
 /***/ }),
 
-/***/ 209:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -620,7 +677,7 @@ var FriendListPage = (function () {
     };
     FriendListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-friend-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-list\friend-list.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Brokers</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <ion-list>\n\n\n\n        <button ion-item *ngFor="let broker of brokers" (click)="openBrokerDetail(broker)">\n\n            <ion-avatar item-left>\n\n                <img src="{{broker.picture}}"/>\n\n            </ion-avatar>\n\n            <h2>{{broker.name}}</h2>\n\n            <p>{{broker.title}}</p>\n\n        </button>\n\n\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-list\friend-list.html"*/
+            selector: 'page-friend-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-list/friend-list.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Brokers</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-list>\n\n        <button ion-item *ngFor="let broker of brokers" (click)="openBrokerDetail(broker)">\n            <ion-avatar item-left>\n                <img src="{{broker.picture}}"/>\n            </ion-avatar>\n            <h2>{{broker.name}}</h2>\n            <p>{{broker.title}}</p>\n        </button>\n\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-list/friend-list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]])
     ], FriendListPage);
@@ -631,17 +688,17 @@ var FriendListPage = (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_DefaultApi__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__request_detail_request_detail__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__request_detail_request_detail__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(304);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -797,9 +854,9 @@ var RequestListPage = (function () {
     };
     RequestListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-request-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-list\request-list.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-list>\n\n        <ion-item-sliding *ngFor="let item of items">\n\n            <button ion-item (click)="itemTapped(item)">\n\n                <ion-thumbnail item-left>\n\n                    <img src="../assets/icon/unknown.ico"/>\n\n                </ion-thumbnail>\n\n                <h2>{{item.displayName}}</h2>\n\n                <p>{{item.email}}</p>\n\n            </button>\n\n            <ion-item-options>\n\n                <button danger (click)="addItem(item)">Add</button>\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n\n    </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-list\request-list.html"*/
+            selector: 'page-request-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <ion-item-sliding *ngFor="let item of items">\n            <button ion-item (click)="itemTapped(item)">\n                <ion-thumbnail item-left>\n                    <img src="../assets/icon/unknown.ico"/>\n                </ion-thumbnail>\n                <h2>{{item.displayName}}</h2>\n                <p>{{item.email}}</p>\n            </button>\n            <ion-item-options>\n                <button danger (click)="addItem(item)">Add</button>\n            </ion-item-options>\n        </ion-item-sliding>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_api_DefaultApi__["a" /* DefaultApi */],
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
     ], RequestListPage);
     return RequestListPage;
@@ -809,7 +866,7 @@ var RequestListPage = (function () {
 
 /***/ }),
 
-/***/ 211:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -817,7 +874,7 @@ var RequestListPage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(14);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -843,55 +900,54 @@ var RequestDetailPage = (function () {
         this.requestForm = this.formBuilder.group({});
     };
     RequestDetailPage.prototype.onSubmit = function () {
-        var _this = this;
         this.showLoading();
-        if (this.requestForm.valid == true) {
-            var request = {};
-            request.password = this.userInfo.password;
-            request.displayName = this.userInfo.name;
-            request.email = this.userInfo.email;
-            this.api.registerPost(request).subscribe(function (response) {
-                _this.navCtrl.push('ActivatePage');
-            }, function (error) {
-                _this.showError(error);
-            });
-        }
-        else {
-            this.showError('Please fix the error field.');
-        }
+        // if (this.requestForm.valid == true) {
+        //   var request: models.RegisterUserRequest = {} as models.RegisterUserRequest;
+        //   request.password = this.userInfo.password;
+        //   request.displayName = this.userInfo.name;
+        //   request.email = this.userInfo.email;      
+        //   this.api.registerPost(request).subscribe(response => {
+        //       this.navCtrl.push('ActivatePage');
+        //     },
+        //       error => {
+        //         this.showError(error);          
+        //     });
+        // } else {
+        //   this.showError('Please fix the error field.');
+        // } 
     };
     RequestDetailPage.prototype.showLoading = function () {
-        this.loading = this.loadingCtrl.create({
-            content: 'Please wait...',
-            dismissOnPageChange: true
-        });
-        this.loading.present();
+        // this.loading = this.loadingCtrl.create({
+        //   content: 'Please wait...',
+        //   dismissOnPageChange: true
+        // });
+        // this.loading.present();
     };
     RequestDetailPage.prototype.showError = function (text) {
-        this.loading.dismiss();
-        var errorMsg = this.getErrorMessage(text);
-        var alert = this.alertCtrl.create({
-            title: 'Fail',
-            subTitle: errorMsg,
-            buttons: ['OK']
-        });
-        alert.present();
+        //   this.loading.dismiss();
+        //   let errorMsg = this.getErrorMessage(text)
+        //   let alert = this.alertCtrl.create({
+        //     title: 'Fail',
+        //     subTitle: errorMsg,
+        //     buttons: ['OK']
+        //   });
+        //   alert.present();
     };
     RequestDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-request-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-detail\request-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>{{item.displayName}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n\n        <ion-card>\n\n            <ion-card-content>\n\n                <img src="../assets/icon/unknown.ico"/>\n\n                <h2>{{item.displayName}}</h2>\n\n                <!-- <h3>{{item.type}}</h3> -->\n\n            </ion-card-content>\n\n\n\n            <ion-list>\n\n                <a href="tel:{{item.email}}" ion-item>\n\n                    <ion-icon name="call" item-left></ion-icon>\n\n                    <p>Call Mobile</p>\n\n                    <h2>Unknown</h2>\n\n                </a>\n\n                <a href="tel:{{item.email}}" ion-item>\n\n                    <ion-icon name="text" item-left></ion-icon>\n\n                    <p>Text</p>\n\n                    <h2>Unknown</h2>\n\n                </a>\n\n                <a href="mailto:{{item.email}}" ion-item>\n\n                    <ion-icon name="mail" item-left></ion-icon>\n\n                    <p>Email</p>\n\n                    <h2>{{item.email}}</h2>\n\n                </a>\n\n                <ion-item>\n\n                    <ion-icon name="male" item-left></ion-icon>\n\n                </ion-item>\n\n            </ion-list>\n\n        </ion-card>\n\n        <div padding>\n\n          <button ion-button color="primary" block>Request</button>\n\n        </div>\n\n    </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-detail\request-detail.html"*/
+            selector: 'page-request-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{item.displayName}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n        <ion-card>\n            <ion-card-content>\n                <img src="../assets/icon/unknown.ico"/>\n                <h2>{{item.displayName}}</h2>\n                <!-- <h3>{{item.type}}</h3> -->\n            </ion-card-content>\n\n            <ion-list>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="call" item-left></ion-icon>\n                    <p>Call Mobile</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="text" item-left></ion-icon>\n                    <p>Text</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="mailto:{{item.email}}" ion-item>\n                    <ion-icon name="mail" item-left></ion-icon>\n                    <p>Email</p>\n                    <h2>{{item.email}}</h2>\n                </a>\n                <ion-item>\n                    <ion-icon name="male" item-left></ion-icon>\n                </ion-item>\n            </ion-list>\n        </ion-card>\n        <div padding>\n          <button ion-button color="primary" block>Request</button>\n        </div>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]])
     ], RequestDetailPage);
     return RequestDetailPage;
-    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=request-detail.js.map
 
 /***/ }),
 
-/***/ 212:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -915,7 +971,7 @@ var AboutPage = (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-about',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>About</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <div class="about-header">\n\n        <img src="assets/img/dreamhouse-logo.svg">\n\n    </div>\n\n\n\n    <div padding class="about-info">\n\n\n\n        <h4>DreamHouse Application</h4>\n\n\n\n        <p>\n\n            DreamHouse is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n\n        </p>\n\n\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/about/about.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>About</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div class="about-header">\n        <img src="assets/img/dreamhouse-logo.svg">\n    </div>\n\n    <div padding class="about-info">\n\n        <h4>DreamHouse Application</h4>\n\n        <p>\n            DreamHouse is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n        </p>\n\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/about/about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
     ], AboutPage);
@@ -926,7 +982,7 @@ var AboutPage = (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -970,7 +1026,7 @@ var WelcomePage = (function () {
     };
     WelcomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-welcome',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\welcome\welcome.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Welcome</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-bounce>\n\n    <ion-slides>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_properties.jpg\')">\n\n            <p>Your dream house is just a few taps away! Select Properties in the menu to start your search.</p>\n\n        </ion-slide>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_brokers.jpg\')">\n\n            <p>Select Brokers in the menu to connect with the best brokers in the business in a whole new way!</p>\n\n        </ion-slide>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_favorites.jpg\')">\n\n            <p>Keep track of your favorites and get notified in real time when important events happen.</p>\n\n        </ion-slide>\n\n\n\n    </ion-slides>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\welcome\welcome.html"*/
+            selector: 'page-welcome',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/welcome/welcome.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Welcome</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content no-bounce>\n    <ion-slides>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_properties.jpg\')">\n            <p>Your dream house is just a few taps away! Select Properties in the menu to start your search.</p>\n        </ion-slide>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_brokers.jpg\')">\n            <p>Select Brokers in the menu to connect with the best brokers in the business in a whole new way!</p>\n        </ion-slide>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_favorites.jpg\')">\n            <p>Keep track of your favorites and get notified in real time when important events happen.</p>\n        </ion-slide>\n\n    </ion-slides>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/welcome/welcome.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
@@ -982,12 +1038,12 @@ var WelcomePage = (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(238);
 
 
@@ -1001,31 +1057,31 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_pipes__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_DefaultApi__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_app_constants__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_pipes__ = __webpack_require__(301);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_app_constants__ = __webpack_require__(302);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(303);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_location_list_location_list__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_location_detail_location_detail__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_friend_list_friend_list__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_location_detail_location_detail__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_friend_list_friend_list__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_friend_detail_friend_detail__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_request_list_request_list__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_request_detail_request_detail__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_about_about__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_request_list_request_list__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_request_detail_request_detail__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_about_about__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_property_service_mock__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_broker_service_mock__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_login_login__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_storage__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_logout_logout__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_facebook__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_facebook__ = __webpack_require__(168);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1077,7 +1133,7 @@ var AppModule = (function () {
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_5_ngx_pipes__["a" /* NgPipesModule */],
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */], {}, {
                     links: [
@@ -1116,7 +1172,7 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"],
                 { provide: __WEBPACK_IMPORTED_MODULE_2__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* IonicErrorHandler */] },
                 __WEBPACK_IMPORTED_MODULE_7__constants_app_constants__["a" /* AppConstants */],
-                __WEBPACK_IMPORTED_MODULE_6__providers_api_DefaultApi__["a" /* DefaultApi */],
+                __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */],
                 __WEBPACK_IMPORTED_MODULE_23__ionic_native_facebook__["a" /* Facebook */]
             ]
         })
@@ -1128,7 +1184,49 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 264:
+/***/ 268:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomHttpUrlEncodingCodec; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(59);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+/**
+* CustomHttpUrlEncodingCodec
+* Fix plus sign (+) not encoding, so sent as blank space
+* See: https://github.com/angular/angular/issues/11058#issuecomment-247367318
+*/
+var CustomHttpUrlEncodingCodec = (function (_super) {
+    __extends(CustomHttpUrlEncodingCodec, _super);
+    function CustomHttpUrlEncodingCodec() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomHttpUrlEncodingCodec.prototype.encodeKey = function (k) {
+        k = _super.prototype.encodeKey.call(this, k);
+        return k.replace(/\+/gi, '%2B');
+    };
+    CustomHttpUrlEncodingCodec.prototype.encodeValue = function (v) {
+        v = _super.prototype.encodeValue.call(this, v);
+        return v.replace(/\+/gi, '%2B');
+    };
+    return CustomHttpUrlEncodingCodec;
+}(__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpUrlEncodingCodec */]));
+
+//# sourceMappingURL=encoder.js.map
+
+/***/ }),
+
+/***/ 269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1147,7 +1245,7 @@ var COLLECTION_FORMATS = {
 
 /***/ }),
 
-/***/ 268:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1461,7 +1559,7 @@ var properties = [
 
 /***/ }),
 
-/***/ 269:
+/***/ 274:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1544,7 +1642,7 @@ var brokers = [
 
 /***/ }),
 
-/***/ 297:
+/***/ 302:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1583,25 +1681,25 @@ var AppConstants = (function () {
 
 /***/ }),
 
-/***/ 298:
+/***/ 303:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_haversine__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_logout_logout__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_about_about__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_about_about__ = __webpack_require__(214);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1697,7 +1795,7 @@ var MyApp = (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/'<ion-menu [content]="content">\n\n\n\n  <ion-content>\n\n\n\n    <img src="assets/img/dreamhouse-logo.svg" class="menu-logo"/>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Network\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Help\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of helpMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Account\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of accountMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-content>\n\n    <img src="assets/img/dreamhouse-logo.svg" class="menu-logo"/>\n\n    <ion-list>\n      <ion-list-header>\n        Network\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        Help\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of helpMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        Account\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of accountMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
@@ -1710,14 +1808,14 @@ var MyApp = (function () {
 
 /***/ }),
 
-/***/ 299:
+/***/ 304:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Utils; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_configuration__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_configuration__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__ = __webpack_require__(305);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1733,7 +1831,7 @@ var Utils = (function () {
     }
     Utils.getConfiguration = function (loginUser) {
         var configuration = new __WEBPACK_IMPORTED_MODULE_1__providers_configuration__["a" /* Configuration */]();
-        configuration.apiKey = loginUser.token;
+        configuration.apiKeys = { 'key': loginUser.token };
         if (loginUser.auth !== undefined) {
             configuration.accessToken = loginUser.auth.token;
         }
@@ -1768,7 +1866,7 @@ var Utils = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrokerService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_brokers__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_brokers__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1800,13 +1898,12 @@ var BrokerService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultApi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__variables__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__encoder__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__variables__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration__ = __webpack_require__(165);
 /**
  * network
  * No description provided (generated by Swagger Codegen https://github.com/swagger-api/swagger-codegen)
@@ -1818,6 +1915,7 @@ var BrokerService = (function () {
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+/* tslint:disable:no-unused-variable member-ordering */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1830,1414 +1928,899 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-/* tslint:disable:no-unused-variable member-ordering */
 
 
 
 
 
-
-var DefaultApi = (function () {
-    function DefaultApi(http, basePath, configuration) {
-        this.http = http;
+var DefaultService = (function () {
+    function DefaultService(httpClient, basePath, configuration) {
+        this.httpClient = httpClient;
         this.basePath = 'https://9csrrzydk8.execute-api.us-east-1.amazonaws.com/dev';
-        this.defaultHeaders = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        this.defaultHeaders = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
         this.configuration = new __WEBPACK_IMPORTED_MODULE_4__configuration__["a" /* Configuration */]();
         if (basePath) {
             this.basePath = basePath;
         }
         if (configuration) {
             this.configuration = configuration;
+            this.basePath = basePath || configuration.basePath || this.basePath;
         }
     }
     /**
-     *
+     * @param consumes string[] mime-types
+     * @return true: consumes contains 'multipart/form-data', false: otherwise
      */
-    DefaultApi.prototype.activateOptions = function (extraHttpRequestParams) {
-        return this.activateOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
+    DefaultService.prototype.canConsumeForm = function (consumes) {
+        var form = 'multipart/form-data';
+        for (var _i = 0, consumes_1 = consumes; _i < consumes_1.length; _i++) {
+            var consume = consumes_1[_i];
+            if (form === consume) {
+                return true;
             }
-            else {
-                return response.json() || {};
-            }
-        });
+        }
+        return false;
     };
-    /**
-     *
-     * @param activateUserRequest
-     */
-    DefaultApi.prototype.activatePost = function (activateUserRequest, extraHttpRequestParams) {
-        return this.activatePostWithHttpInfo(activateUserRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdDelete = function (id, extraHttpRequestParams) {
-        return this.friendsIdDeleteWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdGet = function (id, extraHttpRequestParams) {
-        return this.friendsIdGetWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdOptions = function (id, extraHttpRequestParams) {
-        return this.friendsIdOptionsWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     * @param updateFriendRequest
-     */
-    DefaultApi.prototype.friendsIdPut = function (id, updateFriendRequest, extraHttpRequestParams) {
-        return this.friendsIdPutWithHttpInfo(id, updateFriendRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.friendsOptions = function (extraHttpRequestParams) {
-        return this.friendsOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param insertFriendRequest
-     */
-    DefaultApi.prototype.friendsPost = function (insertFriendRequest, extraHttpRequestParams) {
-        return this.friendsPostWithHttpInfo(insertFriendRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.loginOptions = function (extraHttpRequestParams) {
-        return this.loginOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param loginUserRequest
-     */
-    DefaultApi.prototype.loginPost = function (loginUserRequest, extraHttpRequestParams) {
-        return this.loginPostWithHttpInfo(loginUserRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.logoutOptions = function (extraHttpRequestParams) {
-        return this.logoutOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param logoutRequest
-     */
-    DefaultApi.prototype.logoutPost = function (logoutRequest, extraHttpRequestParams) {
-        return this.logoutPostWithHttpInfo(logoutRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.registerOptions = function (extraHttpRequestParams) {
-        return this.registerOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param registerUserRequest
-     */
-    DefaultApi.prototype.registerPost = function (registerUserRequest, extraHttpRequestParams) {
-        return this.registerPostWithHttpInfo(registerUserRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.usersChangepasswordOptions = function (extraHttpRequestParams) {
-        return this.usersChangepasswordOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param changePasswordRequest
-     */
-    DefaultApi.prototype.usersChangepasswordPost = function (changePasswordRequest, extraHttpRequestParams) {
-        return this.usersChangepasswordPostWithHttpInfo(changePasswordRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.usersForgetpasswordOptions = function (extraHttpRequestParams) {
-        return this.usersForgetpasswordOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param fogotPasswordRequest
-     */
-    DefaultApi.prototype.usersForgetpasswordPost = function (fogotPasswordRequest, extraHttpRequestParams) {
-        return this.usersForgetpasswordPostWithHttpInfo(fogotPasswordRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdDelete = function (id, extraHttpRequestParams) {
-        return this.usersIdDeleteWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdGet = function (id, extraHttpRequestParams) {
-        return this.usersIdGetWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdOptions = function (id, extraHttpRequestParams) {
-        return this.usersIdOptionsWithHttpInfo(id, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param id
-     * @param updateUserRequest
-     */
-    DefaultApi.prototype.usersIdPut = function (id, updateUserRequest, extraHttpRequestParams) {
-        return this.usersIdPutWithHttpInfo(id, updateUserRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.usersLoginwithfacebookOptions = function (extraHttpRequestParams) {
-        return this.usersLoginwithfacebookOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param loginWithTokenRequest
-     */
-    DefaultApi.prototype.usersLoginwithfacebookPost = function (loginWithTokenRequest, extraHttpRequestParams) {
-        return this.usersLoginwithfacebookPostWithHttpInfo(loginWithTokenRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.usersLoginwithgoogleOptions = function (extraHttpRequestParams) {
-        return this.usersLoginwithgoogleOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param loginWithTokenRequest
-     */
-    DefaultApi.prototype.usersLoginwithgooglePost = function (loginWithTokenRequest, extraHttpRequestParams) {
-        return this.usersLoginwithgooglePostWithHttpInfo(loginWithTokenRequest, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     * @param query
-     * @param limit
-     * @param cursor
-     */
-    DefaultApi.prototype.usersSearchGet = function (query, limit, cursor, extraHttpRequestParams) {
-        return this.usersSearchGetWithHttpInfo(query, limit, cursor, extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     */
-    DefaultApi.prototype.usersSearchOptions = function (extraHttpRequestParams) {
-        return this.usersSearchOptionsWithHttpInfo(extraHttpRequestParams)
-            .map(function (response) {
-            if (response.status === 204) {
-                return undefined;
-            }
-            else {
-                return response.json() || {};
-            }
-        });
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.activateOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/activate';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
+    DefaultService.prototype.activateOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/activate", {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param activateUserRequest
-     */
-    DefaultApi.prototype.activatePostWithHttpInfo = function (activateUserRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/activate';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'activateUserRequest' is not null or undefined
+    DefaultService.prototype.activatePost = function (activateUserRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (activateUserRequest === null || activateUserRequest === undefined) {
             throw new Error('Required parameter activateUserRequest was null or undefined when calling activatePost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: activateUserRequest == null ? '' : JSON.stringify(activateUserRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
         }
-        return this.http.request(path, requestOptions);
+        return this.httpClient.post(this.basePath + "/activate", activateUserRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdDeleteWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/friends/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.friendsIdDelete = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling friendsIdDelete.');
         }
+        var headers = this.defaultHeaders;
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
-        }
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Delete,
+        return this.httpClient.delete(this.basePath + "/friends/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdGetWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/friends/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.friendsIdGet = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling friendsIdGet.');
         }
+        var headers = this.defaultHeaders;
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
-        }
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Get,
+        return this.httpClient.get(this.basePath + "/friends/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.friendsIdOptionsWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/friends/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.friendsIdOptions = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling friendsIdOptions.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/friends/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     * @param updateFriendRequest
-     */
-    DefaultApi.prototype.friendsIdPutWithHttpInfo = function (id, updateFriendRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/friends/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.friendsIdPut = function (id, updateFriendRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling friendsIdPut.');
         }
-        // verify required parameter 'updateFriendRequest' is not null or undefined
         if (updateFriendRequest === null || updateFriendRequest === undefined) {
             throw new Error('Required parameter updateFriendRequest was null or undefined when calling friendsIdPut.');
         }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json'
-        ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
+        var headers = this.defaultHeaders;
         // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
         }
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Put,
-            headers: headers,
-            body: updateFriendRequest == null ? '' : JSON.stringify(updateFriendRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.friendsOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/friends';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.put(this.basePath + "/friends/" + encodeURIComponent(String(id)), updateFriendRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/friends", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param insertFriendRequest
-     */
-    DefaultApi.prototype.friendsPostWithHttpInfo = function (insertFriendRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/friends';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'insertFriendRequest' is not null or undefined
+    DefaultService.prototype.friendsPost = function (insertFriendRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (insertFriendRequest === null || insertFriendRequest === undefined) {
             throw new Error('Required parameter insertFriendRequest was null or undefined when calling friendsPost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/friends", insertFriendRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsRequestOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: insertFriendRequest == null ? '' : JSON.stringify(insertFriendRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.loginOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/login';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        return this.httpClient.options(this.basePath + "/friends/request", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsRequestPost = function (requestFriendRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (requestFriendRequest === null || requestFriendRequest === undefined) {
+            throw new Error('Required parameter requestFriendRequest was null or undefined when calling friendsRequestPost.');
+        }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/friends/request", requestFriendRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param loginUserRequest
-     */
-    DefaultApi.prototype.loginPostWithHttpInfo = function (loginUserRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/login';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'loginUserRequest' is not null or undefined
+    DefaultService.prototype.loginOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/login", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.loginPost = function (loginUserRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (loginUserRequest === null || loginUserRequest === undefined) {
             throw new Error('Required parameter loginUserRequest was null or undefined when calling loginPost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/login", loginUserRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.logoutOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: loginUserRequest == null ? '' : JSON.stringify(loginUserRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.logoutOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/logout';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/logout", {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param logoutRequest
-     */
-    DefaultApi.prototype.logoutPostWithHttpInfo = function (logoutRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/logout';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'logoutRequest' is not null or undefined
+    DefaultService.prototype.logoutPost = function (logoutRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (logoutRequest === null || logoutRequest === undefined) {
             throw new Error('Required parameter logoutRequest was null or undefined when calling logoutPost.');
         }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json'
-        ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
+        var headers = this.defaultHeaders;
         // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
         }
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: logoutRequest == null ? '' : JSON.stringify(logoutRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.registerOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/register';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/logout", logoutRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.registerOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/register", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param registerUserRequest
-     */
-    DefaultApi.prototype.registerPostWithHttpInfo = function (registerUserRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/register';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'registerUserRequest' is not null or undefined
+    DefaultService.prototype.registerPost = function (registerUserRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (registerUserRequest === null || registerUserRequest === undefined) {
             throw new Error('Required parameter registerUserRequest was null or undefined when calling registerPost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/register", registerUserRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.usersChangepasswordOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: registerUserRequest == null ? '' : JSON.stringify(registerUserRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.usersChangepasswordOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/users/changepassword';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/users/changepassword", {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param changePasswordRequest
-     */
-    DefaultApi.prototype.usersChangepasswordPostWithHttpInfo = function (changePasswordRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/users/changepassword';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'changePasswordRequest' is not null or undefined
+    DefaultService.prototype.usersChangepasswordPost = function (changePasswordRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (changePasswordRequest === null || changePasswordRequest === undefined) {
             throw new Error('Required parameter changePasswordRequest was null or undefined when calling usersChangepasswordPost.');
         }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json'
-        ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
+        var headers = this.defaultHeaders;
         // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
         }
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: changePasswordRequest == null ? '' : JSON.stringify(changePasswordRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.usersForgetpasswordOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/users/forgetpassword';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/users/changepassword", changePasswordRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.usersForgetpasswordOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/users/forgetpassword", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param fogotPasswordRequest
-     */
-    DefaultApi.prototype.usersForgetpasswordPostWithHttpInfo = function (fogotPasswordRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/users/forgetpassword';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'fogotPasswordRequest' is not null or undefined
+    DefaultService.prototype.usersForgetpasswordPost = function (fogotPasswordRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (fogotPasswordRequest === null || fogotPasswordRequest === undefined) {
             throw new Error('Required parameter fogotPasswordRequest was null or undefined when calling usersForgetpasswordPost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: fogotPasswordRequest == null ? '' : JSON.stringify(fogotPasswordRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
         }
-        return this.http.request(path, requestOptions);
+        return this.httpClient.post(this.basePath + "/users/forgetpassword", fogotPasswordRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdDeleteWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/users/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.usersIdDelete = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling usersIdDelete.');
         }
+        var headers = this.defaultHeaders;
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
-        }
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Delete,
+        return this.httpClient.delete(this.basePath + "/users/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdGetWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/users/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.usersIdGet = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling usersIdGet.');
         }
+        var headers = this.defaultHeaders;
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
-        }
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Get,
+        return this.httpClient.get(this.basePath + "/users/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     */
-    DefaultApi.prototype.usersIdOptionsWithHttpInfo = function (id, extraHttpRequestParams) {
-        var path = this.basePath + '/users/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.usersIdOptions = function (id, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling usersIdOptions.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/users/" + encodeURIComponent(String(id)), {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param id
-     * @param updateUserRequest
-     */
-    DefaultApi.prototype.usersIdPutWithHttpInfo = function (id, updateUserRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/users/${id}'
-            .replace('${' + 'id' + '}', String(id));
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'id' is not null or undefined
+    DefaultService.prototype.usersIdPut = function (id, updateUserRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling usersIdPut.');
         }
-        // verify required parameter 'updateUserRequest' is not null or undefined
         if (updateUserRequest === null || updateUserRequest === undefined) {
             throw new Error('Required parameter updateUserRequest was null or undefined when calling usersIdPut.');
         }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json'
-        ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
+        var headers = this.defaultHeaders;
         // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
         }
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Put,
-            headers: headers,
-            body: updateUserRequest == null ? '' : JSON.stringify(updateUserRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.usersLoginwithfacebookOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/users/loginwithfacebook';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.put(this.basePath + "/users/" + encodeURIComponent(String(id)), updateUserRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.usersLoginwithfacebookOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/users/loginwithfacebook", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param loginWithTokenRequest
-     */
-    DefaultApi.prototype.usersLoginwithfacebookPostWithHttpInfo = function (loginWithTokenRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/users/loginwithfacebook';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'loginWithTokenRequest' is not null or undefined
+    DefaultService.prototype.usersLoginwithfacebookPost = function (loginWithTokenRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (loginWithTokenRequest === null || loginWithTokenRequest === undefined) {
             throw new Error('Required parameter loginWithTokenRequest was null or undefined when calling usersLoginwithfacebookPost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/users/loginwithfacebook", loginWithTokenRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.usersLoginwithgoogleOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: loginWithTokenRequest == null ? '' : JSON.stringify(loginWithTokenRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.usersLoginwithgoogleOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/users/loginwithgoogle';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
+        return this.httpClient.options(this.basePath + "/users/loginwithgoogle", {
+            withCredentials: this.configuration.withCredentials,
             headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
+            observe: observe,
+            reportProgress: reportProgress
         });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
-        }
-        return this.http.request(path, requestOptions);
     };
-    /**
-     *
-     *
-     * @param loginWithTokenRequest
-     */
-    DefaultApi.prototype.usersLoginwithgooglePostWithHttpInfo = function (loginWithTokenRequest, extraHttpRequestParams) {
-        var path = this.basePath + '/users/loginwithgoogle';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'loginWithTokenRequest' is not null or undefined
+    DefaultService.prototype.usersLoginwithgooglePost = function (loginWithTokenRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (loginWithTokenRequest === null || loginWithTokenRequest === undefined) {
             throw new Error('Required parameter loginWithTokenRequest was null or undefined when calling usersLoginwithgooglePost.');
         }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
-        headers.set('Content-Type', 'application/json');
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Post,
-            headers: headers,
-            body: loginWithTokenRequest == null ? '' : JSON.stringify(loginWithTokenRequest),
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
         }
-        return this.http.request(path, requestOptions);
+        return this.httpClient.post(this.basePath + "/users/loginwithgoogle", loginWithTokenRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    /**
-     *
-     *
-     * @param query
-     * @param limit
-     * @param cursor
-     */
-    DefaultApi.prototype.usersSearchGetWithHttpInfo = function (query, limit, cursor, extraHttpRequestParams) {
-        var path = this.basePath + '/users/search';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
-        // verify required parameter 'query' is not null or undefined
+    DefaultService.prototype.usersSearchGet = function (query, limit, cursor, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
         if (query === null || query === undefined) {
             throw new Error('Required parameter query was null or undefined when calling usersSearchGet.');
         }
-        // verify required parameter 'limit' is not null or undefined
         if (limit === null || limit === undefined) {
             throw new Error('Required parameter limit was null or undefined when calling usersSearchGet.');
         }
+        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]({ encoder: new __WEBPACK_IMPORTED_MODULE_2__encoder__["a" /* CustomHttpUrlEncodingCodec */]() });
         if (query !== undefined) {
-            queryParameters.set('query', query);
+            queryParameters = queryParameters.set('query', query);
         }
         if (cursor !== undefined) {
-            queryParameters.set('cursor', cursor);
+            queryParameters = queryParameters.set('cursor', cursor);
         }
         if (limit !== undefined) {
-            queryParameters.set('limit', limit);
+            queryParameters = queryParameters.set('limit', limit);
         }
-        // to determine the Content-Type header
-        var consumes = [
-            'application/json'
-        ];
-        // to determine the Accept header
-        var produces = [
-            'application/json'
-        ];
+        var headers = this.defaultHeaders;
         // authentication (networkAuthorizer) required
-        if (this.configuration.apiKey) {
-            headers.set('Authorization', this.configuration.apiKey);
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
         }
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Get,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
-    };
-    /**
-     *
-     *
-     */
-    DefaultApi.prototype.usersSearchOptionsWithHttpInfo = function (extraHttpRequestParams) {
-        var path = this.basePath + '/users/search';
-        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */](this.defaultHeaders.toJSON()); // https://github.com/angular/angular/issues/6845
         // to determine the Content-Type header
         var consumes = [
             'application/json'
         ];
+        return this.httpClient.get(this.basePath + "/users/search", {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.usersSearchOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
         // to determine the Accept header
-        var produces = [
+        var httpHeaderAccepts = [
             'application/json'
         ];
-        var requestOptions = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestOptions */]({
-            method: __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestMethod */].Options,
-            headers: headers,
-            search: queryParameters,
-            withCredentials: this.configuration.withCredentials
-        });
-        // https://github.com/swagger-api/swagger-codegen/issues/4037
-        if (extraHttpRequestParams) {
-            requestOptions = Object.assign(requestOptions, extraHttpRequestParams);
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
         }
-        return this.http.request(path, requestOptions);
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/users/search", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
     };
-    DefaultApi = __decorate([
+    DefaultService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
         __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"])()), __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_3__variables__["a" /* BASE_PATH */])), __param(2, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Optional"])()),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */], String, __WEBPACK_IMPORTED_MODULE_4__configuration__["a" /* Configuration */]])
-    ], DefaultApi);
-    return DefaultApi;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], String, __WEBPACK_IMPORTED_MODULE_4__configuration__["a" /* Configuration */]])
+    ], DefaultService);
+    return DefaultService;
 }());
 
-//# sourceMappingURL=DefaultApi.js.map
+//# sourceMappingURL=default.service.js.map
 
 /***/ }),
 
@@ -3247,7 +2830,7 @@ var DefaultApi = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertyService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_properties__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_properties__ = __webpack_require__(273);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3329,7 +2912,7 @@ var FriendDetailPage = (function () {
     }
     FriendDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-friend-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Broker</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n\n\n    <ion-card>\n\n\n\n        <ion-card-content>\n\n            <img src="{{broker.picture}}"/>\n\n            <h2>{{broker.name}}</h2>\n\n            <h3>{{broker.title}}</h3>\n\n        </ion-card-content>\n\n\n\n        <ion-list>\n\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Office</p>\n\n                <h2>{{broker.phone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Mobile</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="text" item-left></ion-icon>\n\n                <p>Text</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="mailto:{{broker.email}}" ion-item>\n\n                <ion-icon name="mail" item-left></ion-icon>\n\n                <p>Email</p>\n\n                <h2>{{broker.email}}</h2>\n\n            </a>\n\n        </ion-list>\n\n\n\n    </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/
+            selector: 'page-friend-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-detail/friend-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Broker</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n\n    <ion-card>\n\n        <ion-card-content>\n            <img src="{{broker.picture}}"/>\n            <h2>{{broker.name}}</h2>\n            <h3>{{broker.title}}</h3>\n        </ion-card-content>\n\n        <ion-list>\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n                <ion-icon name="call" item-left></ion-icon>\n                <p>Call Office</p>\n                <h2>{{broker.phone}}</h2>\n            </a>\n            <a href="tel:{{broker.phone}}" ion-item>\n                <ion-icon name="call" item-left></ion-icon>\n                <p>Call Mobile</p>\n                <h2>{{broker.mobilePhone}}</h2>\n            </a>\n            <a href="tel:{{broker.phone}}" ion-item>\n                <ion-icon name="text" item-left></ion-icon>\n                <p>Text</p>\n                <h2>{{broker.mobilePhone}}</h2>\n            </a>\n            <a href="mailto:{{broker.email}}" ion-item>\n                <ion-icon name="mail" item-left></ion-icon>\n                <p>Email</p>\n                <h2>{{broker.email}}</h2>\n            </a>\n        </ion-list>\n\n    </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-detail/friend-detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]])
     ], FriendDetailPage);
@@ -3340,5 +2923,5 @@ var FriendDetailPage = (function () {
 
 /***/ })
 
-},[214]);
+},[216]);
 //# sourceMappingURL=main.js.map

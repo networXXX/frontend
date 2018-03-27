@@ -28,41 +28,41 @@ export class RequestDetailPage implements OnInit {
 
 	onSubmit() {
 	    this.showLoading();
-	    if (this.requestForm.valid == true) {
-	      var request: models.RegisterUserRequest = {} as models.RegisterUserRequest;
-	      request.password = this.userInfo.password;
-	      request.displayName = this.userInfo.name;
-	      request.email = this.userInfo.email;      
+	    // if (this.requestForm.valid == true) {
+	    //   var request: models.RegisterUserRequest = {} as models.RegisterUserRequest;
+	    //   request.password = this.userInfo.password;
+	    //   request.displayName = this.userInfo.name;
+	    //   request.email = this.userInfo.email;      
 
-	      this.api.registerPost(request).subscribe(response => {
-	          this.navCtrl.push('ActivatePage');
-	        },
-	          error => {
-	            this.showError(error);          
-	        });
+	    //   this.api.registerPost(request).subscribe(response => {
+	    //       this.navCtrl.push('ActivatePage');
+	    //     },
+	    //       error => {
+	    //         this.showError(error);          
+	    //     });
 
-	    } else {
-	      this.showError('Please fix the error field.');
-	    } 
+	    // } else {
+	    //   this.showError('Please fix the error field.');
+	    // } 
 	}
 
 	showLoading() {
-	    this.loading = this.loadingCtrl.create({
-	      content: 'Please wait...',
-	      dismissOnPageChange: true
-	    });
-	    this.loading.present();
+	    // this.loading = this.loadingCtrl.create({
+	    //   content: 'Please wait...',
+	    //   dismissOnPageChange: true
+	    // });
+	    // this.loading.present();
 	  }
 
 	showError(text) {
-	    this.loading.dismiss();
-	    let errorMsg = this.getErrorMessage(text)
-	    let alert = this.alertCtrl.create({
-	      title: 'Fail',
-	      subTitle: errorMsg,
-	      buttons: ['OK']
-	    });
-	    alert.present();
+	  //   this.loading.dismiss();
+	  //   let errorMsg = this.getErrorMessage(text)
+	  //   let alert = this.alertCtrl.create({
+	  //     title: 'Fail',
+	  //     subTitle: errorMsg,
+	  //     buttons: ['OK']
+	  //   });
+	  //   alert.present();
 	  }  
 
 }

@@ -9,24 +9,11 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { UserCredentials } from './userCredentials';
 
-import * as models from './models';
 
-export interface User {
-    activateCode?: string;
-
-    displayName: string;
-
-    type?: string;
-
-    createdAt?: Date;
-
-    imageUrl?: string;
-
-    id?: string;
-
-    email: string;
-
-    status?: string;
-
+export interface AWSAuth {
+    credentials?: UserCredentials;
+    identityId?: string;
+    token?: string;
 }

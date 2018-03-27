@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface LogoutResponse {
+export interface ModelError {
+    code?: number;
     message?: string;
-
+    fields?: string;
 }

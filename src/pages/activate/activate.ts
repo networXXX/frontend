@@ -1,7 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 import { FormGroup, FormBuilder, FormControl, Validators} from "@angular/forms";
-import { DefaultApi } from '../../providers/api/DefaultApi';
+import { DefaultService } from '../../providers/api/default.service'
 
 import * as models  from '../../providers/model/models';
 
@@ -24,7 +24,7 @@ export class ActivatePage implements OnInit{
             {activateCode: ''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController,
-  	public formBuilder: FormBuilder, private api: DefaultApi, private loadingCtrl: LoadingController) {
+  	public formBuilder: FormBuilder, private api: DefaultService, private loadingCtrl: LoadingController) {
 
   }
 

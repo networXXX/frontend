@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HaversineService } from "ng2-haversine";
 import { NgPipesModule } from 'ngx-pipes';
 
-import { DefaultApi } from './../providers/api/DefaultApi';
+import { DefaultService } from './../providers/api/default.service';
 import { AppConstants } from './../constants/app.constants';
 import { MyApp } from './app.component';
 //import {WelcomePage} from '../pages/welcome/welcome';
@@ -41,7 +41,7 @@ import { Facebook } from '@ionic-native/facebook';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     NgPipesModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
@@ -68,7 +68,7 @@ import { Facebook } from '@ionic-native/facebook';
     HaversineService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppConstants,
-    DefaultApi,
+    DefaultService,
     Facebook
   ]
 })

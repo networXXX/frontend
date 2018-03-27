@@ -1,7 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, LoadingController, Loading } from 'ionic-angular';
 
-import { DefaultApi } from '../../providers/api/DefaultApi';
+import { DefaultService } from '../../providers/api/default.service';
 import { RequestDetailPage } from '../request-detail/request-detail';
 import * as models  from '../../providers/model/models';
 import { Storage } from '@ionic/storage';
@@ -24,7 +24,7 @@ export class RequestListPage implements OnInit {
   CURSOR: string = undefined;
   SEARCH_TEXT: string = undefined;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: DefaultApi,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private api: DefaultService,
               private storage: Storage, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
     this.items = [];    
   }

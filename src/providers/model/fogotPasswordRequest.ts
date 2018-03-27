@@ -10,9 +10,7 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface ActivateUserRequest {
-    activateCode?: string;
-
+export interface FogotPasswordRequest {
+    email?: string;
 }

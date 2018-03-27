@@ -10,15 +10,10 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface UserCredentials {
-    secretKey?: string;
-
-    accessKey?: string;
-
-    sessionToken?: string;
-
-    expiration: number;
-
+export interface UpdateFriendRequest {
+    id: string;
+    otherId: string;
+    userId: string;
+    status: string;
 }

@@ -9,8 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ModelDate } from './modelDate';
 
-import * as models from './models';
 
-export interface ModelDate {
+export interface Friend {
+    createdAt?: ModelDate;
+    otherId: string;
+    id?: string;
+    userId: string;
+    status: string;
 }

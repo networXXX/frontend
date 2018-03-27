@@ -10,13 +10,9 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface InsertFriendRequest {
-    otherId?: string;
-
-    userId?: string;
-
-    status?: string;
-
+export interface UpdateUserRequest {
+    displayedName?: string;
+    id?: string;
+    profileImageUrl?: string;
 }

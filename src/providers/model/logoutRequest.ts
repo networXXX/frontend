@@ -10,17 +10,8 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface LoginUserResponse {
-    item?: models.User;
-
-    type?: string;
-
-    token?: string;
-
-    expires?: number;
-
-    auth?: models.AWSAuth;
-
+export interface LogoutRequest {
+    pushToken?: string;
+    userId?: string;
 }

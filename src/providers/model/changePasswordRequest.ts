@@ -10,15 +10,9 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface RegisterUserRequest {
-    password?: string;
-
-    displayName?: string;
-
-    imageUrl?: string;
-
+export interface ChangePasswordRequest {
     email?: string;
-
+    password?: string;
+    changeKey?: string;
 }

@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface FriendResponse {
-    item?: models.Friend;
-
+export interface LoginUserRequest {
+    email?: string;
+    password?: string;
 }

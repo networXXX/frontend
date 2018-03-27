@@ -10,13 +10,11 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface ChangePasswordRequest {
+export interface LoginWithTokenRequest {
+    displayName?: string;
+    phoneId?: string;
     email?: string;
-
-    password?: string;
-
-    changeKey?: string;
-
+    token?: string;
+    pushToken?: string;
 }

@@ -9,14 +9,16 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ModelDate } from './modelDate';
 
-import * as models from './models';
 
-export interface UpdateUserRequest {
-    displayedName?: string;
-
+export interface User {
+    activateCode?: string;
+    displayName: string;
+    type?: string;
+    createdAt?: ModelDate;
+    imageUrl?: string;
     id?: string;
-
-    profileImageUrl?: string;
-
+    email: string;
+    status?: string;
 }

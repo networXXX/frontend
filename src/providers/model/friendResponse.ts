@@ -9,18 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Friend } from './friend';
 
-import * as models from './models';
 
-export interface LoginWithTokenRequest {
-    displayName?: string;
-
-    phoneId?: string;
-
-    email?: string;
-
-    token?: string;
-
-    pushToken?: string;
-
+export interface FriendResponse {
+    item?: Friend;
 }

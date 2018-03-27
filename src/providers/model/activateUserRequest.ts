@@ -10,17 +10,7 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface Friend {
-    createdAt?: Date;
-
-    otherId: string;
-
-    id?: string;
-
-    userId: string;
-
-    status: string;
-
+export interface ActivateUserRequest {
+    activateCode?: string;
 }

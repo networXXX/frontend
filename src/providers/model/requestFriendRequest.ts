@@ -10,13 +10,8 @@
  * Do not edit the class manually.
  */
 
-import * as models from './models';
 
-export interface ModelError {
-    code?: number;
-
-    message?: string;
-
-    fields?: string;
-
+export interface RequestFriendRequest {
+    otherId?: string;
+    userId?: string;
 }
