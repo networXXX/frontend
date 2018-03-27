@@ -32,6 +32,7 @@ export class RequestListPage implements OnInit {
   ngOnInit(): any {
 
     this.storage.get('user').then((val) => {  
+      debugger;
       if (val === undefined || val === null) {
         this.navCtrl.setRoot('LoginPage');
       } else {
