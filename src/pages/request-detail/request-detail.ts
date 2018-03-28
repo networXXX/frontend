@@ -19,7 +19,9 @@ export class RequestDetailPage implements OnInit {
     item: any;
     loading: Loading;
     requestForm: FormGroup;
-    userId: string = "";
+    userId: string = '';
+    status: string = '';
+    submitBtn: string = '';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, public service: BrokerService,
     	public formBuilder: FormBuilder, private storage: Storage, private api: DefaultService,
@@ -42,7 +44,70 @@ export class RequestDetailPage implements OnInit {
 	    });    
 	}
 
+	getFriend(userId:string, otherId:string) {
+		let query:string = 'userId:' + userId + 'otherId:' + otherId;
+		this.api.friendsSearchGet(query, '1', null).subscribe(response => {
+			debugger;
+	    		if (response != null && response.items.length > 0) {
+	    			let friend: models.Friend = response.items[0];
+	    			if (friend.status === 'P') {
+	    				this.status = 'Requesting';
+	    				this.submitBtn = '+1 Request';
+	    			} else if (friend.status === 'W') {
+	    				this.status = 'Requested';
+	    				this.submitBtn = 'Confirm';
+	    			} else {
+	    				this.status = 'Friend';
+	    				this.submitBtn = 'Unfriend';
+	    			}
+	    		} 
+	        },
+	          error => {
+	            this.showError(error);          
+	    });
+	}
+
+	requestFriend() {
+		var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;
+	    request.userId = this.userId;
+	    request.otherId = this.item.id;    
+
+	    this.api.friendsRequestPost(request).subscribe(response => {
+	          this.showOK();
+	        },
+	          error => {
+	            this.showError(error);          
+	        });
+	}
+
+	unFriend() {
+		var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;
+	    request.userId = this.userId;
+	    request.otherId = this.item.id;    
+
+	    this.api.friendsRequestPost(request).subscribe(response => {
+	          this.showOK();
+	        },
+	          error => {
+	            this.showError(error);          
+	        });
+	}
+
+	unFriend() {
+		var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;
+	    request.userId = this.userId;
+	    request.otherId = this.item.id;    
+
+	    this.api.friendsRequestPost(request).subscribe(response => {
+	          this.showOK();
+	        },
+	          error => {
+	            this.showError(error);          
+	        });
+	}
+
 	onSubmit() {
+		debugger;
 	    this.showLoading();
 	    if (this.requestForm.valid == true) {
 	      var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;

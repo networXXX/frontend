@@ -23,6 +23,7 @@ export class RequestListPage implements OnInit {
   LIMIT: string = '15'
   CURSOR: string = undefined;
   SEARCH_TEXT: string = undefined;
+  userId: string = undefined;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private api: DefaultService,
               private storage: Storage, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
@@ -37,7 +38,8 @@ export class RequestListPage implements OnInit {
         this.navCtrl.setRoot('LoginPage');
       } else {
         let loginUser: models.LoginUserResponse = val; 
-        this.QUERY_STR = 'userId:' + loginUser.item.id;   
+        this.QUERY_STR = 'userId:' + loginUser.item.id;  
+        this.userId = loginUser.item.id;  
         this.api.configuration = Utils.getConfiguration(loginUser); 
         //this.getUsers(this.QUERY_STR);  
       }        
@@ -51,7 +53,9 @@ export class RequestListPage implements OnInit {
     this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
         if (response != null && response.items.length > 0) {                    
           response.items.forEach(property => {
-            this.items.push(property);
+            if (property.id !== this.userId) {
+              this.items.push(property);
+            }
           });
           this.CURSOR = response.nextPageToken;
           this.noMoreItemsAvailable = true;

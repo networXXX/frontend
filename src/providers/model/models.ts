@@ -15,6 +15,7 @@ export * from './modelError';
 export * from './registerUserRequest';
 export * from './registerUserResponse';
 export * from './requestFriendRequest';
+export * from './searchFriendResponse';
 export * from './searchUserResponse';
 export * from './updateFriendRequest';
 export * from './updateUserRequest';

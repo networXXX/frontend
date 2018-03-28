@@ -31,6 +31,7 @@ import { LogoutResponse } from '../model/logoutResponse';
 import { RegisterUserRequest } from '../model/registerUserRequest';
 import { RegisterUserResponse } from '../model/registerUserResponse';
 import { RequestFriendRequest } from '../model/requestFriendRequest';
+import { SearchFriendResponse } from '../model/searchFriendResponse';
 import { SearchUserResponse } from '../model/searchUserResponse';
 import { UpdateFriendRequest } from '../model/updateFriendRequest';
 import { UpdateUserRequest } from '../model/updateUserRequest';
@@ -146,6 +147,89 @@ export class DefaultService {
 
         return this.httpClient.post<UserResponse>(`${this.basePath}/activate`,
             activateUserRequest,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsConfirmOptions(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public friendsConfirmOptions(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public friendsConfirmOptions(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public friendsConfirmOptions(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.options<any>(`${this.basePath}/friends/confirm`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param requestFriendRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsConfirmPost(requestFriendRequest: RequestFriendRequest, observe?: 'body', reportProgress?: boolean): Observable<FriendResponse>;
+    public friendsConfirmPost(requestFriendRequest: RequestFriendRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FriendResponse>>;
+    public friendsConfirmPost(requestFriendRequest: RequestFriendRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FriendResponse>>;
+    public friendsConfirmPost(requestFriendRequest: RequestFriendRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (requestFriendRequest === null || requestFriendRequest === undefined) {
+            throw new Error('Required parameter requestFriendRequest was null or undefined when calling friendsConfirmPost.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<FriendResponse>(`${this.basePath}/friends/confirm`,
+            requestFriendRequest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -499,6 +583,189 @@ export class DefaultService {
         }
 
         return this.httpClient.post<FriendResponse>(`${this.basePath}/friends/request`,
+            requestFriendRequest,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param query 
+     * @param limit 
+     * @param cursor 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsSearchGet(query: string, limit: string, cursor?: string, observe?: 'body', reportProgress?: boolean): Observable<SearchFriendResponse>;
+    public friendsSearchGet(query: string, limit: string, cursor?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SearchFriendResponse>>;
+    public friendsSearchGet(query: string, limit: string, cursor?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SearchFriendResponse>>;
+    public friendsSearchGet(query: string, limit: string, cursor?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (query === null || query === undefined) {
+            throw new Error('Required parameter query was null or undefined when calling friendsSearchGet.');
+        }
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling friendsSearchGet.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (query !== undefined) {
+            queryParameters = queryParameters.set('query', <any>query);
+        }
+        if (cursor !== undefined) {
+            queryParameters = queryParameters.set('cursor', <any>cursor);
+        }
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<SearchFriendResponse>(`${this.basePath}/friends/search`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsSearchOptions(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public friendsSearchOptions(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public friendsSearchOptions(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public friendsSearchOptions(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.options<any>(`${this.basePath}/friends/search`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsUnfriendOptions(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public friendsUnfriendOptions(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public friendsUnfriendOptions(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public friendsUnfriendOptions(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.options<any>(`${this.basePath}/friends/unfriend`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param requestFriendRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsUnfriendPost(requestFriendRequest: RequestFriendRequest, observe?: 'body', reportProgress?: boolean): Observable<FriendResponse>;
+    public friendsUnfriendPost(requestFriendRequest: RequestFriendRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<FriendResponse>>;
+    public friendsUnfriendPost(requestFriendRequest: RequestFriendRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<FriendResponse>>;
+    public friendsUnfriendPost(requestFriendRequest: RequestFriendRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (requestFriendRequest === null || requestFriendRequest === undefined) {
+            throw new Error('Required parameter requestFriendRequest was null or undefined when calling friendsUnfriendPost.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<FriendResponse>(`${this.basePath}/friends/unfriend`,
             requestFriendRequest,
             {
                 withCredentials: this.configuration.withCredentials,
