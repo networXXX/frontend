@@ -728,20 +728,23 @@ var RequestListPage = (function () {
         this.LIMIT = '15';
         this.CURSOR = undefined;
         this.SEARCH_TEXT = undefined;
+        this.userId = undefined;
+        this.REQUESTING_QUERY_STR = undefined;
         this.items = [];
     }
     RequestListPage.prototype.ngOnInit = function () {
         var _this = this;
         this.storage.get('user').then(function (val) {
-            debugger;
             if (val === undefined || val === null) {
                 _this.navCtrl.setRoot('LoginPage');
             }
             else {
                 var loginUser = val;
                 _this.QUERY_STR = 'userId:' + loginUser.item.id;
+                _this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:R';
+                _this.userId = loginUser.item.id;
                 _this.api.configuration = __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */].getConfiguration(loginUser);
-                //this.getUsers(this.QUERY_STR);  
+                _this.getRequestingUsers(_this.REQUESTING_QUERY_STR);
             }
         });
     };
@@ -753,7 +756,29 @@ var RequestListPage = (function () {
         this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(function (response) {
             if (response != null && response.items.length > 0) {
                 response.items.forEach(function (property) {
-                    _this.items.push(property);
+                    if (property.id !== _this.userId) {
+                        _this.items.push(property);
+                    }
+                });
+                _this.CURSOR = response.nextPageToken;
+                _this.noMoreItemsAvailable = true;
+            }
+            _this.closeLoading();
+        }, function (error) {
+            _this.showError(error);
+        });
+    };
+    RequestListPage.prototype.getRequestingUsers = function (query) {
+        var _this = this;
+        if (this.noMoreItemsAvailable == false) {
+            this.showLoading();
+        }
+        this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(function (response) {
+            if (response != null && response.items.length > 0) {
+                response.items.forEach(function (property) {
+                    if (property.id !== _this.userId) {
+                        _this.items.push(property);
+                    }
                 });
                 _this.CURSOR = response.nextPageToken;
                 _this.noMoreItemsAvailable = true;
@@ -772,30 +797,27 @@ var RequestListPage = (function () {
                     _this.getUsers(_this.SEARCH_TEXT);
                 }
                 else {
-                    _this.getUsers(_this.QUERY_STR);
+                    _this.getRequestingUsers(_this.REQUESTING_QUERY_STR);
                 }
                 infiniteScroll.complete();
             }, 500);
         }
     };
     RequestListPage.prototype.itemTapped = function (item) {
-        console.log(item);
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__request_detail_request_detail__["a" /* RequestDetailPage */], { 'request': item });
-    };
-    RequestListPage.prototype.addItem = function (item) {
     };
     RequestListPage.prototype.onInput = function (event) {
         if (this.searchInput.length >= 3) {
             this.items = [];
             this.CURSOR = undefined;
-            this.SEARCH_TEXT = this.QUERY_STR + '&searchText:' + this.searchInput;
+            this.SEARCH_TEXT = 'searchText:' + this.searchInput;
             this.getUsers(this.SEARCH_TEXT);
         }
         else if (this.searchInput.length == 0) {
             this.SEARCH_TEXT = undefined;
             this.CURSOR = undefined;
             this.items = [];
-            this.getUsers(this.QUERY_STR);
+            this.getRequestingUsers(this.REQUESTING_QUERY_STR);
         }
     };
     RequestListPage.prototype.onCancel = function (event) {
@@ -857,10 +879,10 @@ var RequestListPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-request-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <ion-item-sliding *ngFor="let item of items">\n            <button ion-item (click)="itemTapped(item)">\n                <ion-thumbnail item-left>\n                    <img src="../assets/icon/unknown.ico"/>\n                </ion-thumbnail>\n                <h2>{{item.displayName}}</h2>\n                <p>{{item.email}}</p>\n            </button>\n            <ion-item-options>\n                <button danger (click)="addItem(item)">Add</button>\n            </ion-item-options>\n        </ion-item-sliding>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */],
-            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _f || Object])
     ], RequestListPage);
     return RequestListPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=request-list.js.map
@@ -905,7 +927,9 @@ var RequestDetailPage = (function () {
         this.api = api;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
-        this.userId = "";
+        this.userId = '';
+        this.status = '';
+        this.submitBtn = '';
         this.item = this.navParams.data.request;
     }
     RequestDetailPage.prototype.ngOnInit = function () {
@@ -919,26 +943,90 @@ var RequestDetailPage = (function () {
                 var loginUser = val;
                 _this.userId = loginUser.item.id;
                 _this.api.configuration = __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */].getConfiguration(loginUser);
+                _this.getFriend(loginUser.item.id, _this.item.id);
             }
         });
     };
     RequestDetailPage.prototype.getFriend = function (userId, otherId) {
-        var query = 'userId:' + userId + 'otherId:' + otherId;
-        this.api.friendss;
+        var _this = this;
+        var query = 'userId:' + userId + '&otherId:' + otherId;
+        this.api.friendsSearchGet(query, '1', undefined).subscribe(function (response) {
+            if (response != null && response.items != null && response.items.length > 0) {
+                var friend = response.items[0];
+                if (friend.status === 'R') {
+                    _this.status = 'Requesting';
+                    _this.submitBtn = '+1 Request';
+                }
+                else if (friend.status === 'P') {
+                    _this.status = 'Requested';
+                    _this.submitBtn = 'Confirm';
+                }
+                else {
+                    _this.status = 'Friend';
+                    _this.submitBtn = 'Unfriend';
+                }
+            }
+            else {
+                _this.submitBtn = 'Request';
+            }
+        }, function (error) {
+            _this.showError(error);
+        });
+    };
+    RequestDetailPage.prototype.requestFriend = function () {
+        var _this = this;
+        var request = {};
+        request.userId = this.userId;
+        request.otherId = this.item.id;
+        this.api.friendsRequestPost(request).subscribe(function (response) {
+            _this.showOK();
+        }, function (error) {
+            _this.showError(error);
+        });
+    };
+    RequestDetailPage.prototype.confirmFriend = function () {
+        var _this = this;
+        var request = {};
+        request.userId = this.userId;
+        request.otherId = this.item.id;
+        this.api.friendsConfirmPost(request).subscribe(function (response) {
+            _this.showOK();
+        }, function (error) {
+            _this.showError(error);
+        });
+    };
+    RequestDetailPage.prototype.unFriend = function () {
+        var _this = this;
+        var request = {};
+        request.userId = this.userId;
+        request.otherId = this.item.id;
+        this.api.friendsUnfriendPost(request).subscribe(function (response) {
+            _this.showOK();
+        }, function (error) {
+            _this.showError(error);
+        });
     };
     RequestDetailPage.prototype.onSubmit = function () {
-        var _this = this;
-        debugger;
         this.showLoading();
         if (this.requestForm.valid == true) {
-            var request = {};
-            request.userId = this.userId;
-            request.otherId = this.item.id;
-            this.api.friendsRequestPost(request).subscribe(function (response) {
-                _this.showOK();
-            }, function (error) {
-                _this.showError(error);
-            });
+            if (this.status === 'Requesting') {
+                this.loading.dismiss();
+                var alert = this.alertCtrl.create({
+                    title: 'Message',
+                    subTitle: 'Already requested',
+                    buttons: ['OK']
+                });
+                alert.present();
+            }
+            else if (this.status === 'Requested') {
+                this.confirmFriend();
+            }
+            else if (this.status === 'Friend') {
+                this.unFriend();
+            }
+            else {
+                this.requestFriend();
+            }
         }
         else {
             this.showError('Please fix the error field.');
@@ -965,7 +1053,7 @@ var RequestDetailPage = (function () {
         this.loading.dismiss();
         var alert = this.alertCtrl.create({
             title: 'Message',
-            subTitle: 'Sent request',
+            subTitle: 'Successfully done.',
             buttons: ['OK']
         });
         alert.present();
@@ -981,7 +1069,7 @@ var RequestDetailPage = (function () {
     };
     RequestDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-request-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{item.displayName}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n        <ion-card>\n            <ion-card-content>\n                <img src="../assets/icon/unknown.ico"/>\n                <h2>{{item.displayName}}</h2>\n                <!-- <h3>{{item.type}}</h3> -->\n            </ion-card-content>\n\n            <ion-list>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="call" item-left></ion-icon>\n                    <p>Call Mobile</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="text" item-left></ion-icon>\n                    <p>Text</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="mailto:{{item.email}}" ion-item>\n                    <ion-icon name="mail" item-left></ion-icon>\n                    <p>Email</p>\n                    <h2>{{item.email}}</h2>\n                </a>\n                <ion-item>\n                    <ion-icon name="male" item-left></ion-icon>\n                </ion-item>\n            </ion-list>\n        </ion-card>\n        <div padding>\n          <button ion-button color="primary" block>Request</button>\n        </div>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/
+            selector: 'page-request-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{item.displayName}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n        <ion-card>\n            <ion-card-content>\n                <img src="../assets/icon/unknown.ico"/>\n                <h2>{{item.displayName}}</h2>\n                <h3>{{status}}</h3>\n            </ion-card-content>\n\n            <ion-list>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="call" item-left></ion-icon>\n                    <p>Call Mobile</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="text" item-left></ion-icon>\n                    <p>Text</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="mailto:{{item.email}}" ion-item>\n                    <ion-icon name="mail" item-left></ion-icon>\n                    <p>Email</p>\n                    <h2>{{item.email}}</h2>\n                </a>\n                <ion-item>\n                    <ion-icon name="male" item-left></ion-icon>\n                </ion-item>\n            </ion-list>\n        </ion-card>\n        <div padding>\n          <button ion-button color="primary" block>{{submitBtn}}</button>\n        </div>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _h || Object])
     ], RequestDetailPage);
@@ -2028,6 +2116,59 @@ var DefaultService = (function () {
             reportProgress: reportProgress
         });
     };
+    DefaultService.prototype.friendsConfirmOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/friends/confirm", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsConfirmPost = function (requestFriendRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (requestFriendRequest === null || requestFriendRequest === undefined) {
+            throw new Error('Required parameter requestFriendRequest was null or undefined when calling friendsConfirmPost.');
+        }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/friends/confirm", requestFriendRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
     DefaultService.prototype.friendsIdDelete = function (id, observe, reportProgress) {
         if (observe === void 0) { observe = 'body'; }
         if (reportProgress === void 0) { reportProgress = false; }
@@ -2251,6 +2392,126 @@ var DefaultService = (function () {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
         return this.httpClient.post(this.basePath + "/friends/request", requestFriendRequest, {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsSearchGet = function (query, limit, cursor, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (query === null || query === undefined) {
+            throw new Error('Required parameter query was null or undefined when calling friendsSearchGet.');
+        }
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling friendsSearchGet.');
+        }
+        var queryParameters = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpParams */]({ encoder: new __WEBPACK_IMPORTED_MODULE_2__encoder__["a" /* CustomHttpUrlEncodingCodec */]() });
+        if (query !== undefined) {
+            queryParameters = queryParameters.set('query', query);
+        }
+        if (cursor !== undefined) {
+            queryParameters = queryParameters.set('cursor', cursor);
+        }
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', limit);
+        }
+        var headers = this.defaultHeaders;
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.get(this.basePath + "/friends/search", {
+            params: queryParameters,
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsSearchOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/friends/search", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsUnfriendOptions = function (observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        return this.httpClient.options(this.basePath + "/friends/unfriend", {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress
+        });
+    };
+    DefaultService.prototype.friendsUnfriendPost = function (requestFriendRequest, observe, reportProgress) {
+        if (observe === void 0) { observe = 'body'; }
+        if (reportProgress === void 0) { reportProgress = false; }
+        if (requestFriendRequest === null || requestFriendRequest === undefined) {
+            throw new Error('Required parameter requestFriendRequest was null or undefined when calling friendsUnfriendPost.');
+        }
+        var headers = this.defaultHeaders;
+        // to determine the Accept header
+        var httpHeaderAccepts = [
+            'application/json'
+        ];
+        var httpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+        // to determine the Content-Type header
+        var consumes = [
+            'application/json'
+        ];
+        var httpContentTypeSelected = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+        return this.httpClient.post(this.basePath + "/friends/unfriend", requestFriendRequest, {
             withCredentials: this.configuration.withCredentials,
             headers: headers,
             observe: observe,

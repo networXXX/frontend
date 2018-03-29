@@ -24,6 +24,7 @@ export class RequestListPage implements OnInit {
   CURSOR: string = undefined;
   SEARCH_TEXT: string = undefined;
   userId: string = undefined;
+  REQUESTING_QUERY_STR: string = undefined;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private api: DefaultService,
               private storage: Storage, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
@@ -33,20 +34,41 @@ export class RequestListPage implements OnInit {
   ngOnInit(): any {
 
     this.storage.get('user').then((val) => {  
-      debugger;
       if (val === undefined || val === null) {
         this.navCtrl.setRoot('LoginPage');
       } else {
         let loginUser: models.LoginUserResponse = val; 
         this.QUERY_STR = 'userId:' + loginUser.item.id;  
+        this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:R';  
         this.userId = loginUser.item.id;  
         this.api.configuration = Utils.getConfiguration(loginUser); 
-        //this.getUsers(this.QUERY_STR);  
+        this.getRequestingUsers(this.REQUESTING_QUERY_STR); 
       }        
     });    
   }  
 
   getUsers(query:string) {
+    if (this.noMoreItemsAvailable == false) {
+      this.showLoading(); 
+    }
+    this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
+        if (response != null && response.items.length > 0) {                    
+          response.items.forEach(property => {
+            if (property.id !== this.userId) {
+              this.items.push(property);
+            }
+          });
+          this.CURSOR = response.nextPageToken;
+          this.noMoreItemsAvailable = true;
+        }
+        this.closeLoading();
+      },
+        error => {
+          this.showError(error);
+      });
+  }
+
+  getRequestingUsers(query:string) {
     if (this.noMoreItemsAvailable == false) {
       this.showLoading(); 
     }
@@ -74,7 +96,7 @@ export class RequestListPage implements OnInit {
         if (this.SEARCH_TEXT !== undefined) {
           this.getUsers(this.SEARCH_TEXT);
         } else {
-          this.getUsers(this.QUERY_STR);
+          this.getRequestingUsers(this.REQUESTING_QUERY_STR);
         }
         
         infiniteScroll.complete();
@@ -82,14 +104,8 @@ export class RequestListPage implements OnInit {
     }
   }
 
-
   itemTapped(item) {
-    console.log(item);
     this.navCtrl.push(RequestDetailPage, { 'request': item });
-  }
-
-  addItem(item) {
-
   }
 
   onInput(event) {
@@ -97,13 +113,13 @@ export class RequestListPage implements OnInit {
     if (this.searchInput.length >= 3) {
       this.items = [];
       this.CURSOR = undefined;
-      this.SEARCH_TEXT = this.QUERY_STR + '&searchText:' + this.searchInput;
+      this.SEARCH_TEXT = 'searchText:' + this.searchInput;
       this.getUsers(this.SEARCH_TEXT);
     } else if (this.searchInput.length == 0) {
       this.SEARCH_TEXT = undefined;
       this.CURSOR = undefined;
       this.items = [];
-      this.getUsers(this.QUERY_STR);
+      this.getRequestingUsers(this.REQUESTING_QUERY_STR);
     } 
 
     

@@ -40,27 +40,29 @@ export class RequestDetailPage implements OnInit {
 	        let loginUser: models.LoginUserResponse = val; 
 	        this.userId = loginUser.item.id;   
 	        this.api.configuration = Utils.getConfiguration(loginUser); 
+	        this.getFriend(loginUser.item.id, this.item.id);
 	      }        
 	    });    
 	}
 
 	getFriend(userId:string, otherId:string) {
-		let query:string = 'userId:' + userId + 'otherId:' + otherId;
-		this.api.friendsSearchGet(query, '1', null).subscribe(response => {
-			debugger;
-	    		if (response != null && response.items.length > 0) {
+		let query:string = 'userId:' + userId + '&otherId:' + otherId;
+		this.api.friendsSearchGet(query, '1', undefined).subscribe(response => {				
+	    		if (response != null && response.items != null && response.items.length > 0) {
 	    			let friend: models.Friend = response.items[0];
-	    			if (friend.status === 'P') {
+	    			if (friend.status === 'R') {
 	    				this.status = 'Requesting';
 	    				this.submitBtn = '+1 Request';
-	    			} else if (friend.status === 'W') {
+	    			} else if (friend.status === 'P') {
 	    				this.status = 'Requested';
 	    				this.submitBtn = 'Confirm';
 	    			} else {
 	    				this.status = 'Friend';
 	    				this.submitBtn = 'Unfriend';
 	    			}
-	    		} 
+	    		} else {
+	    			this.submitBtn = 'Request';
+	    		}
 	        },
 	          error => {
 	            this.showError(error);          
@@ -80,12 +82,12 @@ export class RequestDetailPage implements OnInit {
 	        });
 	}
 
-	unFriend() {
+	confirmFriend() {
 		var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;
 	    request.userId = this.userId;
 	    request.otherId = this.item.id;    
 
-	    this.api.friendsRequestPost(request).subscribe(response => {
+	    this.api.friendsConfirmPost(request).subscribe(response => {
 	          this.showOK();
 	        },
 	          error => {
@@ -98,7 +100,7 @@ export class RequestDetailPage implements OnInit {
 	    request.userId = this.userId;
 	    request.otherId = this.item.id;    
 
-	    this.api.friendsRequestPost(request).subscribe(response => {
+	    this.api.friendsUnfriendPost(request).subscribe(response => {
 	          this.showOK();
 	        },
 	          error => {
@@ -107,20 +109,24 @@ export class RequestDetailPage implements OnInit {
 	}
 
 	onSubmit() {
-		debugger;
 	    this.showLoading();
 	    if (this.requestForm.valid == true) {
-	      var request: models.RequestFriendRequest = {} as models.RequestFriendRequest;
-	      request.userId = this.userId;
-	      request.otherId = this.item.id;    
+	    	if (this.status === 'Requesting') {
+	    		this.loading.dismiss();
+	    		let alert = this.alertCtrl.create({
+			      title: 'Message',
+			      subTitle: 'Already requested',
+			      buttons: ['OK']
+			    });
+			    alert.present();
 
-	      this.api.friendsRequestPost(request).subscribe(response => {
-	          this.showOK();
-	        },
-	          error => {
-	            this.showError(error);          
-	        });
-
+	    	} else if (this.status === 'Requested') {
+	    		this.confirmFriend();
+	    	} else if (this.status === 'Friend') {
+	    		this.unFriend();
+	    	} else {
+	    		this.requestFriend();
+	    	}	      
 	    } else {
 	      this.showError('Please fix the error field.');
 	    } 
@@ -149,7 +155,7 @@ export class RequestDetailPage implements OnInit {
 	    this.loading.dismiss();
 	    let alert = this.alertCtrl.create({
 	      title: 'Message',
-	      subTitle: 'Sent request',
+	      subTitle: 'Successfully done.',
 	      buttons: ['OK']
 	    });
 	    alert.present();
