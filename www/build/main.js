@@ -741,7 +741,7 @@ var RequestListPage = (function () {
             else {
                 var loginUser = val;
                 _this.QUERY_STR = 'userId:' + loginUser.item.id;
-                _this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:R';
+                _this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:P';
                 _this.userId = loginUser.item.id;
                 _this.api.configuration = __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */].getConfiguration(loginUser);
                 _this.getRequestingUsers(_this.REQUESTING_QUERY_STR);
@@ -879,10 +879,10 @@ var RequestListPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-request-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <ion-item-sliding *ngFor="let item of items">\n            <button ion-item (click)="itemTapped(item)">\n                <ion-thumbnail item-left>\n                    <img src="../assets/icon/unknown.ico"/>\n                </ion-thumbnail>\n                <h2>{{item.displayName}}</h2>\n                <p>{{item.email}}</p>\n            </button>\n            <ion-item-options>\n                <button danger (click)="addItem(item)">Add</button>\n            </ion-item-options>\n        </ion-item-sliding>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _f || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */],
+            __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
     ], RequestListPage);
     return RequestListPage;
-    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=request-list.js.map
@@ -1011,12 +1011,12 @@ var RequestDetailPage = (function () {
         if (this.requestForm.valid == true) {
             if (this.status === 'Requesting') {
                 this.loading.dismiss();
-                var alert = this.alertCtrl.create({
+                var alert_1 = this.alertCtrl.create({
                     title: 'Message',
                     subTitle: 'Already requested',
                     buttons: ['OK']
                 });
-                alert.present();
+                alert_1.present();
             }
             else if (this.status === 'Requested') {
                 this.confirmFriend();
@@ -1071,10 +1071,11 @@ var RequestDetailPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-request-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{item.displayName}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n        <ion-card>\n            <ion-card-content>\n                <img src="../assets/icon/unknown.ico"/>\n                <h2>{{item.displayName}}</h2>\n                <h3>{{status}}</h3>\n            </ion-card-content>\n\n            <ion-list>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="call" item-left></ion-icon>\n                    <p>Call Mobile</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="text" item-left></ion-icon>\n                    <p>Text</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="mailto:{{item.email}}" ion-item>\n                    <ion-icon name="mail" item-left></ion-icon>\n                    <p>Email</p>\n                    <h2>{{item.email}}</h2>\n                </a>\n                <ion-item>\n                    <ion-icon name="male" item-left></ion-icon>\n                </ion-item>\n            </ion-list>\n        </ion-card>\n        <div padding>\n          <button ion-button color="primary" block>{{submitBtn}}</button>\n        </div>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _h || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
     ], RequestDetailPage);
     return RequestDetailPage;
-    var _a, _b, _c, _d, _e, _f, _g, _h;
 }());
 
 //# sourceMappingURL=request-detail.js.map

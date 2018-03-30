@@ -39,7 +39,7 @@ export class RequestListPage implements OnInit {
       } else {
         let loginUser: models.LoginUserResponse = val; 
         this.QUERY_STR = 'userId:' + loginUser.item.id;  
-        this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:R';  
+        this.REQUESTING_QUERY_STR = 'userId:' + loginUser.item.id + '&status:P';  
         this.userId = loginUser.item.id;  
         this.api.configuration = Utils.getConfiguration(loginUser); 
         this.getRequestingUsers(this.REQUESTING_QUERY_STR); 
