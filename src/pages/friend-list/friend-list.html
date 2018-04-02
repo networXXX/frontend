@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Brokers</ion-title>
+        <ion-title>Friends</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -11,12 +11,12 @@
 
     <ion-list>
 
-        <button ion-item *ngFor="let broker of brokers" (click)="openBrokerDetail(broker)">
+        <button ion-item *ngFor="let broker of items" (click)="openBrokerDetail(broker)">
             <ion-avatar item-left>
                 <img src="{{broker.picture}}"/>
             </ion-avatar>
-            <h2>{{broker.name}}</h2>
-            <p>{{broker.title}}</p>
+            <h2>{{broker.displayName}}</h2>
+            <p>{{broker.email}}</p>
         </button>
 
     </ion-list>

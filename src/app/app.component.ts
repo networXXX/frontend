@@ -43,7 +43,7 @@ export class MyApp {
             {title: 'Locations', component: LocationListPage, icon: 'home'},
             {title: 'Friends', component: FriendListPage, icon: 'people'},
             {title: 'Request', component: RequestListPage, icon: 'star'},
-            {title: 'Approved', component: WelcomePage, icon: 'checkmark-circle'},
+            //{title: 'Approved', component: WelcomePage, icon: 'checkmark-circle'},
         ];
 
         this.accountMenuItems = [
