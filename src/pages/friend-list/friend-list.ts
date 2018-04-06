@@ -54,7 +54,7 @@ debugger;
     if (this.noMoreItemsAvailable == false) {
       this.showLoading(); 
     }
-    this.api.usersSearchGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
+    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
         if (response != null && response.items.length > 0) {                    
           response.items.forEach(property => {
             if (property.id !== this.userId) {

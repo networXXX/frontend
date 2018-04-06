@@ -61,6 +61,7 @@ export class LoginPage implements OnInit {
 
   public login() {
     this.showLoading();
+    debugger;
     this.storage.set('user', null); 
     if (this.registerCredentials.email === null || this.registerCredentials.password === null) {
       return this.showError("Please insert credentials");
@@ -69,16 +70,17 @@ export class LoginPage implements OnInit {
       request.email = this.registerCredentials.email;
       request.password = this.registerCredentials.password;
       this.api.loginPost(request).subscribe(response => {
-        if (response.token !== null) {                       
+        if (response.token !== undefined) {                       
           this.storage.set('user', response);          
           this.nav.setRoot('WelcomePage');
+          this.loading.dismiss();
         } else {
           this.showError("Access Denied");
         }
-        this.loading.dismiss();
+        //this.loading.dismiss();
       },
         error => {
-          this.showError(error);                  
+          this.showError(error.error);                  
       });
     }          
   }  
@@ -123,7 +125,7 @@ export class LoginPage implements OnInit {
           this.loading.dismiss();
         },
           error => {
-            this.showError(error);                  
+            this.showError(error.error);                  
         });
       })
       .catch(e => {
@@ -141,7 +143,7 @@ export class LoginPage implements OnInit {
  
   showError(text) {
     this.loading.dismiss();
-    let errorMsg = this.getErrorMessage(text)
+    let errorMsg = text.errorMessage;
     let alert = this.alertCtrl.create({
       title: 'Fail',
       subTitle: errorMsg,
@@ -150,12 +152,5 @@ export class LoginPage implements OnInit {
     alert.present();
   }  
 
-  getErrorMessage(text): string {
-    try {
-      var object = JSON.parse(text._body);
-      return object.errorMessage;
-    } catch (e){
-      return text;
-    }
-  }
+ 
 }

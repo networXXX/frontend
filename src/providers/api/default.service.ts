@@ -513,6 +513,106 @@ export class DefaultService {
     /**
      * 
      * 
+     * @param query 
+     * @param limit 
+     * @param cursor 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsQueryuserGet(query: string, limit: string, cursor?: string, observe?: 'body', reportProgress?: boolean): Observable<SearchUserResponse>;
+    public friendsQueryuserGet(query: string, limit: string, cursor?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SearchUserResponse>>;
+    public friendsQueryuserGet(query: string, limit: string, cursor?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SearchUserResponse>>;
+    public friendsQueryuserGet(query: string, limit: string, cursor?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (query === null || query === undefined) {
+            throw new Error('Required parameter query was null or undefined when calling friendsQueryuserGet.');
+        }
+        if (limit === null || limit === undefined) {
+            throw new Error('Required parameter limit was null or undefined when calling friendsQueryuserGet.');
+        }
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (query !== undefined) {
+            queryParameters = queryParameters.set('query', <any>query);
+        }
+        if (cursor !== undefined) {
+            queryParameters = queryParameters.set('cursor', <any>cursor);
+        }
+        if (limit !== undefined) {
+            queryParameters = queryParameters.set('limit', <any>limit);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.get<SearchUserResponse>(`${this.basePath}/friends/queryuser`,
+            {
+                params: queryParameters,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public friendsQueryuserOptions(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public friendsQueryuserOptions(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public friendsQueryuserOptions(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public friendsQueryuserOptions(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.options<any>(`${this.basePath}/friends/queryuser`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
