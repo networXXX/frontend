@@ -27,11 +27,10 @@ export class FriendListPage implements OnInit {
     constructor(public navCtrl: NavController, public service: BrokerService,  private loadingCtrl: LoadingController,
     	private api: DefaultService, private storage: Storage , private alertCtrl: AlertController) {
         //service.findAll().then(data => this.brokers = data);
+        this.items = [];
     }
 
     ngOnInit(): any {
-
-debugger;
 	    this.storage.get('user').then((val) => {  
 	      if (val === undefined || val === null) {
 	        this.navCtrl.setRoot('LoginPage');
@@ -44,7 +43,7 @@ debugger;
 	        this.getRequestingUsers(this.QUERY_STR); 
 	      }        
 	    });    
-  }  
+  	}  
 
     openBrokerDetail(broker) {
         this.navCtrl.push(FriendDetailPage, broker);
@@ -56,18 +55,18 @@ debugger;
     }
     this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
         if (response != null && response.items.length > 0) {                    
-          response.items.forEach(property => {
-            if (property.id !== this.userId) {
-              this.items.push(property);
-            }
-          });
-          this.CURSOR = response.nextPageToken;
-          this.noMoreItemsAvailable = true;
+          	response.items.forEach(property => {
+	            if (property.id !== this.userId) {
+	              this.items.push(property);
+	            }
+          	});
+          	this.CURSOR = response.nextPageToken;
+          	this.noMoreItemsAvailable = true;
         }
         this.closeLoading();
       },
         error => {
-          this.showError(error);
+          	this.showError(error);
       });
   	}
 
