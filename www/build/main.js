@@ -65,8 +65,9 @@ var Utils = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_leaflet__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_default_service__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_leaflet__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -83,22 +84,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 //import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
 
+
 var LocationListPage = (function () {
-    function LocationListPage(navCtrl, service, config, _haversineService) {
+    function LocationListPage(navCtrl, service, config, _haversineService, loadingCtrl, api, alertCtrl) {
         this.navCtrl = navCtrl;
         this.service = service;
         this.config = config;
         this._haversineService = _haversineService;
+        this.loadingCtrl = loadingCtrl;
+        this.api = api;
+        this.alertCtrl = alertCtrl;
         this.searchKey = "";
         this.viewMode = "list";
         this.current = {
             latitude: 0,
             longitude: 0
         };
+        this.LIMIT = '15';
+        this.CURSOR = undefined;
+        this.QUERY_STR = '';
+        this.noMoreItemsAvailable = false;
+        this.userId = undefined;
         this.getLocation();
         this.findAll();
     }
     LocationListPage.prototype.ngOnInit = function () {
+    };
+    LocationListPage.prototype.getRequestingUsers = function (query) {
+        var _this = this;
+        if (this.noMoreItemsAvailable == false) {
+            this.showLoading();
+        }
+        this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(function (response) {
+            if (response != null && response.items.length > 0) {
+                response.items.forEach(function (property) {
+                    if (property.id !== _this.userId) {
+                        _this.items.push(property);
+                    }
+                });
+                _this.CURSOR = response.nextPageToken;
+                _this.noMoreItemsAvailable = true;
+            }
+            _this.closeLoading();
+        }, function (error) {
+            _this.showError(error);
+        });
+    };
+    LocationListPage.prototype.closeLoading = function () {
+        this.loading.dismiss();
+    };
+    LocationListPage.prototype.showLoading = function () {
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+        this.loading.present();
+    };
+    LocationListPage.prototype.showError = function (text) {
+        this.loading.dismiss();
+        var errorMsg = this.getErrorMessage(text);
+        var alert = this.alertCtrl.create({
+            title: 'Fail',
+            subTitle: errorMsg,
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    LocationListPage.prototype.getErrorMessage = function (text) {
+        try {
+            var object = JSON.parse(text._body);
+            return object.errorMessage;
+        }
+        catch (e) {
+            return text;
+        }
     };
     LocationListPage.prototype.openPropertyDetail = function (property) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__["a" /* LocationDetailPage */], property);
@@ -144,8 +202,8 @@ var LocationListPage = (function () {
     LocationListPage.prototype.showMap = function () {
         var _this = this;
         setTimeout(function () {
-            _this.map = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.map("map").setView([42.361132, -71.070876], 14);
-            __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            _this.map = __WEBPACK_IMPORTED_MODULE_6_leaflet___default.a.map("map").setView([42.361132, -71.070876], 14);
+            __WEBPACK_IMPORTED_MODULE_6_leaflet___default.a.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
                 attribution: 'Tiles &copy; Esri'
             }).addTo(_this.map);
             _this.showMarkers();
@@ -156,10 +214,10 @@ var LocationListPage = (function () {
         if (this.markersGroup) {
             this.map.removeLayer(this.markersGroup);
         }
-        this.markersGroup = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.layerGroup([]);
+        this.markersGroup = __WEBPACK_IMPORTED_MODULE_6_leaflet___default.a.layerGroup([]);
         this.properties.forEach(function (property) {
             if (property.lat, property.long) {
-                var myIcon = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.icon({
+                var myIcon = __WEBPACK_IMPORTED_MODULE_6_leaflet___default.a.icon({
                     iconUrl: property.thumbnail,
                     iconSize: [38, 38],
                     iconAnchor: [22, 94],
@@ -168,7 +226,7 @@ var LocationListPage = (function () {
                     shadowSize: [68, 95],
                     shadowAnchor: [22, 94]
                 });
-                var marker = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.marker([property.lat, property.long], { icon: myIcon, title: property.title }).on('click', function (event) { return _this.openPropertyDetail(event.target.data); });
+                var marker = __WEBPACK_IMPORTED_MODULE_6_leaflet___default.a.marker([property.lat, property.long], { icon: myIcon, title: property.title }).on('click', function (event) { return _this.openPropertyDetail(event.target.data); });
                 marker.data = property;
                 _this.markersGroup.addLayer(marker);
             }
@@ -177,11 +235,11 @@ var LocationListPage = (function () {
     };
     LocationListPage.prototype.calcDistance = function (property) {
         if (property.distance == 0) {
-            var location_1 = {
+            var location = {
                 latitude: property.lat,
                 longitude: property.long
             };
-            property.distance = this._haversineService.getDistanceInKilometers(location_1, this.current);
+            property.distance = this._haversineService.getDistanceInKilometers(location, this.current);
             //property.distance = 2;
             console.log(property.distance);
         }
@@ -190,10 +248,10 @@ var LocationListPage = (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             selector: 'page-location-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"\n\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n\n        <ion-buttons end>\n\n            <button (click)="openAddFriend()" ion-button>\n\n                +\n\n            </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="property-list">\n\n\n\n    <ion-list *ngIf="viewMode===\'list\'">\n\n\n\n        <ion-item-sliding *ngFor="let property of properties">\n\n            \n\n                <button ion-item (click)="openPropertyDetail(property)">\n\n                    <ion-thumbnail item-left>\n\n                        <img src="{{property.thumbnail}}"/>\n\n                    </ion-thumbnail>\n\n                    <h2>{{property.title}}</h2>\n\n                    {{ calcDistance(property) }}\n\n                    <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p>\n\n\n\n                </button>\n\n                <ion-item-options>\n\n                    <button danger (click)="deleteItem(property)">Delete</button>\n\n                </ion-item-options>\n\n            \n\n        </ion-item-sliding>\n\n\n\n    </ion-list>\n\n\n\n    <div *ngIf="viewMode===\'map\'" style="width:100%;height:100%;" id="map"></div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer padding>\n\n    <ion-segment [(ngModel)]="viewMode">\n\n        <ion-segment-button value="list">\n\n            <ion-icon name="list"></ion-icon>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="map" (ionSelect)="showMap()">\n\n            <ion-icon name="map"></ion-icon>\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__["a" /* PropertyService */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__["a" /* PropertyService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__["a" /* PropertyService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_api_default_service__["a" /* DefaultService */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _g || Object])
     ], LocationListPage);
     return LocationListPage;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=location-list.js.map
@@ -1232,7 +1290,7 @@ var AboutPage = (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-about',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>About</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <div class="about-header">\n\n        <img src="assets/img/dreamhouse-logo.svg">\n\n    </div>\n\n\n\n    <div padding class="about-info">\n\n\n\n        <h4>DreamHouse Application</h4>\n\n\n\n        <p>\n\n            DreamHouse is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n\n        </p>\n\n\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>About</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <div class="about-header">\n\n        <img src="assets/img/dreamhouse-logo.svg">\n\n    </div>\n\n\n\n    <div padding class="about-info">\n\n\n\n        <h4>NetworkXXX Application</h4>\n\n\n\n        <p>\n\n            NetworkXXX is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n\n        </p>\n\n\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
     ], AboutPage);

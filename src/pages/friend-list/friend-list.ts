@@ -50,24 +50,24 @@ export class FriendListPage implements OnInit {
     }
 
     getRequestingUsers(query:string) {
-    if (this.noMoreItemsAvailable == false) {
-      this.showLoading(); 
-    }
-    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
-        if (response != null && response.items.length > 0) {                    
-          	response.items.forEach(property => {
-	            if (property.id !== this.userId) {
-	              this.items.push(property);
-	            }
-          	});
-          	this.CURSOR = response.nextPageToken;
-          	this.noMoreItemsAvailable = true;
-        }
-        this.closeLoading();
-      },
-        error => {
-          	this.showError(error);
-      });
+	    if (this.noMoreItemsAvailable == false) {
+	      this.showLoading(); 
+	    }
+	    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
+	        if (response != null && response.items.length > 0) {                    
+	          	response.items.forEach(property => {
+		            if (property.id !== this.userId) {
+		              this.items.push(property);
+		            }
+	          	});
+	          	this.CURSOR = response.nextPageToken;
+	          	this.noMoreItemsAvailable = true;
+	        }
+	        this.closeLoading();
+	      },
+	        error => {
+	          	this.showError(error);
+	      });
   	}
 
   	showLoading() {
