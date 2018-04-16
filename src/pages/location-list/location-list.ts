@@ -1,11 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {Config, NavController, IonicPage} from 'ionic-angular';
+import {Config, NavController, IonicPage, LoadingController, Loading, AlertController} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {LocationDetailPage} from '../location-detail/location-detail';
 import { HaversineService, GeoCoord } from "ng2-haversine";
 //import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
 
 import leaflet from 'leaflet';
+
+import { DefaultService } from '../../providers/api/default.service';
+import * as models  from '../../providers/model/models';
+import { Storage } from '@ionic/storage';
+import { Utils } from '../../utils/utils';
 
 @IonicPage()
 @Component({
@@ -23,14 +28,92 @@ export class LocationListPage implements OnInit {
         };
     map;
     markersGroup;
+
+    loading: Loading;
+    LIMIT: string = '15'
+    CURSOR: string = undefined;
+    QUERY_STR: string = '';
+    noMoreItemsAvailable: boolean = false;
+    userId: string = undefined;
+
+    items: Array<models.User>;
+
     constructor(public navCtrl: NavController, public service: PropertyService, 
-                public config: Config, private _haversineService: HaversineService) {
+                public config: Config, private _haversineService: HaversineService, 
+                private storage: Storage, private api: DefaultService, 
+                private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+        this.items = []; 
         this.getLocation();
         this.findAll();
     }
 
     ngOnInit(): any {
-        
+        this.storage.get('user').then((val) => {  
+          if (val === undefined || val === null) {
+            this.navCtrl.setRoot('LoginPage');
+          } else {
+            let loginUser: models.LoginUserResponse = val; 
+     
+            this.QUERY_STR = 'userId:' + loginUser.item.id + '&status:Y';  
+            this.userId = loginUser.item.id;  
+            this.api.configuration = Utils.getConfiguration(loginUser); 
+            this.getRequestingUsers(this.QUERY_STR); 
+          }        
+        });           
+    }
+
+    getRequestingUsers(query:string) {
+        if (this.noMoreItemsAvailable == false) {
+            this.showLoading(); 
+        }
+        this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
+            if (response != null && response.items.length > 0) {                    
+              response.items.forEach(property => {
+                  debugger;
+                if (property.id !== this.userId) {
+                  this.items.push(property);
+                }
+              });
+              this.CURSOR = response.nextPageToken;
+              this.noMoreItemsAvailable = true;
+            }
+            this.closeLoading();
+          },
+            error => {
+              this.showError(error);
+        });
+    }
+
+    showLoading() {
+        this.loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+        });
+        this.loading.present();
+    }
+
+    closeLoading() {
+        this.loading.dismiss();
+    }
+
+    showError(text) {
+        this.loading.dismiss();
+       
+        let errorMsg = this.getErrorMessage(text)
+        let alert = this.alertCtrl.create({
+          title: 'Fail',
+          subTitle: errorMsg,
+          buttons: ['OK']
+        });
+        alert.present();
+    }  
+
+    getErrorMessage(text): string {
+        try {
+          var object = JSON.parse(text._body);
+          return object.errorMessage;
+        } catch (e){
+          return text;
+        }
     }
 
     openPropertyDetail(property: any) {

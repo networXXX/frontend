@@ -30,8 +30,6 @@ export class FriendListPage implements OnInit {
     }
 
     ngOnInit(): any {
-
-debugger;
 	    this.storage.get('user').then((val) => {  
 	      if (val === undefined || val === null) {
 	        this.navCtrl.setRoot('LoginPage');
