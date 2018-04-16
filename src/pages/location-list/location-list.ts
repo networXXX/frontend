@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
+
 import {Config, NavController, IonicPage, LoadingController, Loading, AlertController} from 'ionic-angular';
 import {PropertyService} from '../../providers/property-service-mock';
 import {LocationDetailPage} from '../location-detail/location-detail';
 import { HaversineService, GeoCoord } from "ng2-haversine";
 //import { RoundPipe } from 'ngx-pipes/src/app/pipes/math/round';
 
-import leaflet from 'leaflet';
-
 import { DefaultService } from '../../providers/api/default.service';
 import * as models  from '../../providers/model/models';
 import { Storage } from '@ionic/storage';
 import { Utils } from '../../utils/utils';
+
+import leaflet from 'leaflet';
+
 
 @IonicPage()
 @Component({
@@ -33,6 +35,7 @@ export class LocationListPage implements OnInit {
     LIMIT: string = '15'
     CURSOR: string = undefined;
     QUERY_STR: string = '';
+
     noMoreItemsAvailable: boolean = false;
     userId: string = undefined;
 
@@ -64,24 +67,27 @@ export class LocationListPage implements OnInit {
 
     getRequestingUsers(query:string) {
         if (this.noMoreItemsAvailable == false) {
-            this.showLoading(); 
+          this.showLoading(); 
         }
         this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
             if (response != null && response.items.length > 0) {                    
-              response.items.forEach(property => {
-                  debugger;
-                if (property.id !== this.userId) {
-                  this.items.push(property);
-                }
-              });
-              this.CURSOR = response.nextPageToken;
-              this.noMoreItemsAvailable = true;
+                  response.items.forEach(property => {
+                    if (property.id !== this.userId) {
+                      this.items.push(property);
+                    }
+                  });
+                  this.CURSOR = response.nextPageToken;
+                  this.noMoreItemsAvailable = true;
             }
             this.closeLoading();
           },
             error => {
-              this.showError(error);
-        });
+                  this.showError(error);
+          });
+    }
+
+    closeLoading() {
+        this.loading.dismiss();
     }
 
     showLoading() {
@@ -89,10 +95,6 @@ export class LocationListPage implements OnInit {
           content: 'Please wait...'
         });
         this.loading.present();
-    }
-
-    closeLoading() {
-        this.loading.dismiss();
     }
 
     showError(text) {
@@ -105,7 +107,7 @@ export class LocationListPage implements OnInit {
           buttons: ['OK']
         });
         alert.present();
-    }  
+    } 
 
     getErrorMessage(text): string {
         try {
@@ -114,7 +116,7 @@ export class LocationListPage implements OnInit {
         } catch (e){
           return text;
         }
-    }
+    } 
 
     openPropertyDetail(property: any) {
         this.navCtrl.push(LocationDetailPage, property);

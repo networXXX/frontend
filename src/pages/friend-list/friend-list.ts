@@ -27,6 +27,7 @@ export class FriendListPage implements OnInit {
     constructor(public navCtrl: NavController, public service: BrokerService,  private loadingCtrl: LoadingController,
     	private api: DefaultService, private storage: Storage , private alertCtrl: AlertController) {
         //service.findAll().then(data => this.brokers = data);
+        this.items = [];
     }
 
     ngOnInit(): any {
@@ -42,31 +43,31 @@ export class FriendListPage implements OnInit {
 	        this.getRequestingUsers(this.QUERY_STR); 
 	      }        
 	    });    
-  }  
+  	}  
 
     openBrokerDetail(broker) {
         this.navCtrl.push(FriendDetailPage, broker);
     }
 
     getRequestingUsers(query:string) {
-    if (this.noMoreItemsAvailable == false) {
-      this.showLoading(); 
-    }
-    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
-        if (response != null && response.items.length > 0) {                    
-          response.items.forEach(property => {
-            if (property.id !== this.userId) {
-              this.items.push(property);
-            }
-          });
-          this.CURSOR = response.nextPageToken;
-          this.noMoreItemsAvailable = true;
-        }
-        this.closeLoading();
-      },
-        error => {
-          this.showError(error);
-      });
+	    if (this.noMoreItemsAvailable == false) {
+	      this.showLoading(); 
+	    }
+	    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
+	        if (response != null && response.items.length > 0) {                    
+	          	response.items.forEach(property => {
+		            if (property.id !== this.userId) {
+		              this.items.push(property);
+		            }
+	          	});
+	          	this.CURSOR = response.nextPageToken;
+	          	this.noMoreItemsAvailable = true;
+	        }
+	        this.closeLoading();
+	      },
+	        error => {
+	          	this.showError(error);
+	      });
   	}
 
   	showLoading() {
