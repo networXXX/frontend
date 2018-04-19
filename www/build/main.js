@@ -71,11 +71,11 @@ var LocationListPage = (function () {
                 _this.QUERY_STR = 'userId:' + loginUser.item.id + '&status:Y';
                 _this.userId = loginUser.item.id;
                 _this.api.configuration = __WEBPACK_IMPORTED_MODULE_7__utils_utils__["a" /* Utils */].getConfiguration(loginUser);
-                _this.getRequestingUsers(_this.QUERY_STR);
+                _this.getUsers(_this.QUERY_STR);
             }
         });
     };
-    LocationListPage.prototype.getRequestingUsers = function (query) {
+    LocationListPage.prototype.getUsers = function (query) {
         var _this = this;
         if (this.noMoreItemsAvailable == false) {
             this.showLoading();
@@ -141,7 +141,6 @@ var LocationListPage = (function () {
         this.findAll();
     };
     LocationListPage.prototype.openAddFriend = function () {
-        debugger;
         this.navCtrl.push('AddFriendPage');
     };
     LocationListPage.prototype.findAll = function () {
@@ -211,7 +210,7 @@ var LocationListPage = (function () {
     };
     LocationListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-location-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-list/location-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n        <ion-buttons end>\n            <button (click)="openAddFriend()" ion-button>\n                +\n            </button>\n        </ion-buttons>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="property-list">\n\n    <ion-list *ngIf="viewMode===\'list\'">\n\n        <ion-item-sliding *ngFor="let property of properties">\n            \n                <button ion-item (click)="openPropertyDetail(property)">\n                    <ion-thumbnail item-left>\n                        <img src="{{property.thumbnail}}"/>\n                    </ion-thumbnail>\n                    <h2>{{property.title}}</h2>\n                    {{ calcDistance(property) }}\n                    <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p>\n\n                </button>\n                <ion-item-options>\n                    <button danger (click)="deleteItem(property)">Delete</button>\n                </ion-item-options>\n            \n        </ion-item-sliding>\n\n    </ion-list>\n\n    <div *ngIf="viewMode===\'map\'" style="width:100%;height:100%;" id="map"></div>\n\n</ion-content>\n\n<ion-footer padding>\n    <ion-segment [(ngModel)]="viewMode">\n        <ion-segment-button value="list">\n            <ion-icon name="list"></ion-icon>\n        </ion-segment-button>\n        <ion-segment-button value="map" (ionSelect)="showMap()">\n            <ion-icon name="map"></ion-icon>\n        </ion-segment-button>\n    </ion-segment>\n</ion-footer>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-list/location-list.html"*/
+            selector: 'page-location-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-searchbar [(ngModel)]="searchKey" (ionInput)="onInput($event)"\n\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n\n        <ion-buttons end>\n\n            <button (click)="openAddFriend()" ion-button>\n\n                +\n\n            </button>\n\n        </ion-buttons>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="property-list">\n\n\n\n    <ion-list *ngIf="viewMode===\'list\'">\n\n\n\n        <ion-item-sliding *ngFor="let item of items">\n\n            \n\n                <button ion-item (click)="openPropertyDetail(property)">\n\n                    <ion-thumbnail item-left>\n\n                        <!-- <img src="{{item.imageUrl}}"/> -->\n\n                        <img src="../assets/icon/unknown.ico"/>\n\n                    </ion-thumbnail>\n\n                    <h2>{{item.displayName}}</h2>\n\n                    {{ calcDistance(item) }}\n\n                    <!-- <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p> -->\n\n\n\n                </button>\n\n                <ion-item-options>\n\n                    <button danger (click)="deleteItem(property)">Delete</button>\n\n                </ion-item-options>\n\n            \n\n        </ion-item-sliding>\n\n\n\n    </ion-list>\n\n\n\n    <div *ngIf="viewMode===\'map\'" style="width:100%;height:100%;" id="map"></div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer padding>\n\n    <ion-segment [(ngModel)]="viewMode">\n\n        <ion-segment-button value="list">\n\n            <ion-icon name="list"></ion-icon>\n\n        </ion-segment-button>\n\n        <ion-segment-button value="map" (ionSelect)="showMap()">\n\n            <ion-icon name="map"></ion-icon>\n\n        </ion-segment-button>\n\n    </ion-segment>\n\n</ion-footer>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-list\location-list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__["a" /* PropertyService */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* Config */], __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__["HaversineService"],
@@ -259,7 +258,7 @@ var LogoutPage = (function () {
     };
     LogoutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-logout',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/logout/logout.html"*/'<!--\n  Generated template for the Logout page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>logout</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/logout/logout.html"*/,
+            selector: 'page-logout',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\logout\logout.html"*/'<!--\n\n  Generated template for the Logout page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>logout</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\logout\logout.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
     ], LogoutPage);
@@ -296,11 +295,11 @@ var map = {
 		4
 	],
 	"../pages/add-friend/add-friend.module": [
-		307,
+		308,
 		3
 	],
 	"../pages/change-password/change-password.module": [
-		308,
+		307,
 		2
 	],
 	"../pages/location-list/location-list.module": [
@@ -316,15 +315,15 @@ var map = {
 		6
 	],
 	"../pages/register/register.module": [
-		312,
+		314,
 		1
 	],
 	"../pages/reset-password/reset-password.module": [
-		313,
+		312,
 		0
 	],
 	"../pages/welcome/welcome.module": [
-		314,
+		313,
 		5
 	]
 };
@@ -525,7 +524,7 @@ var LocationDetailPage = (function () {
     };
     LocationDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-location-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-detail/location-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Property</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-card *ngIf="property.id">\n        <img src="{{property.picture}}"/>\n        <ion-card-content>\n            <h2 class="card-title">{{property.title}}</h2>\n            <p>{{property.address}}, {{property.city}} {{property.state}}</p>\n        </ion-card-content>\n        <ion-list>\n\n            <ion-item>\n                <ion-icon item-left name="moon"></ion-icon>\n                <h3>Latitude</h3>\n                <ion-note item-right>{{property.lat}}</ion-note>\n            </ion-item>\n            <ion-item>\n                <ion-icon item-left name="leaf"></ion-icon>\n                <h3>Longitude</h3>\n                <ion-note item-right>{{property.long}}</ion-note>\n            </ion-item>\n            <ion-item>\n                <ion-icon item-left name="pricetag"></ion-icon>\n                <h3>Distance</h3>\n                <ion-note item-right>{{property.distance | round}} km</ion-note>\n            </ion-item>\n            <button ion-item (click)="openBrokerDetail(property.broker)">\n                <ion-avatar item-left>\n                    <img src="{{property.thumbnail}}"/>\n                </ion-avatar>\n                <!--<h2>{{property.broker.name}}</h2>\n                <p>{{property.broker.title}}</p>-->\n                <p>Privious</p>\n            </button>\n        </ion-list>\n\n        <ion-item>\n            <button ion-button icon-left (click)="favorite(property)" clear item-left>\n                <ion-icon name="star"></ion-icon>\n                Favorite\n            </button>\n            <button ion-button icon-left (click)="share(property)" clear item-right>\n                <ion-icon name="contact"></ion-icon>\n                Contact\n            </button>\n        </ion-item>\n\n    </ion-card>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/location-detail/location-detail.html"*/
+            selector: 'page-location-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-detail\location-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Property</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-card *ngIf="property.id">\n\n        <img src="{{property.picture}}"/>\n\n        <ion-card-content>\n\n            <h2 class="card-title">{{property.title}}</h2>\n\n            <p>{{property.address}}, {{property.city}} {{property.state}}</p>\n\n        </ion-card-content>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-icon item-left name="moon"></ion-icon>\n\n                <h3>Latitude</h3>\n\n                <ion-note item-right>{{property.lat}}</ion-note>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-icon item-left name="leaf"></ion-icon>\n\n                <h3>Longitude</h3>\n\n                <ion-note item-right>{{property.long}}</ion-note>\n\n            </ion-item>\n\n            <ion-item>\n\n                <ion-icon item-left name="pricetag"></ion-icon>\n\n                <h3>Distance</h3>\n\n                <ion-note item-right>{{property.distance | round}} km</ion-note>\n\n            </ion-item>\n\n            <button ion-item (click)="openBrokerDetail(property.broker)">\n\n                <ion-avatar item-left>\n\n                    <img src="{{property.thumbnail}}"/>\n\n                </ion-avatar>\n\n                <!--<h2>{{property.broker.name}}</h2>\n\n                <p>{{property.broker.title}}</p>-->\n\n                <p>Privious</p>\n\n            </button>\n\n        </ion-list>\n\n\n\n        <ion-item>\n\n            <button ion-button icon-left (click)="favorite(property)" clear item-left>\n\n                <ion-icon name="star"></ion-icon>\n\n                Favorite\n\n            </button>\n\n            <button ion-button icon-left (click)="share(property)" clear item-right>\n\n                <ion-icon name="contact"></ion-icon>\n\n                Contact\n\n            </button>\n\n        </ion-item>\n\n\n\n    </ion-card>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\location-detail\location-detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_property_service_mock__["a" /* PropertyService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]])
     ], LocationDetailPage);
@@ -648,7 +647,7 @@ var FriendListPage = (function () {
     };
     FriendListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-friend-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-list/friend-list.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Friends</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-list>\n\n        <button ion-item *ngFor="let broker of items" (click)="openBrokerDetail(broker)">\n            <ion-avatar item-left>\n                <img src="../assets/icon/unknown.ico"/>\n            </ion-avatar>\n            <h2>{{broker.displayName}}</h2>\n            <p>{{broker.email}}</p>\n        </button>\n\n    </ion-list>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-list/friend-list.html"*/
+            selector: 'page-friend-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-list\friend-list.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Friends</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <ion-list>\n\n\n\n        <button ion-item *ngFor="let broker of items" (click)="openBrokerDetail(broker)">\n\n            <ion-avatar item-left>\n\n                <img src="../assets/icon/unknown.ico"/>\n\n            </ion-avatar>\n\n            <h2>{{broker.displayName}}</h2>\n\n            <p>{{broker.email}}</p>\n\n        </button>\n\n\n\n    </ion-list>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-list\friend-list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
             __WEBPACK_IMPORTED_MODULE_4__providers_api_default_service__["a" /* DefaultService */], __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
@@ -849,7 +848,7 @@ var RequestListPage = (function () {
     };
     RequestListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-request-list',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/'<ion-header>\n\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n    <ion-list>\n        <ion-item-sliding *ngFor="let item of items">\n            <button ion-item (click)="itemTapped(item)">\n                <ion-thumbnail item-left>\n                    <img src="../assets/icon/unknown.ico"/>\n                </ion-thumbnail>\n                <h2>{{item.displayName}}</h2>\n                <p>{{item.email}}</p>\n            </button>\n            <ion-item-options>\n                <button danger (click)="addItem(item)">Add</button>\n            </ion-item-options>\n        </ion-item-sliding>\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-list/request-list.html"*/
+            selector: 'page-request-list',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-list\request-list.html"*/'<ion-header>\n\n\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-searchbar [(ngModel)]="searchInput" (ionInput)="onInput($event)"\n\n                       (ionCancel)="onCancel($event)"></ion-searchbar>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n    <ion-list>\n\n        <ion-item-sliding *ngFor="let item of items">\n\n            <button ion-item (click)="itemTapped(item)">\n\n                <ion-thumbnail item-left>\n\n                    <img src="../assets/icon/unknown.ico"/>\n\n                </ion-thumbnail>\n\n                <h2>{{item.displayName}}</h2>\n\n                <p>{{item.email}}</p>\n\n            </button>\n\n            <ion-item-options>\n\n                <button danger (click)="addItem(item)">Add</button>\n\n            </ion-item-options>\n\n        </ion-item-sliding>\n\n    </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-list\request-list.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
@@ -1041,7 +1040,7 @@ var RequestDetailPage = (function () {
     };
     RequestDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-request-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>{{item.displayName}}</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n        <ion-card>\n            <ion-card-content>\n                <img src="../assets/icon/unknown.ico"/>\n                <h2>{{item.displayName}}</h2>\n                <h3>{{status}}</h3>\n            </ion-card-content>\n\n            <ion-list>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="call" item-left></ion-icon>\n                    <p>Call Mobile</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="tel:{{item.email}}" ion-item>\n                    <ion-icon name="text" item-left></ion-icon>\n                    <p>Text</p>\n                    <h2>Unknown</h2>\n                </a>\n                <a href="mailto:{{item.email}}" ion-item>\n                    <ion-icon name="mail" item-left></ion-icon>\n                    <p>Email</p>\n                    <h2>{{item.email}}</h2>\n                </a>\n                <ion-item>\n                    <ion-icon name="male" item-left></ion-icon>\n                </ion-item>\n            </ion-list>\n        </ion-card>\n        <div padding>\n          <button ion-button color="primary" block>{{submitBtn}}</button>\n        </div>\n    </form>\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/request-detail/request-detail.html"*/
+            selector: 'page-request-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-detail\request-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>{{item.displayName}}</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n    <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">\n\n        <ion-card>\n\n            <ion-card-content>\n\n                <img src="../assets/icon/unknown.ico"/>\n\n                <h2>{{item.displayName}}</h2>\n\n                <h3>{{status}}</h3>\n\n            </ion-card-content>\n\n\n\n            <ion-list>\n\n                <a href="tel:{{item.email}}" ion-item>\n\n                    <ion-icon name="call" item-left></ion-icon>\n\n                    <p>Call Mobile</p>\n\n                    <h2>Unknown</h2>\n\n                </a>\n\n                <a href="tel:{{item.email}}" ion-item>\n\n                    <ion-icon name="text" item-left></ion-icon>\n\n                    <p>Text</p>\n\n                    <h2>Unknown</h2>\n\n                </a>\n\n                <a href="mailto:{{item.email}}" ion-item>\n\n                    <ion-icon name="mail" item-left></ion-icon>\n\n                    <p>Email</p>\n\n                    <h2>{{item.email}}</h2>\n\n                </a>\n\n                <ion-item>\n\n                    <ion-icon name="male" item-left></ion-icon>\n\n                </ion-item>\n\n            </ion-list>\n\n        </ion-card>\n\n        <div padding>\n\n          <button ion-button color="primary" block>{{submitBtn}}</button>\n\n        </div>\n\n    </form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\request-detail\request-detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */],
             __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__["a" /* DefaultService */],
@@ -1078,7 +1077,7 @@ var AboutPage = (function () {
     }
     AboutPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-about',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/about/about.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>About</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <div class="about-header">\n        <img src="assets/img/dreamhouse-logo.svg">\n    </div>\n\n    <div padding class="about-info">\n\n        <h4>NetworkXXX Application</h4>\n\n        <p>\n            NetworkXXX is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n        </p>\n\n    </div>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/about/about.html"*/
+            selector: 'page-about',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>About</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content>\n\n\n\n    <div class="about-header">\n\n        <img src="assets/img/dreamhouse-logo.svg">\n\n    </div>\n\n\n\n    <div padding class="about-info">\n\n\n\n        <h4>NetworkXXX Application</h4>\n\n\n\n        <p>\n\n            NetworkXXX is a sample application that demonstrayes how to build apps with Ionic 2, Angular 2, and Node.js\n\n        </p>\n\n\n\n    </div>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\about\about.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
     ], AboutPage);
@@ -1130,6 +1129,7 @@ var LoginPage = (function () {
         this.fb = fb;
         this.registerCredentials = { email: '', password: '' };
         this.isLoggedIn = false;
+        this.current = null;
         fb.getLoginStatus()
             .then(function (res) {
             console.log(res.status);
@@ -1152,6 +1152,11 @@ var LoginPage = (function () {
                 //}    
             }
         });
+        this.storage.get('current').then(function (val) {
+            if (val !== undefined && val !== null) {
+                _this.current = val;
+            }
+        });
     };
     LoginPage.prototype.createAccount = function (event) {
         this.nav.push('RegisterPage');
@@ -1162,29 +1167,35 @@ var LoginPage = (function () {
     };
     LoginPage.prototype.login = function () {
         var _this = this;
-        this.showLoading();
         debugger;
-        this.storage.set('user', null);
-        if (this.registerCredentials.email === null || this.registerCredentials.password === null) {
-            return this.showError("Please insert credentials");
+        if (this.current != null) {
+            this.showLoading();
+            this.storage.set('user', null);
+            if (this.registerCredentials.email === null || this.registerCredentials.password === null) {
+                return this.showError("Please insert credentials");
+            }
+            else {
+                var request = {};
+                request.email = this.registerCredentials.email;
+                request.password = this.registerCredentials.password;
+                this.api.loginPost(request).subscribe(function (response) {
+                    if (response.token !== undefined) {
+                        _this.storage.set('user', response);
+                        _this.nav.setRoot('WelcomePage');
+                        _this.loading.dismiss();
+                    }
+                    else {
+                        var text = { errorMessage: 'Access Denied' };
+                        _this.showError(text);
+                    }
+                }, function (error) {
+                    _this.showError(error.error);
+                });
+            }
         }
         else {
-            var request = {};
-            request.email = this.registerCredentials.email;
-            request.password = this.registerCredentials.password;
-            this.api.loginPost(request).subscribe(function (response) {
-                if (response.token !== undefined) {
-                    _this.storage.set('user', response);
-                    _this.nav.setRoot('WelcomePage');
-                    _this.loading.dismiss();
-                }
-                else {
-                    _this.showError("Access Denied");
-                }
-                //this.loading.dismiss();
-            }, function (error) {
-                _this.showError(error.error);
-            });
+            var text = { errorMessage: 'Geolocation must be enabled.' };
+            this.showError(text);
         }
     };
     LoginPage.prototype.loginWithFB = function () {
@@ -1255,13 +1266,12 @@ var LoginPage = (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-login',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/login/login.html"*/'<!--\n  Generated template for the Login page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-content class="login-content" padding>\n  <ion-row class="logo-row">\n    <ion-col></ion-col>\n    <ion-col width-67>\n      <img src="../assets/icon/network.png"/>\n    </ion-col>\n    <ion-col></ion-col>\n  </ion-row>\n  <div class="login-box">\n    <form (ngSubmit)="login()" #registerForm="ngForm">\n      <ion-row>\n        <ion-col>\n          <ion-list inset>\n            \n            <ion-item>\n              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required \n              autocapitalize="off"></ion-input>\n            </ion-item>\n            \n            <ion-item>\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required autocapitalize="off"></ion-input>\n            </ion-item>\n            <button type="button" ion-button class="forget-btn" block clear (click)="forgetPassword($event)">Forget password</button>  \n          </ion-list>\n        </ion-col>\n      </ion-row>      \n      \n      <ion-row>\n        <ion-col class="signup-col">\n          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>          \n          \n        </ion-col>\n      </ion-row>         \n      \n    </form>\n    <ion-row center>  \n     <ion-col text-center>   \n      <button ion-button class="login-fb-btn" (click)="loginWithFB()">\n        Login with\n        <ion-icon name="logo-facebook"></ion-icon>\n      </button>\n     </ion-col> \n    </ion-row>\n    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>\n  </div>\n  \n</ion-content>'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/login/login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\login\login.html"*/'<!--\n\n  Generated template for the Login page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-content class="login-content" padding>\n\n  <ion-row class="logo-row">\n\n    <ion-col></ion-col>\n\n    <ion-col width-67>\n\n      <img src="../assets/icon/network.png"/>\n\n    </ion-col>\n\n    <ion-col></ion-col>\n\n  </ion-row>\n\n  <div class="login-box">\n\n    <form (ngSubmit)="login()" #registerForm="ngForm">\n\n      <ion-row>\n\n        <ion-col>\n\n          <ion-list inset>\n\n            \n\n            <ion-item>\n\n              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required \n\n              autocapitalize="off"></ion-input>\n\n            </ion-item>\n\n            \n\n            <ion-item>\n\n              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required autocapitalize="off"></ion-input>\n\n            </ion-item>\n\n            <button type="button" ion-button class="forget-btn" block clear (click)="forgetPassword($event)">Forget password</button>  \n\n          </ion-list>\n\n        </ion-col>\n\n      </ion-row>      \n\n      \n\n      <ion-row>\n\n        <ion-col class="signup-col">\n\n          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>          \n\n          \n\n        </ion-col>\n\n      </ion-row>         \n\n      \n\n    </form>\n\n    <ion-row center>  \n\n     <ion-col text-center>   \n\n      <button ion-button class="login-fb-btn" (click)="loginWithFB()">\n\n        Login with\n\n        <ion-icon name="logo-facebook"></ion-icon>\n\n      </button>\n\n     </ion-col> \n\n    </ion-row>\n\n    <button ion-button class="register-btn" block clear (click)="createAccount($event)">Create New Account</button>\n\n  </div>\n\n  \n\n</ion-content>'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\login\login.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__["a" /* DefaultService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__["a" /* Facebook */]) === "function" && _f || Object])
     ], LoginPage);
     return LoginPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -1312,7 +1322,7 @@ var WelcomePage = (function () {
     };
     WelcomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-welcome',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/welcome/welcome.html"*/'<ion-header>\n    <ion-navbar>\n        <button ion-button menuToggle>\n            <ion-icon name="menu"></ion-icon>\n        </button>\n        <ion-title>Welcome</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content no-bounce>\n    <ion-slides>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_properties.jpg\')">\n            <p>Your dream house is just a few taps away! Select Properties in the menu to start your search.</p>\n        </ion-slide>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_brokers.jpg\')">\n            <p>Select Brokers in the menu to connect with the best brokers in the business in a whole new way!</p>\n        </ion-slide>\n\n        <ion-slide style="background-image: url(\'assets/img/slide_favorites.jpg\')">\n            <p>Keep track of your favorites and get notified in real time when important events happen.</p>\n        </ion-slide>\n\n    </ion-slides>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/welcome/welcome.html"*/
+            selector: 'page-welcome',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\welcome\welcome.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <button ion-button menuToggle>\n\n            <ion-icon name="menu"></ion-icon>\n\n        </button>\n\n        <ion-title>Welcome</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-bounce>\n\n    <ion-slides>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_properties.jpg\')">\n\n            <p>Your dream house is just a few taps away! Select Properties in the menu to start your search.</p>\n\n        </ion-slide>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_brokers.jpg\')">\n\n            <p>Select Brokers in the menu to connect with the best brokers in the business in a whole new way!</p>\n\n        </ion-slide>\n\n\n\n        <ion-slide style="background-image: url(\'assets/img/slide_favorites.jpg\')">\n\n            <p>Keep track of your favorites and get notified in real time when important events happen.</p>\n\n        </ion-slide>\n\n\n\n    </ion-slides>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\welcome\welcome.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
@@ -1424,14 +1434,14 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/activate/activate.module#ActivatePageModule', name: 'ActivatePage', segment: 'activate', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/change-password/change-password.module#ChangePasswordPageModule', name: 'ChangePasswordPage', segment: 'change-password', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/location-list/location-list.module#LocationListPageModule', name: 'LocationListPage', segment: 'location-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/logout/logout.module#LogoutModule', name: 'LogoutPage', segment: 'logout', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reset-password/reset-password.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'reset-password', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/welcome/welcome.module#WelcomeModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/welcome/welcome.module#WelcomeModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_21__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -3149,12 +3159,13 @@ var AppConstants = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_logout_logout__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_location_list_location_list__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_friend_list_friend_list__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_request_list_request_list__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_welcome_welcome__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_about_about__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_logout_logout__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_about_about__ = __webpack_require__(214);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3176,6 +3187,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var MyApp = (function () {
     function MyApp(platform, statusBar, splashScreen, _haversineService, storage, menu) {
         this.platform = platform;
@@ -3184,24 +3196,25 @@ var MyApp = (function () {
         this._haversineService = _haversineService;
         this.storage = storage;
         this.menu = menu;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_7__pages_location_list_location_list__["a" /* LocationListPage */];
+        this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
         this.initializeApp();
         this.appMenuItems = [
-            { title: 'Locations', component: __WEBPACK_IMPORTED_MODULE_7__pages_location_list_location_list__["a" /* LocationListPage */], icon: 'home' },
-            { title: 'Friends', component: __WEBPACK_IMPORTED_MODULE_8__pages_friend_list_friend_list__["a" /* FriendListPage */], icon: 'people' },
-            { title: 'Request', component: __WEBPACK_IMPORTED_MODULE_9__pages_request_list_request_list__["a" /* RequestListPage */], icon: 'star' },
+            { title: 'Locations', component: __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__["a" /* LocationListPage */], icon: 'home' },
+            { title: 'Friends', component: __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__["a" /* FriendListPage */], icon: 'people' },
+            { title: 'Request', component: __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__["a" /* RequestListPage */], icon: 'star' },
         ];
         this.accountMenuItems = [
-            { title: 'My Account', component: __WEBPACK_IMPORTED_MODULE_10__pages_welcome_welcome__["a" /* WelcomePage */], icon: 'ios-contact' },
-            { title: 'Logout', component: __WEBPACK_IMPORTED_MODULE_6__pages_logout_logout__["a" /* LogoutPage */], icon: 'log-out' },
+            { title: 'My Account', component: __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__["a" /* WelcomePage */], icon: 'ios-contact' },
+            { title: 'Logout', component: __WEBPACK_IMPORTED_MODULE_7__pages_logout_logout__["a" /* LogoutPage */], icon: 'log-out' },
         ];
         this.helpMenuItems = [
             //{title: 'Welcome', component: WelcomePage, icon: 'bookmark'},
-            { title: 'About', component: __WEBPACK_IMPORTED_MODULE_11__pages_about_about__["a" /* AboutPage */], icon: 'information-circle' }
+            { title: 'About', component: __WEBPACK_IMPORTED_MODULE_12__pages_about_about__["a" /* AboutPage */], icon: 'information-circle' }
         ];
     }
     MyApp.prototype.initializeApp = function () {
         var _this = this;
+        debugger;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 //this.location = position.coords;
@@ -3216,11 +3229,15 @@ var MyApp = (function () {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 };
+                _this.storage.set('current', current);
                 var meters = _this._haversineService.getDistanceInMeters(madrid, current);
                 var kilometers = _this._haversineService.getDistanceInKilometers(madrid, current);
                 var miles = _this._haversineService.getDistanceInMiles(madrid, current);
                 console.log("\n                    The distance between Current and Bilbao is:\n                        - " + meters + " meters\n                        - " + kilometers + " kilometers\n                        - " + miles + " miles\n                ");
             });
+        }
+        else {
+            this.storage.set('current', undefined);
         }
         this.platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
@@ -3245,16 +3262,15 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-content>\n\n    <img src="assets/img/dreamhouse-logo.svg" class="menu-logo"/>\n\n    <ion-list>\n      <ion-list-header>\n        Network\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        Help\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of helpMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n    <ion-list>\n      <ion-list-header>\n        Account\n      </ion-list-header>\n      <button menuClose ion-item *ngFor="let menuItem of accountMenuItems" (click)="openPage(menuItem)">\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n        {{menuItem.title}}\n      </button>\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/'<ion-menu [content]="content">\n\n\n\n  <ion-content>\n\n\n\n    <img src="assets/img/dreamhouse-logo.svg" class="menu-logo"/>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Network\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Help\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of helpMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Account\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of accountMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _g || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g;
 }());
 
 //# sourceMappingURL=app.component.js.map
@@ -3437,7 +3453,7 @@ var FriendDetailPage = (function () {
     }
     FriendDetailPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-friend-detail',template:/*ion-inline-start:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-detail/friend-detail.html"*/'<ion-header>\n    <ion-navbar>\n        <ion-title>Broker</ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="broker">\n\n    <ion-card>\n\n        <ion-card-content>\n            <img src="{{broker.picture}}"/>\n            <h2>{{broker.name}}</h2>\n            <h3>{{broker.title}}</h3>\n        </ion-card-content>\n\n        <ion-list>\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n                <ion-icon name="call" item-left></ion-icon>\n                <p>Call Office</p>\n                <h2>{{broker.phone}}</h2>\n            </a>\n            <a href="tel:{{broker.phone}}" ion-item>\n                <ion-icon name="call" item-left></ion-icon>\n                <p>Call Mobile</p>\n                <h2>{{broker.mobilePhone}}</h2>\n            </a>\n            <a href="tel:{{broker.phone}}" ion-item>\n                <ion-icon name="text" item-left></ion-icon>\n                <p>Text</p>\n                <h2>{{broker.mobilePhone}}</h2>\n            </a>\n            <a href="mailto:{{broker.email}}" ion-item>\n                <ion-icon name="mail" item-left></ion-icon>\n                <p>Email</p>\n                <h2>{{broker.email}}</h2>\n            </a>\n        </ion-list>\n\n    </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/home/phultu/Phu/Samples/networkXXX/frontend/src/pages/friend-detail/friend-detail.html"*/
+            selector: 'page-friend-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Broker</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n\n\n    <ion-card>\n\n\n\n        <ion-card-content>\n\n            <img src="{{broker.picture}}"/>\n\n            <h2>{{broker.name}}</h2>\n\n            <h3>{{broker.title}}</h3>\n\n        </ion-card-content>\n\n\n\n        <ion-list>\n\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Office</p>\n\n                <h2>{{broker.phone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Mobile</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="text" item-left></ion-icon>\n\n                <p>Text</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="mailto:{{broker.email}}" ion-item>\n\n                <ion-icon name="mail" item-left></ion-icon>\n\n                <p>Email</p>\n\n                <h2>{{broker.email}}</h2>\n\n            </a>\n\n        </ion-list>\n\n\n\n    </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]])
     ], FriendDetailPage);

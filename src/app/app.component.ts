@@ -26,7 +26,7 @@ export interface MenuItem {
 export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
-    rootPage: any = LocationListPage;
+    rootPage: any = LoginPage;
 
     appMenuItems: Array<MenuItem>;
 
@@ -58,6 +58,7 @@ export class MyApp {
     }
 
     initializeApp() {
+        debugger;
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
                 //this.location = position.coords;
@@ -75,6 +76,8 @@ export class MyApp {
                     longitude: position.coords.longitude
                 };
 
+                this.storage.set('current', current);
+
                 let meters = this._haversineService.getDistanceInMeters(madrid, current);
                 let kilometers = this._haversineService.getDistanceInKilometers(madrid, current);
                 let miles = this._haversineService.getDistanceInMiles(madrid, current);
@@ -86,6 +89,8 @@ export class MyApp {
                         - ${miles} miles
                 `);
           });
+        } else {
+            this.storage.set('current', undefined);
         }
 
         this.platform.ready().then(() => {

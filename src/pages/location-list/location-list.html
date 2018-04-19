@@ -18,15 +18,16 @@
 
     <ion-list *ngIf="viewMode==='list'">
 
-        <ion-item-sliding *ngFor="let property of properties">
+        <ion-item-sliding *ngFor="let item of items">
             
                 <button ion-item (click)="openPropertyDetail(property)">
                     <ion-thumbnail item-left>
-                        <img src="{{property.thumbnail}}"/>
+                        <!-- <img src="{{item.imageUrl}}"/> -->
+                        <img src="../assets/icon/unknown.ico"/>
                     </ion-thumbnail>
-                    <h2>{{property.title}}</h2>
-                    {{ calcDistance(property) }}
-                    <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p>
+                    <h2>{{item.displayName}}</h2>
+                    {{ calcDistance(item) }}
+                    <!-- <p>{{property.city}}, {{property.state}} ∙ {{ property.distance | round }} km</p> -->
 
                 </button>
                 <ion-item-options>

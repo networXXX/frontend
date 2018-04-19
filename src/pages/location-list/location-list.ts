@@ -60,12 +60,12 @@ export class LocationListPage implements OnInit {
             this.QUERY_STR = 'userId:' + loginUser.item.id + '&status:Y';  
             this.userId = loginUser.item.id;  
             this.api.configuration = Utils.getConfiguration(loginUser); 
-            this.getRequestingUsers(this.QUERY_STR); 
+            this.getUsers(this.QUERY_STR); 
           }        
         });           
     }
 
-    getRequestingUsers(query:string) {
+    getUsers(query:string) {
         if (this.noMoreItemsAvailable == false) {
           this.showLoading(); 
         }
@@ -138,7 +138,6 @@ export class LocationListPage implements OnInit {
     }
 
     openAddFriend() {
-        debugger;
         this.navCtrl.push('AddFriendPage');
     }
 

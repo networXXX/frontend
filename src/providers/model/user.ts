@@ -21,4 +21,6 @@ export interface User {
     id?: string;
     email: string;
     status?: string;
+    lat?: number;
+    lng?: number;
 }

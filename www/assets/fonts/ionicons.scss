@@ -33,8 +33,7 @@ ion-icon {
   text-transform: none;
   speak: none;
 }
- @include rtl() {
-    &[aria-label^="arrow"]::before,
+="arrow"]::before,
     &[flip-rtl]::before {
       transform: scaleX(-1);
     }
