@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, MenuController} from 'ionic-angular';
+import {Nav, Platform, MenuController, AlertController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -36,7 +36,7 @@ export class MyApp {
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
-                public menu: MenuController) {
+                public menu: MenuController, private alertCtrl: AlertController) {
         this.initializeApp();
 
         this.appMenuItems = [
@@ -58,6 +58,10 @@ export class MyApp {
     }
 
     initializeApp() {
+        // setInterval(function(){ 
+        //    console.log('test')
+
+        // }, 1000);
         debugger;
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
