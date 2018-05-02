@@ -18,6 +18,7 @@ export * from './requestFriendRequest';
 export * from './searchFriendResponse';
 export * from './searchUserResponse';
 export * from './updateFriendRequest';
+export * from './updateLocationRequest';
 export * from './updateUserRequest';
 export * from './user';
 export * from './userCredentials';

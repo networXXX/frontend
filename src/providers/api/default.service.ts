@@ -34,6 +34,7 @@ import { RequestFriendRequest } from '../model/requestFriendRequest';
 import { SearchFriendResponse } from '../model/searchFriendResponse';
 import { SearchUserResponse } from '../model/searchUserResponse';
 import { UpdateFriendRequest } from '../model/updateFriendRequest';
+import { UpdateLocationRequest } from '../model/updateLocationRequest';
 import { UpdateUserRequest } from '../model/updateUserRequest';
 import { UserResponse } from '../model/userResponse';
 
@@ -1746,6 +1747,94 @@ export class DefaultService {
         ];
 
         return this.httpClient.options<any>(`${this.basePath}/users/search`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public usersUpdatelocationOptions(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public usersUpdatelocationOptions(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public usersUpdatelocationOptions(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public usersUpdatelocationOptions(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+
+        return this.httpClient.options<any>(`${this.basePath}/users/updatelocation`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param updateLocationRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public usersUpdatelocationPost(updateLocationRequest: UpdateLocationRequest, observe?: 'body', reportProgress?: boolean): Observable<UserResponse>;
+    public usersUpdatelocationPost(updateLocationRequest: UpdateLocationRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserResponse>>;
+    public usersUpdatelocationPost(updateLocationRequest: UpdateLocationRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserResponse>>;
+    public usersUpdatelocationPost(updateLocationRequest: UpdateLocationRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (updateLocationRequest === null || updateLocationRequest === undefined) {
+            throw new Error('Required parameter updateLocationRequest was null or undefined when calling usersUpdatelocationPost.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (networkAuthorizer) required
+        if (this.configuration.apiKeys["Authorization"]) {
+            headers = headers.set('Authorization', this.configuration.apiKeys["Authorization"]);
+        }
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+            'application/json'
+        ];
+        let httpContentTypeSelected:string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set("Content-Type", httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<UserResponse>(`${this.basePath}/users/updatelocation`,
+            updateLocationRequest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
