@@ -58,6 +58,7 @@ export class RegisterPage implements OnInit {
     } else {
       this.showError('Please fix the error field.');
     } 
+
   }
 
   isValid(field: string) {

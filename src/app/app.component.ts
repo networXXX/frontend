@@ -36,7 +36,7 @@ export class MyApp {
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
-                public menu: MenuController, private alertCtrl: AlertController) {
+                public menu: MenuController, private alertCtrl: AlertController, private api: DefaultService) {
         this.initializeApp();
 
         this.appMenuItems = [
@@ -62,7 +62,6 @@ export class MyApp {
         //    console.log('test')
 
         // }, 1000);
-        debugger;
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
                 //this.location = position.coords;
@@ -85,6 +84,8 @@ export class MyApp {
                 let meters = this._haversineService.getDistanceInMeters(madrid, current);
                 let kilometers = this._haversineService.getDistanceInKilometers(madrid, current);
                 let miles = this._haversineService.getDistanceInMiles(madrid, current);
+
+                this.updateLocation(current);
  
                 console.log(`
                     The distance between Current and Bilbao is:
@@ -103,6 +104,30 @@ export class MyApp {
             this.statusBar.styleLightContent();
             this.splashScreen.hide();
         });
+    }
+
+    updateLocation(current: GeoCoord) {
+        this.storage.get('user').then((val) => {  
+            if (val === undefined || val === null) {
+                this.rootPage = LoginPage;
+                this.nav.setRoot('LoginPage');
+            } else {
+                let loginUser: models.LoginUserResponse = val; 
+                this.userId = loginUser.item.id;  
+                this.api.configuration = Utils.getConfiguration(loginUser); 
+                var request: models.UpdateLocationRequest = {} as models.UpdateLocationRequest;
+                request.userId = loginUser.item.id;
+                request.lng = current.longitude;
+                request.lat = current.latitude; 
+
+                this.api.usersUpdatelocationPost(request).subscribe(response => {
+                    console.log(response);
+                },
+                  error => {
+                    this.showError(error);          
+                });
+          }        
+        });  
     }
 
     openPage(page) {

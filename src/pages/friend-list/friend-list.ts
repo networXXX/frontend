@@ -53,6 +53,7 @@ export class FriendListPage implements OnInit {
 	    if (this.noMoreItemsAvailable == false) {
 	      this.showLoading(); 
 	    }
+
 	    this.api.friendsQueryuserGet(query, this.LIMIT, this.CURSOR).subscribe(response => {   
 	        if (response != null && response.items.length > 0) {                    
 	          	response.items.forEach(property => {
