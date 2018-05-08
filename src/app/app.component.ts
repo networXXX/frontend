@@ -12,6 +12,13 @@ import {FriendListPage} from '../pages/friend-list/friend-list';
 import {RequestListPage} from '../pages/request-list/request-list';
 import {WelcomePage} from '../pages/welcome/welcome';
 import {AboutPage} from '../pages/about/about';
+import { DefaultService } from '../providers/api/default.service';
+
+import {ObjectObserverFactory} from 'typescript-object-observer';
+
+import * as models  from '../providers/model/models';
+import { Utils } from '../utils/utils';
+import {Observable} from 'Rxjs/rx';
 
 
 export interface MenuItem {
@@ -33,6 +40,15 @@ export class MyApp {
     accountMenuItems: Array<MenuItem>;
 
     helpMenuItems: Array<MenuItem>;
+
+    current: Coordinates;
+
+    inprogress: boolean = false;
+
+    // observedPos: Coordinates = {} as Coordinates; 
+    // objectObserver = ObjectObserverFactory.newInstance<string[]>([], {
+    //         enableFallback: false
+    //     });
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
@@ -58,45 +74,6 @@ export class MyApp {
     }
 
     initializeApp() {
-        // setInterval(function(){ 
-        //    console.log('test')
-
-        // }, 1000);
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(position => {
-                //this.location = position.coords;
-                console.log(position.coords); 
-                let madrid: GeoCoord = {
-                    latitude: 33.91918,
-                    longitude: -118.416465
-                };
-
-//El Segundo, CA, USA
-//atitude: 33.91918 | Longitude: -118.416465
-
-                let current: GeoCoord = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                };
-
-                this.storage.set('current', current);
-
-                let meters = this._haversineService.getDistanceInMeters(madrid, current);
-                let kilometers = this._haversineService.getDistanceInKilometers(madrid, current);
-                let miles = this._haversineService.getDistanceInMiles(madrid, current);
-
-                this.updateLocation(current);
- 
-                console.log(`
-                    The distance between Current and Bilbao is:
-                        - ${meters} meters
-                        - ${kilometers} kilometers
-                        - ${miles} miles
-                `);
-          });
-        } else {
-            this.storage.set('current', undefined);
-        }
 
         this.platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
@@ -104,27 +81,90 @@ export class MyApp {
             this.statusBar.styleLightContent();
             this.splashScreen.hide();
         });
+
+        this.doUpdatePos();
     }
 
-    updateLocation(current: GeoCoord) {
+    doUpdatePos() {
+        Observable.interval(1000).subscribe(()=>{
+            if (!this.inprogress) {
+                this.inprogress = true;
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(position => {
+
+                        // let current: GeoCoord = {
+                        //     latitude: position.coords.latitude,
+                        //     longitude: position.coords.longitude
+                        // };
+
+                        //El Segundo
+                        // let current: GeoCoord = {
+                        //     latitude: 33.919180,
+                        //     longitude: -118.416465
+                        // };
+
+                        debugger;
+
+                        this.current = position.coords;
+                        this.hasNewPosition(position.coords);
+                    });
+                } else {
+                    this.storage.set('oldPos', undefined);
+                    this.rootPage = LoginPage;
+                    this.nav.setRoot(this.rootPage);   
+                }
+            }
+        });
+    }
+
+    hasNewPosition(cur: Coordinates) {
+        this.storage.get('oldPos').then((val) => {
+            debugger;
+            if (val === undefined || val === null) {
+                let oldPos: GeoCoord = {
+                    latitude: val.latitude,
+                    longitude: val.longitude
+                };
+
+                let curPos: GeoCoord = {
+                    latitude: cur.latitude,
+                    longitude: cur.longitude
+                };
+
+                let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
+                if (meters > 200) {
+                    this.updateLocation(cur);
+                }
+            } else {
+                this.updateLocation(cur);
+            }
+        });
+    }
+
+    updateLocation(cur: Coordinates) {
         this.storage.get('user').then((val) => {  
             if (val === undefined || val === null) {
                 this.rootPage = LoginPage;
                 this.nav.setRoot('LoginPage');
             } else {
                 let loginUser: models.LoginUserResponse = val; 
-                this.userId = loginUser.item.id;  
+        
                 this.api.configuration = Utils.getConfiguration(loginUser); 
                 var request: models.UpdateLocationRequest = {} as models.UpdateLocationRequest;
                 request.userId = loginUser.item.id;
-                request.lng = current.longitude;
-                request.lat = current.latitude; 
+
+                request.lng = cur.longitude;
+                request.lat = cur.latitude; 
 
                 this.api.usersUpdatelocationPost(request).subscribe(response => {
                     console.log(response);
+                    this.storage.set('curPos', cur);
+                    this.inprogress = false;
                 },
                   error => {
-                    this.showError(error);          
+                    //this.showError(error);
+                    console.log(error);  
+                    this.inprogress = false;        
                 });
           }        
         });  

@@ -1,20 +1,119 @@
 webpackJsonp([9],{
 
-/***/ 109:
+/***/ 120:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertyService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_properties__ = __webpack_require__(432);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var PropertyService = (function () {
+    function PropertyService() {
+        this.favoriteCounter = 0;
+        this.favorites = [];
+    }
+    PropertyService.prototype.findAll = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */]);
+    };
+    PropertyService.prototype.findById = function (id) {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */][id - 1]);
+    };
+    PropertyService.prototype.findByName = function (searchKey) {
+        var key = searchKey.toUpperCase();
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */].filter(function (property) {
+            return (property.title + ' ' + property.address + ' ' + property.city + ' ' + property.description).toUpperCase().indexOf(key) > -1;
+        }));
+    };
+    PropertyService.prototype.getFavorites = function () {
+        return Promise.resolve(this.favorites);
+    };
+    PropertyService.prototype.favorite = function (property) {
+        this.favoriteCounter = this.favoriteCounter + 1;
+        this.favorites.push({ id: this.favoriteCounter, property: property });
+        return Promise.resolve();
+    };
+    PropertyService.prototype.unfavorite = function (favorite) {
+        var index = this.favorites.indexOf(favorite);
+        if (index > -1) {
+            this.favorites.splice(index, 1);
+        }
+        return Promise.resolve();
+    };
+    PropertyService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+    ], PropertyService);
+    return PropertyService;
+}());
+
+//# sourceMappingURL=property-service-mock.js.map
+
+/***/ }),
+
+/***/ 121:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendDetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(74);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var FriendDetailPage = (function () {
+    function FriendDetailPage(navCtrl, navParams, service) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.service = service;
+        this.broker = this.navParams.data;
+        service.findById(this.broker.id).then(function (broker) { return _this.broker = broker; });
+    }
+    FriendDetailPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+            selector: 'page-friend-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Broker</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n\n\n    <ion-card>\n\n\n\n        <ion-card-content>\n\n            <img src="{{broker.picture}}"/>\n\n            <h2>{{broker.name}}</h2>\n\n            <h3>{{broker.title}}</h3>\n\n        </ion-card-content>\n\n\n\n        <ion-list>\n\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Office</p>\n\n                <h2>{{broker.phone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Mobile</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="text" item-left></ion-icon>\n\n                <p>Text</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="mailto:{{broker.email}}" ion-item>\n\n                <ion-icon name="mail" item-left></ion-icon>\n\n                <p>Email</p>\n\n                <h2>{{broker.email}}</h2>\n\n            </a>\n\n        </ion-list>\n\n\n\n    </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]])
+    ], FriendDetailPage);
+    return FriendDetailPage;
+}());
+
+//# sourceMappingURL=friend-detail.js.map
+
+/***/ }),
+
+/***/ 165:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_property_service_mock__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__location_detail_location_detail__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_default_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_utils__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils_utils__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -224,16 +323,16 @@ var LocationListPage = (function () {
 
 /***/ }),
 
-/***/ 110:
+/***/ 166:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_facebook__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -414,13 +513,13 @@ var LoginPage = (function () {
 
 /***/ }),
 
-/***/ 111:
+/***/ 167:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -459,7 +558,7 @@ var LogoutPage = (function () {
 
 /***/ }),
 
-/***/ 123:
+/***/ 179:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -472,48 +571,48 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 123;
+webpackEmptyAsyncContext.id = 179;
 
 /***/ }),
 
-/***/ 165:
+/***/ 221:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/activate/activate.module": [
-		306,
+		760,
 		4
 	],
 	"../pages/add-friend/add-friend.module": [
-		307,
+		765,
 		3
 	],
 	"../pages/change-password/change-password.module": [
-		308,
+		761,
 		2
 	],
 	"../pages/location-list/location-list.module": [
-		309,
+		762,
 		8
 	],
 	"../pages/login/login.module": [
-		310,
+		763,
 		7
 	],
 	"../pages/logout/logout.module": [
-		311,
+		764,
 		6
 	],
 	"../pages/register/register.module": [
-		312,
+		766,
 		1
 	],
 	"../pages/reset-password/reset-password.module": [
-		313,
+		767,
 		0
 	],
 	"../pages/welcome/welcome.module": [
-		314,
+		768,
 		5
 	]
 };
@@ -528,12 +627,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 165;
+webpackAsyncContext.id = 221;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 166:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -605,16 +704,16 @@ var Configuration = (function () {
 
 /***/ }),
 
-/***/ 167:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LocationDetailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__friend_detail_friend_detail__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_property_service_mock__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__friend_detail_friend_detail__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_property_service_mock__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet__ = __webpack_require__(224);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -725,18 +824,18 @@ var LocationDetailPage = (function () {
 
 /***/ }),
 
-/***/ 212:
+/***/ 268:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__friend_detail_friend_detail__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_default_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_utils__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__friend_detail_friend_detail__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_utils__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -849,17 +948,17 @@ var FriendListPage = (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 269:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__request_detail_request_detail__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__request_detail_request_detail__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(59);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1050,18 +1149,18 @@ var RequestListPage = (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 270:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestDetailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_utils__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__ = __webpack_require__(41);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1243,13 +1342,13 @@ var RequestDetailPage = (function () {
 
 /***/ }),
 
-/***/ 215:
+/***/ 271:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1278,14 +1377,14 @@ var AboutPage = (function () {
 
 /***/ }),
 
-/***/ 216:
+/***/ 374:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return WelcomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_storage__ = __webpack_require__(33);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1334,13 +1433,13 @@ var WelcomePage = (function () {
 
 /***/ }),
 
-/***/ 217:
+/***/ 375:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(376);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(397);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1348,36 +1447,36 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 239:
+/***/ 397:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_pipes__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_app_constants__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(305);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_location_list_location_list__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_location_detail_location_detail__ = __webpack_require__(167);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_friend_list_friend_list__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_friend_detail_friend_detail__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_request_list_request_list__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_request_detail_request_detail__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_about_about__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_property_service_mock__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_broker_service_mock__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_login_login__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_logout_logout__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_facebook__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ngx_pipes__ = __webpack_require__(461);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_app_constants__ = __webpack_require__(462);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__app_component__ = __webpack_require__(463);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_location_list_location_list__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_location_detail_location_detail__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_friend_list_friend_list__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_friend_detail_friend_detail__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_request_list_request_list__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_request_detail_request_detail__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_about_about__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_property_service_mock__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__providers_broker_service_mock__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ionic_native_status_bar__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ionic_native_splash_screen__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_login_login__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_logout_logout__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ionic_native_facebook__ = __webpack_require__(225);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1434,11 +1533,11 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/activate/activate.module#ActivatePageModule', name: 'ActivatePage', segment: 'activate', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/change-password/change-password.module#ChangePasswordPageModule', name: 'ChangePasswordPage', segment: 'change-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/location-list/location-list.module#LocationListPageModule', name: 'LocationListPage', segment: 'location-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/logout/logout.module#LogoutModule', name: 'LogoutPage', segment: 'logout', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/reset-password/reset-password.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'reset-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/welcome/welcome.module#WelcomeModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
@@ -1480,474 +1579,16 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 269:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomHttpUrlEncodingCodec; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(60);
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-/**
-* CustomHttpUrlEncodingCodec
-* Fix plus sign (+) not encoding, so sent as blank space
-* See: https://github.com/angular/angular/issues/11058#issuecomment-247367318
-*/
-var CustomHttpUrlEncodingCodec = (function (_super) {
-    __extends(CustomHttpUrlEncodingCodec, _super);
-    function CustomHttpUrlEncodingCodec() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    CustomHttpUrlEncodingCodec.prototype.encodeKey = function (k) {
-        k = _super.prototype.encodeKey.call(this, k);
-        return k.replace(/\+/gi, '%2B');
-    };
-    CustomHttpUrlEncodingCodec.prototype.encodeValue = function (v) {
-        v = _super.prototype.encodeValue.call(this, v);
-        return v.replace(/\+/gi, '%2B');
-    };
-    return CustomHttpUrlEncodingCodec;
-}(__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpUrlEncodingCodec */]));
-
-//# sourceMappingURL=encoder.js.map
-
-/***/ }),
-
-/***/ 270:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BASE_PATH; });
-/* unused harmony export COLLECTION_FORMATS */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-
-var BASE_PATH = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["InjectionToken"]('basePath');
-var COLLECTION_FORMATS = {
-    'csv': ',',
-    'tsv': '   ',
-    'ssv': ' ',
-    'pipes': '|'
-};
-//# sourceMappingURL=variables.js.map
-
-/***/ }),
-
-/***/ 274:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var properties = [
-    {
-        id: 1,
-        address: "18 Henry st",
-        city: "Cambridge",
-        state: "MA",
-        zip: "01742",
-        price: "$975,000",
-        title: "Lâm Ngọc Hằng",
-        bedrooms: 4,
-        bathrooms: 3,
-        long: -71.11095,
-        lat: 42.35663,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house01.jpg",
-        //thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house01sq.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/15894994_401920850147680_17897310796082713_n.jpg?oh=62f4a663cfa69d91ec7c8d96b0b08330&oe=59EF28A0",
-        tags: "colonial",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 1,
-            name: "Caroline Kingsley",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
-        }
-    },
-    {
-        id: 2,
-        address: "24 Pearl st",
-        city: "Cambridge",
-        state: "MA",
-        zip: "02420",
-        price: "$1,200,000",
-        //title: "Ultimate Sophistication",
-        title: "Lemth Nguyen",
-        bedrooms: 5,
-        bathrooms: 4,
-        long: -71.10869,
-        lat: 42.359103,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house02.jpg",
-        //thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house02sq.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/c57.0.240.240/p240x240/12523973_10205927663843739_1485480924116733747_n.jpg?oh=8e107b199d7e39db98c7d4d92f57d32b&oe=5A351E19",
-        tags: "colonial",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 1,
-            name: "Caroline Kingsley",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
-        }
-    },
-    {
-        id: 3,
-        address: "61 West Cedar st",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$825,000",
-        title: "Quản Thị Nga",
-        bedrooms: 5,
-        bathrooms: 4,
-        long: -71.070061,
-        lat: 42.359986,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house03.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/19989469_1217389091723233_2133214409771178201_n.jpg?oh=d709792a479eb5dbcabce82cdc6c0b23&oe=59EDE5BB",
-        tags: "contemporary",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 2,
-            name: "Michael Jones",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
-        }
-    },
-    {
-        id: 4,
-        address: "32 Prince st",
-        city: "Cambridge",
-        state: "MA",
-        zip: "02420",
-        price: "$930,000",
-        title: "Thuy Duong Nguyen",
-        bedrooms: 5,
-        bathrooms: 4,
-        long: -71.110448,
-        lat: 42.360642,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house04.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12645228_934705903303420_8030945404463088014_n.jpg?oh=3874e2458f46ff84b33294beb72f3475&oe=5A354A61",
-        tags: "victorian",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 3,
-            name: "Jonathan Bradley",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"
-        }
-    },
-    {
-        id: 5,
-        address: "211 Charles Street",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$850,000",
-        title: "Quan Lam",
-        bedrooms: 3,
-        bathrooms: 2,
-        long: -71.084454,
-        lat: 42.368168,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house05.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12274566_10153727525339812_7750744222810759303_n.jpg?oh=d3e313eea79e7b6b87f1160b4a6c1471&oe=5A2D4C7C",
-        tags: "contemporary",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 4,
-            name: "Jennifer Wu",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
-        }
-    },
-    {
-        id: 6,
-        address: "448 Hanover st",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$725,000",
-        title: "Vy Thanh",
-        bedrooms: 4,
-        bathrooms: 2,
-        long: -71.052617,
-        lat: 42.366855,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house06.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621957_872823652868115_5458391622460968658_n.jpg?oh=123da856e05cd63316d0d39c7590188d&oe=59EFF4AE",
-        tags: "colonial",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 5,
-            name: "Olivia Green",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
-        }
-    },
-    {
-        id: 7,
-        address: "127 Endicott st",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$450,000",
-        title: "Lan Lan Hoang",
-        bedrooms: 3,
-        bathrooms: 1,
-        long: -71.057352,
-        lat: 42.365003,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house07.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/19059722_1568088983225607_4271968378881729116_n.jpg?oh=d4414e8a2db46cd39fe8d436f6ed9748&oe=5A1F17E0",
-        tags: "colonial",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 6,
-            name: "Miriam Aupont",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/miriam_aupont.jpg"
-        }
-    },
-    {
-        id: 8,
-        address: "48 Brattle st",
-        city: "Cambridge",
-        state: "MA",
-        zip: "02420",
-        price: "$450,000",
-        title: "Minh Thu Nguyen",
-        bedrooms: 5,
-        bathrooms: 4,
-        long: -71.121653,
-        lat: 42.374117,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house10.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621766_507619646240222_7223858202266566665_n.jpg?oh=47973a87b3a495eee7a2dc6d66355d1d&oe=59EAE8D9",
-        tags: "victorian",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 7,
-            name: "Michelle Lambert",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michelle_lambert.jpg"
-        }
-    },
-    {
-        id: 9,
-        address: "121 Harborwalk",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$450,000",
-        title: "Tuyen Nguyen",
-        bedrooms: 3,
-        bathrooms: 3,
-        long: -71.049327,
-        lat: 42.35695,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house09.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621896_1619721901371873_8757437168574382787_n.jpg?oh=5ea18328e06b5edc92d5e0baca7b4892&oe=59F194A5",
-        tags: "contemporary",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 2,
-            name: "Michael Jones",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
-        }
-    },
-    {
-        id: 10,
-        address: "503 Park Drive",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$650,000",
-        title: "City Living",
-        bedrooms: 2,
-        bathrooms: 2,
-        long: -71.105475,
-        lat: 42.347400,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house08.jpg",
-        thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house08sq.jpg",
-        tags: "contemporary",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 1,
-            name: "Caroline Kingsley",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
-        }
-    },
-    {
-        id: 11,
-        address: "95 Gloucester st",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$690,000",
-        title: "Luck Yong",
-        bedrooms: 3,
-        bathrooms: 3,
-        lat: 42.349693,
-        long: -71.084407,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house11.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20525477_10154764283654212_7155418011956367437_n.jpg?oh=857daeeb66efa2fef114b73c7e5c7076&oe=5A2FA671",
-        tags: "contemporary",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 4,
-            name: "Jennifer Wu",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
-        }
-    },
-    {
-        id: 12,
-        address: "145 Commonwealth ave",
-        city: "Boston",
-        state: "MA",
-        zip: "02420",
-        price: "$845,000",
-        title: "Nguyen Viet Ha",
-        bedrooms: 4,
-        bathrooms: 3,
-        lat: 42.352466,
-        long: -71.075311,
-        distance: 0,
-        locatedAt: "2017-08-10T18:03:40.887",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house12.jpg",
-        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12799079_1320496074631406_3751514757821920751_n.jpg?oh=3493a9c272b8103192b510b07fc3989b&oe=59F0BC4E",
-        tags: "colonial",
-        description: "Lorem ipsum dolor sit amet",
-        broker: {
-            id: 5,
-            name: "Olivia Green",
-            title: "Senior Broker",
-            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
-        }
-    }
-];
-/* harmony default export */ __webpack_exports__["a"] = (properties);
-//# sourceMappingURL=mock-properties.js.map
-
-/***/ }),
-
-/***/ 275:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var brokers = [
-    {
-        id: 1,
-        name: "Caroline Kingsley",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "caroline@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
-    },
-    {
-        id: 2,
-        name: "Michael Jones",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "michael@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
-    },
-    {
-        id: 3,
-        name: "Jonathan Bradley",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "jonathan@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"
-    },
-    {
-        id: 4,
-        name: "Jennifer Wu",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "jen@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
-    },
-    {
-        id: 5,
-        name: "Olivia Green",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "olivia@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
-    },
-    {
-        id: 6,
-        name: "Miriam Aupont",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "miriam@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/miriam_aupont.jpg"
-    },
-    {
-        id: 7,
-        name: "Michelle Lambert",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "michelle@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michelle_lambert.jpg"
-    },
-    {
-        id: 8,
-        name: "Victor Ochoa",
-        title: "Senior Broker",
-        phone: "617-244-3672",
-        mobilePhone: "617-244-3672",
-        email: "victor@ionicrealty.com",
-        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/victor_ochoa.jpg"
-    }
-];
-/* harmony default export */ __webpack_exports__["a"] = (brokers);
-//# sourceMappingURL=mock-brokers.js.map
-
-/***/ }),
-
-/***/ 30:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__encoder__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__variables__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__encoder__ = __webpack_require__(427);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__variables__ = __webpack_require__(428);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__configuration__ = __webpack_require__(222);
 /**
  * network
  * No description provided (generated by Swagger Codegen https://github.com/swagger-api/swagger-codegen)
@@ -3165,13 +2806,471 @@ var DefaultService = (function () {
 
 /***/ }),
 
-/***/ 304:
+/***/ 427:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomHttpUrlEncodingCodec; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(97);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+/**
+* CustomHttpUrlEncodingCodec
+* Fix plus sign (+) not encoding, so sent as blank space
+* See: https://github.com/angular/angular/issues/11058#issuecomment-247367318
+*/
+var CustomHttpUrlEncodingCodec = (function (_super) {
+    __extends(CustomHttpUrlEncodingCodec, _super);
+    function CustomHttpUrlEncodingCodec() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomHttpUrlEncodingCodec.prototype.encodeKey = function (k) {
+        k = _super.prototype.encodeKey.call(this, k);
+        return k.replace(/\+/gi, '%2B');
+    };
+    CustomHttpUrlEncodingCodec.prototype.encodeValue = function (v) {
+        v = _super.prototype.encodeValue.call(this, v);
+        return v.replace(/\+/gi, '%2B');
+    };
+    return CustomHttpUrlEncodingCodec;
+}(__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["e" /* HttpUrlEncodingCodec */]));
+
+//# sourceMappingURL=encoder.js.map
+
+/***/ }),
+
+/***/ 428:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BASE_PATH; });
+/* unused harmony export COLLECTION_FORMATS */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+
+var BASE_PATH = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["InjectionToken"]('basePath');
+var COLLECTION_FORMATS = {
+    'csv': ',',
+    'tsv': '   ',
+    'ssv': ' ',
+    'pipes': '|'
+};
+//# sourceMappingURL=variables.js.map
+
+/***/ }),
+
+/***/ 432:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var properties = [
+    {
+        id: 1,
+        address: "18 Henry st",
+        city: "Cambridge",
+        state: "MA",
+        zip: "01742",
+        price: "$975,000",
+        title: "Lâm Ngọc Hằng",
+        bedrooms: 4,
+        bathrooms: 3,
+        long: -71.11095,
+        lat: 42.35663,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house01.jpg",
+        //thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house01sq.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-9/15894994_401920850147680_17897310796082713_n.jpg?oh=62f4a663cfa69d91ec7c8d96b0b08330&oe=59EF28A0",
+        tags: "colonial",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 1,
+            name: "Caroline Kingsley",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
+        }
+    },
+    {
+        id: 2,
+        address: "24 Pearl st",
+        city: "Cambridge",
+        state: "MA",
+        zip: "02420",
+        price: "$1,200,000",
+        //title: "Ultimate Sophistication",
+        title: "Lemth Nguyen",
+        bedrooms: 5,
+        bathrooms: 4,
+        long: -71.10869,
+        lat: 42.359103,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house02.jpg",
+        //thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house02sq.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/c57.0.240.240/p240x240/12523973_10205927663843739_1485480924116733747_n.jpg?oh=8e107b199d7e39db98c7d4d92f57d32b&oe=5A351E19",
+        tags: "colonial",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 1,
+            name: "Caroline Kingsley",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
+        }
+    },
+    {
+        id: 3,
+        address: "61 West Cedar st",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$825,000",
+        title: "Quản Thị Nga",
+        bedrooms: 5,
+        bathrooms: 4,
+        long: -71.070061,
+        lat: 42.359986,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house03.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/19989469_1217389091723233_2133214409771178201_n.jpg?oh=d709792a479eb5dbcabce82cdc6c0b23&oe=59EDE5BB",
+        tags: "contemporary",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 2,
+            name: "Michael Jones",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
+        }
+    },
+    {
+        id: 4,
+        address: "32 Prince st",
+        city: "Cambridge",
+        state: "MA",
+        zip: "02420",
+        price: "$930,000",
+        title: "Thuy Duong Nguyen",
+        bedrooms: 5,
+        bathrooms: 4,
+        long: -71.110448,
+        lat: 42.360642,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house04.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12645228_934705903303420_8030945404463088014_n.jpg?oh=3874e2458f46ff84b33294beb72f3475&oe=5A354A61",
+        tags: "victorian",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 3,
+            name: "Jonathan Bradley",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"
+        }
+    },
+    {
+        id: 5,
+        address: "211 Charles Street",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$850,000",
+        title: "Quan Lam",
+        bedrooms: 3,
+        bathrooms: 2,
+        long: -71.084454,
+        lat: 42.368168,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house05.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12274566_10153727525339812_7750744222810759303_n.jpg?oh=d3e313eea79e7b6b87f1160b4a6c1471&oe=5A2D4C7C",
+        tags: "contemporary",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 4,
+            name: "Jennifer Wu",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
+        }
+    },
+    {
+        id: 6,
+        address: "448 Hanover st",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$725,000",
+        title: "Vy Thanh",
+        bedrooms: 4,
+        bathrooms: 2,
+        long: -71.052617,
+        lat: 42.366855,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house06.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621957_872823652868115_5458391622460968658_n.jpg?oh=123da856e05cd63316d0d39c7590188d&oe=59EFF4AE",
+        tags: "colonial",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 5,
+            name: "Olivia Green",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
+        }
+    },
+    {
+        id: 7,
+        address: "127 Endicott st",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$450,000",
+        title: "Lan Lan Hoang",
+        bedrooms: 3,
+        bathrooms: 1,
+        long: -71.057352,
+        lat: 42.365003,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house07.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/19059722_1568088983225607_4271968378881729116_n.jpg?oh=d4414e8a2db46cd39fe8d436f6ed9748&oe=5A1F17E0",
+        tags: "colonial",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 6,
+            name: "Miriam Aupont",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/miriam_aupont.jpg"
+        }
+    },
+    {
+        id: 8,
+        address: "48 Brattle st",
+        city: "Cambridge",
+        state: "MA",
+        zip: "02420",
+        price: "$450,000",
+        title: "Minh Thu Nguyen",
+        bedrooms: 5,
+        bathrooms: 4,
+        long: -71.121653,
+        lat: 42.374117,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house10.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621766_507619646240222_7223858202266566665_n.jpg?oh=47973a87b3a495eee7a2dc6d66355d1d&oe=59EAE8D9",
+        tags: "victorian",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 7,
+            name: "Michelle Lambert",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michelle_lambert.jpg"
+        }
+    },
+    {
+        id: 9,
+        address: "121 Harborwalk",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$450,000",
+        title: "Tuyen Nguyen",
+        bedrooms: 3,
+        bathrooms: 3,
+        long: -71.049327,
+        lat: 42.35695,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house09.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20621896_1619721901371873_8757437168574382787_n.jpg?oh=5ea18328e06b5edc92d5e0baca7b4892&oe=59F194A5",
+        tags: "contemporary",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 2,
+            name: "Michael Jones",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
+        }
+    },
+    {
+        id: 10,
+        address: "503 Park Drive",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$650,000",
+        title: "City Living",
+        bedrooms: 2,
+        bathrooms: 2,
+        long: -71.105475,
+        lat: 42.347400,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house08.jpg",
+        thumbnail: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house08sq.jpg",
+        tags: "contemporary",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 1,
+            name: "Caroline Kingsley",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
+        }
+    },
+    {
+        id: 11,
+        address: "95 Gloucester st",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$690,000",
+        title: "Luck Yong",
+        bedrooms: 3,
+        bathrooms: 3,
+        lat: 42.349693,
+        long: -71.084407,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house11.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/20525477_10154764283654212_7155418011956367437_n.jpg?oh=857daeeb66efa2fef114b73c7e5c7076&oe=5A2FA671",
+        tags: "contemporary",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 4,
+            name: "Jennifer Wu",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
+        }
+    },
+    {
+        id: 12,
+        address: "145 Commonwealth ave",
+        city: "Boston",
+        state: "MA",
+        zip: "02420",
+        price: "$845,000",
+        title: "Nguyen Viet Ha",
+        bedrooms: 4,
+        bathrooms: 3,
+        lat: 42.352466,
+        long: -71.075311,
+        distance: 0,
+        locatedAt: "2017-08-10T18:03:40.887",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/realty/house12.jpg",
+        thumbnail: "https://scontent-lax3-2.xx.fbcdn.net/v/t1.0-1/p240x240/12799079_1320496074631406_3751514757821920751_n.jpg?oh=3493a9c272b8103192b510b07fc3989b&oe=59F0BC4E",
+        tags: "colonial",
+        description: "Lorem ipsum dolor sit amet",
+        broker: {
+            id: 5,
+            name: "Olivia Green",
+            title: "Senior Broker",
+            picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
+        }
+    }
+];
+/* harmony default export */ __webpack_exports__["a"] = (properties);
+//# sourceMappingURL=mock-properties.js.map
+
+/***/ }),
+
+/***/ 433:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var brokers = [
+    {
+        id: 1,
+        name: "Caroline Kingsley",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "caroline@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/caroline_kingsley.jpg"
+    },
+    {
+        id: 2,
+        name: "Michael Jones",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "michael@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michael_jones.jpg"
+    },
+    {
+        id: 3,
+        name: "Jonathan Bradley",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "jonathan@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jonathan_bradley.jpg"
+    },
+    {
+        id: 4,
+        name: "Jennifer Wu",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "jen@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/jennifer_wu.jpg"
+    },
+    {
+        id: 5,
+        name: "Olivia Green",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "olivia@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/olivia_green.jpg"
+    },
+    {
+        id: 6,
+        name: "Miriam Aupont",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "miriam@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/miriam_aupont.jpg"
+    },
+    {
+        id: 7,
+        name: "Michelle Lambert",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "michelle@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/michelle_lambert.jpg"
+    },
+    {
+        id: 8,
+        name: "Victor Ochoa",
+        title: "Senior Broker",
+        phone: "617-244-3672",
+        mobilePhone: "617-244-3672",
+        email: "victor@ionicrealty.com",
+        picture: "https://s3-us-west-1.amazonaws.com/sfdc-demo/people/victor_ochoa.jpg"
+    }
+];
+/* harmony default export */ __webpack_exports__["a"] = (brokers);
+//# sourceMappingURL=mock-brokers.js.map
+
+/***/ }),
+
+/***/ 462:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppConstants; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3204,25 +3303,29 @@ var AppConstants = (function () {
 
 /***/ }),
 
-/***/ 305:
+/***/ 463:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_storage__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ng2_haversine___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ng2_haversine__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_logout_logout__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_about_about__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_login_login__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_logout_logout__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_friend_list_friend_list__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_request_list_request_list__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_welcome_welcome__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_about_about__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_api_default_service__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__utils_utils__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Rxjs_rx__ = __webpack_require__(464);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Rxjs_rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_Rxjs_rx__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3245,8 +3348,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var MyApp = (function () {
-    function MyApp(platform, statusBar, splashScreen, _haversineService, storage, menu, alertCtrl) {
+    // observedPos: Coordinates = {} as Coordinates; 
+    // objectObserver = ObjectObserverFactory.newInstance<string[]>([], {
+    //         enableFallback: false
+    //     });
+    function MyApp(platform, statusBar, splashScreen, _haversineService, storage, menu, alertCtrl, api) {
         this.platform = platform;
         this.statusBar = statusBar;
         this.splashScreen = splashScreen;
@@ -3254,7 +3364,9 @@ var MyApp = (function () {
         this.storage = storage;
         this.menu = menu;
         this.alertCtrl = alertCtrl;
+        this.api = api;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
+        this.inprogress = false;
         this.initializeApp();
         this.appMenuItems = [
             { title: 'Locations', component: __WEBPACK_IMPORTED_MODULE_8__pages_location_list_location_list__["a" /* LocationListPage */], icon: 'home' },
@@ -3271,40 +3383,91 @@ var MyApp = (function () {
         ];
     }
     MyApp.prototype.initializeApp = function () {
-        // setInterval(function(){ 
-        //    console.log('test')
         var _this = this;
-        // }, 1000);
-        debugger;
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (position) {
-                //this.location = position.coords;
-                console.log(position.coords);
-                var madrid = {
-                    latitude: 33.91918,
-                    longitude: -118.416465
-                };
-                //El Segundo, CA, USA
-                //atitude: 33.91918 | Longitude: -118.416465
-                var current = {
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude
-                };
-                _this.storage.set('current', current);
-                var meters = _this._haversineService.getDistanceInMeters(madrid, current);
-                var kilometers = _this._haversineService.getDistanceInKilometers(madrid, current);
-                var miles = _this._haversineService.getDistanceInMiles(madrid, current);
-                console.log("\n                    The distance between Current and Bilbao is:\n                        - " + meters + " meters\n                        - " + kilometers + " kilometers\n                        - " + miles + " miles\n                ");
-            });
-        }
-        else {
-            this.storage.set('current', undefined);
-        }
         this.platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             _this.statusBar.styleLightContent();
             _this.splashScreen.hide();
+        });
+        this.doUpdatePos();
+    };
+    MyApp.prototype.doUpdatePos = function () {
+        var _this = this;
+        __WEBPACK_IMPORTED_MODULE_15_Rxjs_rx__["Observable"].interval(1000).subscribe(function () {
+            if (!_this.inprogress) {
+                _this.inprogress = true;
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        // let current: GeoCoord = {
+                        //     latitude: position.coords.latitude,
+                        //     longitude: position.coords.longitude
+                        // };
+                        //El Segundo
+                        // let current: GeoCoord = {
+                        //     latitude: 33.919180,
+                        //     longitude: -118.416465
+                        // };
+                        debugger;
+                        _this.current = position.coords;
+                        _this.hasNewPosition(position.coords);
+                    });
+                }
+                else {
+                    _this.storage.set('oldPos', undefined);
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
+                    _this.nav.setRoot(_this.rootPage);
+                }
+            }
+        });
+    };
+    MyApp.prototype.hasNewPosition = function (cur) {
+        var _this = this;
+        this.storage.get('oldPos').then(function (val) {
+            debugger;
+            if (val === undefined || val === null) {
+                var oldPos = {
+                    latitude: val.latitude,
+                    longitude: val.longitude
+                };
+                var curPos = {
+                    latitude: cur.latitude,
+                    longitude: cur.longitude
+                };
+                var meters = _this._haversineService.getDistanceInMeters(oldPos, curPos);
+                if (meters > 200) {
+                    _this.updateLocation(cur);
+                }
+            }
+            else {
+                _this.updateLocation(cur);
+            }
+        });
+    };
+    MyApp.prototype.updateLocation = function (cur) {
+        var _this = this;
+        this.storage.get('user').then(function (val) {
+            if (val === undefined || val === null) {
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
+                _this.nav.setRoot('LoginPage');
+            }
+            else {
+                var loginUser = val;
+                _this.api.configuration = __WEBPACK_IMPORTED_MODULE_14__utils_utils__["a" /* Utils */].getConfiguration(loginUser);
+                var request = {};
+                request.userId = loginUser.item.id;
+                request.lng = cur.longitude;
+                request.lat = cur.latitude;
+                _this.api.usersUpdatelocationPost(request).subscribe(function (response) {
+                    console.log(response);
+                    _this.storage.set('curPos', cur);
+                    _this.inprogress = false;
+                }, function (error) {
+                    //this.showError(error);
+                    console.log(error);
+                    _this.inprogress = false;
+                });
+            }
         });
     };
     MyApp.prototype.openPage = function (page) {
@@ -3323,64 +3486,29 @@ var MyApp = (function () {
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewChild"])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]),
-        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */])
+        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Nav */]) === "function" && _a || Object)
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/'<ion-menu [content]="content">\n\n\n\n  <ion-content>\n\n\n\n    <img src="assets/img/dreamhouse-logo.svg" class="menu-logo"/>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Network\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of appMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Help\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of helpMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n    <ion-list>\n\n      <ion-list-header>\n\n        Account\n\n      </ion-list-header>\n\n      <button menuClose ion-item *ngFor="let menuItem of accountMenuItems" (click)="openPage(menuItem)">\n\n        <ion-icon item-left [name]="menuItem.icon"></ion-icon>\n\n        {{menuItem.title}}\n\n      </button>\n\n    </ion-list>\n\n\n\n  </ion-content>\n\n\n\n</ion-menu>\n\n\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
-            __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"], __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]])
+        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5_ng2_haversine__["HaversineService"]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_storage__["b" /* Storage */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_13__providers_api_default_service__["a" /* DefaultService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_13__providers_api_default_service__["a" /* DefaultService */]) === "function" && _j || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 48:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrokerService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_brokers__ = __webpack_require__(275);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-var BrokerService = (function () {
-    function BrokerService() {
-    }
-    BrokerService.prototype.findAll = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_brokers__["a" /* default */]);
-    };
-    BrokerService.prototype.findById = function (id) {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_brokers__["a" /* default */][id - 1]);
-    };
-    BrokerService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], BrokerService);
-    return BrokerService;
-}());
-
-//# sourceMappingURL=broker-service-mock.js.map
-
-/***/ }),
-
-/***/ 49:
+/***/ 59:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Utils; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_configuration__ = __webpack_require__(166);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_configuration__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__ = __webpack_require__(435);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_crypto_js_crypto_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3427,13 +3555,13 @@ var Utils = (function () {
 
 /***/ }),
 
-/***/ 83:
+/***/ 74:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PropertyService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_properties__ = __webpack_require__(274);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrokerService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mock_brokers__ = __webpack_require__(433);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3442,89 +3570,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
-var PropertyService = (function () {
-    function PropertyService() {
-        this.favoriteCounter = 0;
-        this.favorites = [];
+var BrokerService = (function () {
+    function BrokerService() {
     }
-    PropertyService.prototype.findAll = function () {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */]);
+    BrokerService.prototype.findAll = function () {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_brokers__["a" /* default */]);
     };
-    PropertyService.prototype.findById = function (id) {
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */][id - 1]);
+    BrokerService.prototype.findById = function (id) {
+        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_brokers__["a" /* default */][id - 1]);
     };
-    PropertyService.prototype.findByName = function (searchKey) {
-        var key = searchKey.toUpperCase();
-        return Promise.resolve(__WEBPACK_IMPORTED_MODULE_1__mock_properties__["a" /* default */].filter(function (property) {
-            return (property.title + ' ' + property.address + ' ' + property.city + ' ' + property.description).toUpperCase().indexOf(key) > -1;
-        }));
-    };
-    PropertyService.prototype.getFavorites = function () {
-        return Promise.resolve(this.favorites);
-    };
-    PropertyService.prototype.favorite = function (property) {
-        this.favoriteCounter = this.favoriteCounter + 1;
-        this.favorites.push({ id: this.favoriteCounter, property: property });
-        return Promise.resolve();
-    };
-    PropertyService.prototype.unfavorite = function (favorite) {
-        var index = this.favorites.indexOf(favorite);
-        if (index > -1) {
-            this.favorites.splice(index, 1);
-        }
-        return Promise.resolve();
-    };
-    PropertyService = __decorate([
+    BrokerService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], PropertyService);
-    return PropertyService;
+    ], BrokerService);
+    return BrokerService;
 }());
 
-//# sourceMappingURL=property-service-mock.js.map
-
-/***/ }),
-
-/***/ 84:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FriendDetailPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__ = __webpack_require__(48);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var FriendDetailPage = (function () {
-    function FriendDetailPage(navCtrl, navParams, service) {
-        var _this = this;
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.service = service;
-        this.broker = this.navParams.data;
-        service.findById(this.broker.id).then(function (broker) { return _this.broker = broker; });
-    }
-    FriendDetailPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'page-friend-detail',template:/*ion-inline-start:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>Broker</ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content class="broker">\n\n\n\n    <ion-card>\n\n\n\n        <ion-card-content>\n\n            <img src="{{broker.picture}}"/>\n\n            <h2>{{broker.name}}</h2>\n\n            <h3>{{broker.title}}</h3>\n\n        </ion-card-content>\n\n\n\n        <ion-list>\n\n            <a href="tel:{{broker.Phone__c}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Office</p>\n\n                <h2>{{broker.phone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="call" item-left></ion-icon>\n\n                <p>Call Mobile</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="tel:{{broker.phone}}" ion-item>\n\n                <ion-icon name="text" item-left></ion-icon>\n\n                <p>Text</p>\n\n                <h2>{{broker.mobilePhone}}</h2>\n\n            </a>\n\n            <a href="mailto:{{broker.email}}" ion-item>\n\n                <ion-icon name="mail" item-left></ion-icon>\n\n                <p>Email</p>\n\n                <h2>{{broker.email}}</h2>\n\n            </a>\n\n        </ion-list>\n\n\n\n    </ion-card>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\FPT LA\samples\networkXXX\frontend\src\pages\friend-detail\friend-detail.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_broker_service_mock__["a" /* BrokerService */]])
-    ], FriendDetailPage);
-    return FriendDetailPage;
-}());
-
-//# sourceMappingURL=friend-detail.js.map
+//# sourceMappingURL=broker-service-mock.js.map
 
 /***/ })
 
-},[217]);
+},[375]);
 //# sourceMappingURL=main.js.map
