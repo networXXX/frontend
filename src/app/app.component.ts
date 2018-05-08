@@ -121,6 +121,9 @@ export class MyApp {
         this.storage.get('oldPos').then((val) => {
             debugger;
             if (val === undefined || val === null) {
+                this.updateLocation(cur);
+                
+            } else {
                 let oldPos: GeoCoord = {
                     latitude: val.latitude,
                     longitude: val.longitude
@@ -135,8 +138,6 @@ export class MyApp {
                 if (meters > 200) {
                     this.updateLocation(cur);
                 }
-            } else {
-                this.updateLocation(cur);
             }
         });
     }
