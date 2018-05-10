@@ -584,23 +584,23 @@ var map = {
 		4
 	],
 	"../pages/add-friend/add-friend.module": [
-		765,
+		761,
 		3
 	],
 	"../pages/change-password/change-password.module": [
-		761,
+		762,
 		2
 	],
 	"../pages/location-list/location-list.module": [
-		762,
+		763,
 		8
 	],
 	"../pages/login/login.module": [
-		763,
+		764,
 		7
 	],
 	"../pages/logout/logout.module": [
-		764,
+		765,
 		6
 	],
 	"../pages/register/register.module": [
@@ -608,11 +608,11 @@ var map = {
 		1
 	],
 	"../pages/reset-password/reset-password.module": [
-		767,
+		768,
 		0
 	],
 	"../pages/welcome/welcome.module": [
-		768,
+		767,
 		5
 	]
 };
@@ -1533,14 +1533,14 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_8__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/activate/activate.module#ActivatePageModule', name: 'ActivatePage', segment: 'activate', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/change-password/change-password.module#ChangePasswordPageModule', name: 'ChangePasswordPage', segment: 'change-password', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/location-list/location-list.module#LocationListPageModule', name: 'LocationListPage', segment: 'location-list', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/logout/logout.module#LogoutModule', name: 'LogoutPage', segment: 'logout', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/add-friend/add-friend.module#AddFriendPageModule', name: 'AddFriendPage', segment: 'add-friend', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/reset-password/reset-password.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'reset-password', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/welcome/welcome.module#WelcomeModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/welcome/welcome.module#WelcomeModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/reset-password/reset-password.module#ResetPasswordPageModule', name: 'ResetPasswordPage', segment: 'reset-password', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_21__ionic_storage__["a" /* IonicStorageModule */].forRoot()
@@ -3352,10 +3352,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MyApp = (function () {
-    // observedPos: Coordinates = {} as Coordinates; 
-    // objectObserver = ObjectObserverFactory.newInstance<string[]>([], {
-    //         enableFallback: false
-    //     });
     function MyApp(platform, statusBar, splashScreen, _haversineService, storage, menu, alertCtrl, api) {
         this.platform = platform;
         this.statusBar = statusBar;
@@ -3395,26 +3391,16 @@ var MyApp = (function () {
     MyApp.prototype.doUpdatePos = function () {
         var _this = this;
         __WEBPACK_IMPORTED_MODULE_15_Rxjs_rx__["Observable"].interval(1000).subscribe(function () {
-            if (!_this.inprogress) {
+            if (_this.inprogress == false) {
                 _this.inprogress = true;
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
-                        // let current: GeoCoord = {
-                        //     latitude: position.coords.latitude,
-                        //     longitude: position.coords.longitude
-                        // };
-                        //El Segundo
-                        // let current: GeoCoord = {
-                        //     latitude: 33.919180,
-                        //     longitude: -118.416465
-                        // };
-                        debugger;
                         _this.current = position.coords;
                         _this.hasNewPosition(position.coords);
                     });
                 }
                 else {
-                    _this.storage.set('oldPos', undefined);
+                    _this.storage.set('curPos', undefined);
                     _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
                     _this.nav.setRoot(_this.rootPage);
                 }
@@ -3423,9 +3409,11 @@ var MyApp = (function () {
     };
     MyApp.prototype.hasNewPosition = function (cur) {
         var _this = this;
-        this.storage.get('oldPos').then(function (val) {
-            debugger;
+        this.storage.get('curPos').then(function (val) {
             if (val === undefined || val === null) {
+                _this.updateLocation(cur);
+            }
+            else {
                 var oldPos = {
                     latitude: val.latitude,
                     longitude: val.longitude
@@ -3436,11 +3424,9 @@ var MyApp = (function () {
                 };
                 var meters = _this._haversineService.getDistanceInMeters(oldPos, curPos);
                 if (meters > 200) {
+                    console.log(meters);
                     _this.updateLocation(cur);
                 }
-            }
-            else {
-                _this.updateLocation(cur);
             }
         });
     };

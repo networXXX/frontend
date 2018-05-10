@@ -43,12 +43,7 @@ export class MyApp {
 
     current: Coordinates;
 
-    inprogress: boolean = false;
-
-    // observedPos: Coordinates = {} as Coordinates; 
-    // objectObserver = ObjectObserverFactory.newInstance<string[]>([], {
-    //         enableFallback: false
-    //     });
+    inprogress: Boolean = false;
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
@@ -87,29 +82,17 @@ export class MyApp {
 
     doUpdatePos() {
         Observable.interval(1000).subscribe(()=>{
-            if (!this.inprogress) {
+            
+            if (this.inprogress == false) {
                 this.inprogress = true;
                 if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(position => {
-
-                        // let current: GeoCoord = {
-                        //     latitude: position.coords.latitude,
-                        //     longitude: position.coords.longitude
-                        // };
-
-                        //El Segundo
-                        // let current: GeoCoord = {
-                        //     latitude: 33.919180,
-                        //     longitude: -118.416465
-                        // };
-
-                        debugger;
 
                         this.current = position.coords;
                         this.hasNewPosition(position.coords);
                     });
                 } else {
-                    this.storage.set('oldPos', undefined);
+                    this.storage.set('curPos', undefined);
                     this.rootPage = LoginPage;
                     this.nav.setRoot(this.rootPage);   
                 }
@@ -118,8 +101,8 @@ export class MyApp {
     }
 
     hasNewPosition(cur: Coordinates) {
-        this.storage.get('oldPos').then((val) => {
-            debugger;
+        this.storage.get('curPos').then((val) => {
+
             if (val === undefined || val === null) {
                 this.updateLocation(cur);
                 
@@ -136,6 +119,7 @@ export class MyApp {
 
                 let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
                 if (meters > 200) {
+                    console.log(meters);
                     this.updateLocation(cur);
                 }
             }
