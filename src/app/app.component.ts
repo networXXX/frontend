@@ -41,7 +41,7 @@ export class MyApp {
 
     helpMenuItems: Array<MenuItem>;
 
-    current: Coordinates;
+    current: Coordinates = undefined;
 
     inprogress: Boolean = false;
 
@@ -84,11 +84,11 @@ export class MyApp {
         Observable.interval(1000).subscribe(()=>{
             
             if (this.inprogress == false) {
-                this.inprogress = true;
+                
                 if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(position => {
 
-                        this.current = position.coords;
+                        //this.current = position.coords;
                         this.hasNewPosition(position.coords);
                     });
                 } else {
@@ -101,15 +101,19 @@ export class MyApp {
     }
 
     hasNewPosition(cur: Coordinates) {
-        this.storage.get('curPos').then((val) => {
+        //this.storage.get('curPos').then((val) => {
 
-            if (val === undefined || val === null) {
+            if (this.current === undefined || this.current === null) {
+
                 this.updateLocation(cur);
+
                 
             } else {
+
+
                 let oldPos: GeoCoord = {
-                    latitude: val.latitude,
-                    longitude: val.longitude
+                    latitude: this.current.latitude,
+                    longitude: this.current.longitude
                 };
 
                 let curPos: GeoCoord = {
@@ -118,20 +122,27 @@ export class MyApp {
                 };
 
                 let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
+
                 if (meters > 200) {
                     console.log(meters);
                     this.updateLocation(cur);
+                } else {
+                    this.inprogress = true;
                 }
+
             }
-        });
+        //});
     }
 
     updateLocation(cur: Coordinates) {
         this.storage.get('user').then((val) => {  
             if (val === undefined || val === null) {
+
                 this.rootPage = LoginPage;
                 this.nav.setRoot('LoginPage');
+
             } else {
+
                 let loginUser: models.LoginUserResponse = val; 
         
                 this.api.configuration = Utils.getConfiguration(loginUser); 
@@ -143,7 +154,12 @@ export class MyApp {
 
                 this.api.usersUpdatelocationPost(request).subscribe(response => {
                     console.log(response);
-                    this.storage.set('curPos', cur);
+                    // this.storage.set('curPos', cur);
+                    // this.storage.set('curPos2', cur);
+                    // this.storage.get('curPos2').then((val1) => {
+                    //     console.log(val1);
+                    // });
+                    this.current = cur;
                     this.inprogress = false;
                 },
                   error => {
@@ -151,6 +167,7 @@ export class MyApp {
                     console.log(error);  
                     this.inprogress = false;        
                 });
+
           }        
         });  
     }
