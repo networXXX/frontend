@@ -18,7 +18,7 @@ import {ObjectObserverFactory} from 'typescript-object-observer';
 
 import * as models  from '../providers/model/models';
 import { Utils } from '../utils/utils';
-import {Observable} from 'Rxjs/rx';
+import {Observable} from 'rxjs'
 
 
 export interface MenuItem {
@@ -77,26 +77,27 @@ export class MyApp {
             this.splashScreen.hide();
         });
 
-        this.doUpdatePos();
+        this.scheduleUpdatePos();
     }
 
     doUpdatePos() {
-        Observable.interval(1000).subscribe(()=>{
-            
-            if (this.inprogress == false) {
+        if (this.inprogress == false) {
                 
-                if(navigator.geolocation){
-                    navigator.geolocation.getCurrentPosition(position => {
-
-                        //this.current = position.coords;
-                        this.hasNewPosition(position.coords);
-                    });
-                } else {
-                    this.storage.set('curPos', undefined);
-                    this.rootPage = LoginPage;
-                    this.nav.setRoot(this.rootPage);   
-                }
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(position => {
+                    this.hasNewPosition(position.coords);
+                });
+            } else {
+                this.storage.set('curPos', undefined);
+                this.rootPage = LoginPage;
+                this.nav.setRoot(this.rootPage);   
             }
+        }
+    }
+
+    scheduleUpdatePos() {
+        Observable.interval(50000).subscribe(()=>{
+            this.doUpdatePos();
         });
     }
 
