@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, MenuController, AlertController} from 'ionic-angular';
+import {Nav, Platform, MenuController, AlertController, NavController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
@@ -48,6 +48,7 @@ export class MyApp {
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
                 public menu: MenuController, private alertCtrl: AlertController, private api: DefaultService) {
+        
         this.initializeApp();
 
         this.appMenuItems = [
@@ -81,14 +82,13 @@ export class MyApp {
     }
 
     doUpdatePos() {
-        Observable.interval(1000).subscribe(()=>{
+        Observable.interval(5000).subscribe(()=>{
             
             if (this.inprogress == false) {
                 
                 if(navigator.geolocation){
+                    this.inprogress = true;
                     navigator.geolocation.getCurrentPosition(position => {
-
-                        //this.current = position.coords;
                         this.hasNewPosition(position.coords);
                     });
                 } else {
@@ -101,37 +101,33 @@ export class MyApp {
     }
 
     hasNewPosition(cur: Coordinates) {
-        //this.storage.get('curPos').then((val) => {
 
-            if (this.current === undefined || this.current === null) {
+        if (this.current === undefined || this.current === null) {
 
+            this.updateLocation(cur);
+        } else {
+
+            let oldPos: GeoCoord = {
+                latitude: this.current.latitude,
+                longitude: this.current.longitude
+            };
+
+            let curPos: GeoCoord = {
+                latitude: cur.latitude,
+                longitude: cur.longitude
+            };
+
+            let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
+
+            if (meters > 200) {
+                console.log(meters);
                 this.updateLocation(cur);
-
-                
             } else {
-
-
-                let oldPos: GeoCoord = {
-                    latitude: this.current.latitude,
-                    longitude: this.current.longitude
-                };
-
-                let curPos: GeoCoord = {
-                    latitude: cur.latitude,
-                    longitude: cur.longitude
-                };
-
-                let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
-
-                if (meters > 200) {
-                    console.log(meters);
-                    this.updateLocation(cur);
-                } else {
-                    this.inprogress = true;
-                }
-
+                console.log("< 200 meter");
+                this.inprogress = false;
             }
-        //});
+        }
+
     }
 
     updateLocation(cur: Coordinates) {
@@ -152,13 +148,7 @@ export class MyApp {
                 request.lng = cur.longitude;
                 request.lat = cur.latitude; 
 
-                this.api.usersUpdatelocationPost(request).subscribe(response => {
-                    console.log(response);
-                    // this.storage.set('curPos', cur);
-                    // this.storage.set('curPos2', cur);
-                    // this.storage.get('curPos2').then((val1) => {
-                    //     console.log(val1);
-                    // });
+                this.api.usersUpdatelocationPost(request).subscribe(response => {;
                     this.current = cur;
                     this.inprogress = false;
                 },
@@ -174,15 +164,17 @@ export class MyApp {
 
     openPage(page) {
         // close the menu when clicking a link from the menu
+        debugger;
         this.menu.close();
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         //this.nav.setRoot(page.component);
         if (page.title == 'Logout') {
-          this.storage.set('user', null);
-          this.nav.setRoot(this.rootPage);
+            this.storage.set('curPos', undefined);
+            this.storage.set('user', null);
+            this.nav.setRoot(this.rootPage);
         } else {
-          this.nav.setRoot(page.component);
+            this.nav.setRoot(page.component);
         }
     }
 }
