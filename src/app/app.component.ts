@@ -18,7 +18,7 @@ import {ObjectObserverFactory} from 'typescript-object-observer';
 
 import * as models  from '../providers/model/models';
 import { Utils } from '../utils/utils';
-import {Observable} from 'Rxjs/rx';
+import {Observable} from 'rxjs'
 
 
 export interface MenuItem {
@@ -78,7 +78,7 @@ export class MyApp {
             this.splashScreen.hide();
         });
 
-        this.doUpdatePos();
+        this.scheduleUpdatePos();
     }
 
     doUpdatePos() {
@@ -96,7 +96,14 @@ export class MyApp {
                     this.rootPage = LoginPage;
                     this.nav.setRoot(this.rootPage);   
                 }
+
             }
+        }
+    }
+
+    scheduleUpdatePos() {
+        Observable.interval(50000).subscribe(()=>{
+            this.doUpdatePos();
         });
     }
 
