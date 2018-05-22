@@ -1,14 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 
+
 @Injectable()
 export class AppConstants {
 
   public appVersion: string;
 
-  
   public static KEY_STATUS: string = 'K';
 
+  public static MAX_METER: number = 200;
+
+  /**
+   * Contructor
+   * @param platform 
+   */
   constructor(platform: Platform) {
     // platform.ready().then(() => {
     // AppVersion.getVersionNumber().then((s) => {
