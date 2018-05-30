@@ -47,7 +47,7 @@ export class LocationListPage implements OnInit {
                 private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
         this.items = []; 
         this.getLocation();
-        this.findAll();
+        
     }
 
     ngOnInit(): any {
@@ -60,6 +60,7 @@ export class LocationListPage implements OnInit {
             this.QUERY_STR = 'userId:' + loginUser.item.id + '&status:Y';  
             this.userId = loginUser.item.id;  
             this.api.configuration = Utils.getConfiguration(loginUser); 
+            debugger;
             this.getUsers(this.QUERY_STR); 
           }        
         });           
@@ -145,7 +146,6 @@ export class LocationListPage implements OnInit {
         this.service.findAll()
             .then(data => { 
                 this.properties = data;
-
             })
             .catch(error => alert(error));
     }
@@ -154,10 +154,12 @@ export class LocationListPage implements OnInit {
         if(navigator.geolocation){
             navigator.geolocation.getCurrentPosition(position => {
                 //this.location = position.coords;
+                debugger;
                 console.log(position.coords); 
                 //debugger;
                 this.current.latitude = position.coords.latitude;
                 this.current.longitude = position.coords.longitude;
+                this.findAll();
           });
         }
     }
@@ -200,11 +202,12 @@ export class LocationListPage implements OnInit {
     }
 
     calcDistance(property) {
-        if (property.distance == 0) {
+        if (property.distance === undefined || property.distance === NaN) {
             let location: GeoCoord = {
                 latitude: property.lat,
                 longitude: property.long
             }
+            debugger;
             property.distance = this._haversineService.getDistanceInKilometers(location, this.current);
             //property.distance = 2;
             console.log(property.distance);

@@ -1,3 +1,5 @@
+import { UserStorage } from './../providers/user-storage';
+import { AppConstants } from './../constants/app.constants';
 import { UserResponse } from './../providers/model/userResponse';
 import {Component, ViewChild} from '@angular/core';
 import {Nav, Platform, MenuController, AlertController, NavController} from 'ionic-angular';
@@ -42,11 +44,11 @@ export class MyApp {
 
     helpMenuItems: Array<MenuItem>;
 
-    current: Coordinates = undefined;
+    current: GeoCoord = undefined;
 
     inprogress: Boolean = false;
 
-    user: models.UserResponse;
+    user: UserStorage;
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
                 private _haversineService: HaversineService, private storage: Storage,
@@ -86,14 +88,19 @@ export class MyApp {
 
     doUpdatePos() {
         if (this.inprogress == false) {
+            console.log("doUpdatePos()...");
                 
             if(navigator.geolocation){
                 this.inprogress = true;
                 navigator.geolocation.getCurrentPosition(position => {
-                    this.hasNewPosition(position.coords);
+                    let cur: GeoCoord = {
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude
+                    };
+                    this.processLocation(cur);
                 });
             } else {
-                this.storage.set('curPos', undefined);
+                //this.storage.set('curPos', undefined);
                 this.rootPage = LoginPage;
                 this.nav.setRoot(this.rootPage);   
             }
@@ -102,16 +109,16 @@ export class MyApp {
     }
 
     scheduleUpdatePos() {
-        Observable.interval(50000).subscribe(()=>{
+        Observable.interval(5000000).subscribe(()=>{
             this.doUpdatePos();
         });
     }
 
-    hasNewPosition(cur: Coordinates) {
+    processLocation(newPos: GeoCoord) {
 
         if (this.current === undefined || this.current === null) {
 
-            this.updateLocation(cur, this.user);
+            this.doProcessUpdate(newPos);
         } else {
 
             let oldPos: GeoCoord = {
@@ -119,16 +126,11 @@ export class MyApp {
                 longitude: this.current.longitude
             };
 
-            let curPos: GeoCoord = {
-                latitude: cur.latitude,
-                longitude: cur.longitude
-            };
+            let meters = this._haversineService.getDistanceInMeters(oldPos, newPos); 
 
-            let meters = this._haversineService.getDistanceInMeters(oldPos, curPos); 
-
-            if (meters > 200) {
+            if (meters > AppConstants.MAX_METER) {
                 console.log(meters);
-                this.processLocation(cur);
+                this.doProcessUpdate(newPos);
             } else {
                 console.log("< 200 meter");
                 this.inprogress = false;
@@ -137,9 +139,11 @@ export class MyApp {
 
     }
 
-    processLocation(cur: Coordinates) {
+    doProcessUpdate(newPos: GeoCoord) {
+        this.current = newPos;
         if (this.user === undefined || this.user === null) {
-            this.storage.get('user').then((val) => {  
+            this.storage.get('user').then((val) => { 
+                debugger; 
                 if (val === undefined || val === null) {
     
                     this.rootPage = LoginPage;
@@ -147,11 +151,11 @@ export class MyApp {
     
                 } else {
                     this.user = val;
-                    this.updateLocation(cur, val);
+                    this.updateLocation(newPos, val);
               }        
             });  
         } else {
-            this.updateLocation(cur, this.user);
+            this.updateLocation(newPos, this.user);
         }
         
     }
@@ -161,16 +165,17 @@ export class MyApp {
      * @param cur 
      * @param user 
      */
-    updateLocation(cur: Coordinates, user: models.LoginUserResponse) {
-        this.api.configuration = Utils.getConfiguration(user); 
+    updateLocation(cur: GeoCoord, userStorage: UserStorage) {
+        this.api.configuration = Utils.getConfig(userStorage); 
         var request: models.UpdateLocationRequest = {} as models.UpdateLocationRequest;
 
-        request.userId = user.item.id;
+        request.userId = userStorage.id;
         request.lng = cur.longitude;
-        request.lat = cur.latitude; 
+        request.lat = cur.latitude;
+        this.user.pos = cur;
 
         this.api.usersUpdatelocationPost(request).subscribe(response => {
-            this.storage.set('curPos', cur);
+            this.storage.set('user', cur);
         },
         error => {                    
             console.log(error);                      
@@ -185,7 +190,6 @@ export class MyApp {
         // we wouldn't want the back button to show in this scenario
         //this.nav.setRoot(page.component);
         if (page.title == 'Logout') {
-            this.storage.set('curPos', undefined);
             this.storage.set('user', null);
             this.nav.setRoot(this.rootPage);
         } else {

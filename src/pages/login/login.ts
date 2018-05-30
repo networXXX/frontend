@@ -42,6 +42,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.storage.get('user').then((val) => {
+      debugger;
       if (val !== undefined && val !== null) {
         //let loginUser: models.LoginUserResponse = val;
         //if (AppConstants.KEY_STATUS === loginUser.item.status) {
@@ -67,7 +68,6 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
-    debugger;
     if (this.current != null) {
       this.showLoading();
       this.storage.set('user', null); 
@@ -99,12 +99,9 @@ export class LoginPage implements OnInit {
   }  
 
   loginWithFB() {
-    debugger;
     this.fb.login(['public_profile', 'user_friends', 'email'])
       .then(res => {
         if(res.status === "connected") {
-          console.log(res);
-          debugger;
           this.isLoggedIn = true;
           this.getUserDetail(res);
           
