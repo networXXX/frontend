@@ -1,3 +1,4 @@
+import { Utils } from './../../utils/utils';
 import { OnInit, Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { DefaultService } from '../../providers/api/default.service';
@@ -46,7 +47,7 @@ export class LoginPage implements OnInit {
       if (val !== undefined && val !== null) {
         //let loginUser: models.LoginUserResponse = val;
         //if (AppConstants.KEY_STATUS === loginUser.item.status) {
-        this.nav.setRoot('WelcomePage');
+        //this.nav.setRoot('WelcomePage');
         //}    
       }
     });
@@ -79,7 +80,7 @@ export class LoginPage implements OnInit {
         request.password = this.registerCredentials.password;
         this.api.loginPost(request).subscribe(response => {
           if (response.token !== undefined) {                       
-            this.storage.set('user', response);          
+            this.storage.set('user', Utils.convertToUserStorage(response));          
             this.nav.setRoot('WelcomePage');
             this.loading.dismiss();
           } else {

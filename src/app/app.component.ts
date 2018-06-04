@@ -1,3 +1,4 @@
+import { Utils } from './../utils/utils';
 import { UserStorage } from './../providers/user-storage';
 import { AppConstants } from './../constants/app.constants';
 import { UserResponse } from './../providers/model/userResponse';
@@ -18,9 +19,7 @@ import {AboutPage} from '../pages/about/about';
 import { DefaultService } from '../providers/api/default.service';
 
 import {ObjectObserverFactory} from 'typescript-object-observer';
-
 import * as models  from '../providers/model/models';
-import { Utils } from '../utils/utils';
 import {Observable} from 'rxjs'
 
 
@@ -88,8 +87,7 @@ export class MyApp {
 
     doUpdatePos() {
         if (this.inprogress == false) {
-            console.log("doUpdatePos()...");
-                
+            console.log("doUpdatePos()...");       
             if(navigator.geolocation){
                 this.inprogress = true;
                 navigator.geolocation.getCurrentPosition(position => {
@@ -100,24 +98,23 @@ export class MyApp {
                     this.processLocation(cur);
                 });
             } else {
-                //this.storage.set('curPos', undefined);
                 this.rootPage = LoginPage;
                 this.nav.setRoot(this.rootPage);   
             }
-
         }
     }
 
     scheduleUpdatePos() {
-        Observable.interval(5000000).subscribe(()=>{
+        Observable.interval(5000).subscribe(()=>{
             this.doUpdatePos();
         });
     }
 
     processLocation(newPos: GeoCoord) {
 
+        console.log("processLocation calling...");
+        console.log(newPos);
         if (this.current === undefined || this.current === null) {
-
             this.doProcessUpdate(newPos);
         } else {
 
@@ -136,19 +133,17 @@ export class MyApp {
                 this.inprogress = false;
             }
         }
-
     }
 
     doProcessUpdate(newPos: GeoCoord) {
+        console.log("doProcessUpdate calling...");
         this.current = newPos;
         if (this.user === undefined || this.user === null) {
             this.storage.get('user').then((val) => { 
-                debugger; 
+                console.log(val);
                 if (val === undefined || val === null) {
-    
                     this.rootPage = LoginPage;
                     this.nav.setRoot('LoginPage');
-    
                 } else {
                     this.user = val;
                     this.updateLocation(newPos, val);
@@ -157,7 +152,6 @@ export class MyApp {
         } else {
             this.updateLocation(newPos, this.user);
         }
-        
     }
 
      /**
@@ -166,6 +160,7 @@ export class MyApp {
      * @param user 
      */
     updateLocation(cur: GeoCoord, userStorage: UserStorage) {
+        console.log("updateLocation calling...");
         this.api.configuration = Utils.getConfig(userStorage); 
         var request: models.UpdateLocationRequest = {} as models.UpdateLocationRequest;
 
@@ -173,9 +168,12 @@ export class MyApp {
         request.lng = cur.longitude;
         request.lat = cur.latitude;
         this.user.pos = cur;
+        console.log(request);
 
         this.api.usersUpdatelocationPost(request).subscribe(response => {
-            this.storage.set('user', cur);
+            this.storage.set('user', this.user);
+            console.log(this.user);
+            console.log(this.user.pos);
         },
         error => {                    
             console.log(error);                      

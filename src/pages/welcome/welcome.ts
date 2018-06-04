@@ -20,7 +20,6 @@ export class WelcomePage implements OnInit {
 		this.storage.get('user').then((val) => {  
 
 	      if (val === undefined || val === null) {
-	      	debugger;
 	        this.navCtrl.setRoot('LoginPage');
 	      } else {
 	        // let loginUser: models.LoginUserResponse = val; 
